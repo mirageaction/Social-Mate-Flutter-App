@@ -6,8 +6,20 @@ import 'package:social_mate_app/core/routes/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:social_mate_app/core/theme/light_text_theme.dart';
 import 'package:social_mate_app/core/theme/light_theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // load environment variables
+  await dotenv.load(fileName: ".env");
+
+  // initialize supabase
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
+
   runApp(const SocialMateApp());
 }
 
@@ -16,7 +28,6 @@ class SocialMateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
