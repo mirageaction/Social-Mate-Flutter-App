@@ -44,8 +44,8 @@ class ColorName {
   /// Color: #000000
   static const Color onSurface = Color(0xFF000000);
 
-  /// Color: #000000
-  static const Color onSurfaceVariant = Color(0xFF000000);
+  /// Color: #4E5558
+  static const Color onSurfaceVariant = Color(0xFF4E5558);
 
   /// Color: #000000
   static const Color onTertiary = Color(0xFF000000);

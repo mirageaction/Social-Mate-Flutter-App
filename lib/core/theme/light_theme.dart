@@ -31,12 +31,24 @@ ThemeData createLightTheme(TextTheme textTheme) {
     colorScheme: colorScheme,
     textTheme: textTheme,
     scaffoldBackgroundColor: LightColorScheme.surface,
+    tabBarTheme: TabBarThemeData(
+      indicatorColor: LightColorScheme.primary,
+      labelColor: LightColorScheme.primary,
+      unselectedLabelColor: LightColorScheme.onSurfaceVariant,
+      dividerColor: LightColorScheme.outline,
+      dividerHeight: 2,
+      labelStyle: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w400),
+      unselectedLabelStyle: textTheme.titleLarge?.copyWith(
+        fontWeight: FontWeight.w400,
+      ),
+      indicatorSize: TabBarIndicatorSize.tab,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: LightColorScheme.surface,
       foregroundColor: LightColorScheme.onSurface,
       surfaceTintColor: LightColorScheme.surface,
       elevation: 0,
-      
+
       titleTextStyle: textTheme.headlineSmall,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -66,36 +78,39 @@ ThemeData createLightTheme(TextTheme textTheme) {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: LightColorScheme.surfaceContainer,
+      fillColor: LightColorScheme.surface,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: LightColorScheme.outline),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: LightColorScheme.outline),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: LightColorScheme.primary, width: 2),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: LightColorScheme.error),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: LightColorScheme.error, width: 2),
       ),
       hintStyle: textTheme.bodyMedium?.copyWith(
-        color: LightColorScheme.onSurfaceVariant,
+        color: LightColorScheme.onSurfaceVariant.withValues(alpha: 0.6),
       ),
-      labelStyle: textTheme.bodyMedium?.copyWith(
-        color: LightColorScheme.primary,
+
+      floatingLabelStyle: textTheme.headlineSmall?.copyWith(
+        color: LightColorScheme.onSurface,
+        fontWeight: FontWeight.w400,
       ),
+      floatingLabelBehavior: FloatingLabelBehavior.always,
     ),
-    
+
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: LightColorScheme.surface,
       selectedItemColor: LightColorScheme.primary,
