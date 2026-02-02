@@ -165,4 +165,6 @@ Below is a list of key packages used in this Flutter project:
 
 💬 For questions or support, feel free to open an issue on GitHub or contact the development team.
 
-**Built with ❤️ using Flutter**
+<p align="center">
+  <strong>Built with ❤️ using Flutter</strong>
+</p>
