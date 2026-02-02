@@ -12,6 +12,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:social_mate_app/core/di/register_module.dart' as _i124;
+import 'package:social_mate_app/core/services/auth_listener.dart' as _i859;
 import 'package:social_mate_app/core/services/toast_service.dart' as _i169;
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart' as _i944;
 import 'package:social_mate_app/features/auth/data/remote/auth_remote_datasource.dart'
@@ -28,6 +29,7 @@ import 'package:social_mate_app/features/auth/domain/usecases/sign_out_usecase.d
     as _i691;
 import 'package:social_mate_app/features/auth/domain/usecases/sign_up_usecase.dart'
     as _i424;
+import 'package:social_mate_app/global/bloc/app_flow_bloc.dart' as _i845;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -42,6 +44,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
+    gh.lazySingleton<_i859.AuthListener>(
+      () => _i859.AuthListener(gh<_i454.SupabaseClient>()),
+    );
+    gh.lazySingleton<_i845.AppFlowBloc>(
+      () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
     );
     gh.lazySingleton<_i358.AuthRepo>(
       () => _i375.AuthRepoImpl(gh<_i250.AuthRemoteDataSource>()),
