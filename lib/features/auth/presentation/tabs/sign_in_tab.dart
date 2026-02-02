@@ -42,6 +42,7 @@ class _SignInTabState extends State<SignInTab>
       key: _formKey,
       child: Column(
         children: [
+          30.verticalSpace,
           CustomTextField(
             hintText: strings.emailOrPhoneHint,
             labelText: strings.emailOrPhoneLabel,

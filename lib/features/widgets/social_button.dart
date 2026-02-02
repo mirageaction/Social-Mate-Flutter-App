@@ -22,26 +22,29 @@ class SocialButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8.r),
-      child: Ink(
-        height: 48.h,
-        decoration: BoxDecoration(
-          color: colorScheme.surface,
+      child: Material(
+        color: Colors.transparent,
+
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(color: colorScheme.onSurfaceVariant),
+          side: BorderSide(color: colorScheme.onSurfaceVariant),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(icon, width: size.w, height: size.w),
-            8.horizontalSpace,
-            Text(
-              title,
-              style: textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w400,
-                color: colorScheme.onSurfaceVariant,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 12.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(icon, width: size.w, height: size.w),
+              8.horizontalSpace,
+              Text(
+                title,
+                style: textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -33,33 +33,33 @@ class _AuthPageState extends State<AuthPage>
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 27.w),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                20.verticalSpace,
-                Assets.images.appLogo.image(width: 1.sw, height: 100.h),
-                30.verticalSpace,
-                TabBar(
+          child: Column(
+            children: [
+              20.verticalSpace,
+              Assets.images.appLogo.image(width: 1.sw, height: 100.h),
+              30.verticalSpace,
+              TabBar(
+                controller: _tabController,
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                tabs: [
+                  Tab(text: 'Sign in'),
+                  Tab(text: 'Sign up'),
+                ],
+              ),
+
+              Expanded(
+                child: TabBarView(
+                  clipBehavior: Clip.none,
                   controller: _tabController,
-                  isScrollable: true,
-                  tabAlignment: TabAlignment.start,
-                  tabs: [
-                    Tab(text: 'Sign in'),
-                    Tab(text: 'Sign up'),
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    SingleChildScrollView(child: SignInTab()),
+                    SingleChildScrollView(child: SignUpTab()),
                   ],
                 ),
-                35.verticalSpace,
-                SizedBox(
-                  height: 0.65.sh,
-                  child: TabBarView(
-                    clipBehavior: Clip.none,
-                    controller: _tabController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [SignInTab(), SignUpTab()],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

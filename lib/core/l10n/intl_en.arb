@@ -9,5 +9,12 @@
   "google": "Google",
   "microsoft": "Microsoft",
   "dontHaveAccount": "Don't have an account? ",
-  "signUp": "Sign Up"
+  "signUp": "Sign Up",
+  "nameHint": "Enter your name",
+  "nameLabel": "Your Full Name",
+  "confirmPasswordHint": "Confirm your password",
+  "confirmPasswordLabel": "Confirm Password",
+  "joinNow": "Join Now",
+  "termsAgreement": "By Using this app you agree with the Terms of Service",
+  "termsOfService": "Terms of Service"
 }

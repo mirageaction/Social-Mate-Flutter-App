@@ -22,6 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
+      "Confirm your password",
+    ),
+    "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
+      "Confirm Password",
+    ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
@@ -30,10 +36,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
+    "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "microsoft": MessageLookupByLibrary.simpleMessage("Microsoft"),
+    "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
+    "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "termsAgreement": MessageLookupByLibrary.simpleMessage(
+      "By Using this app you agree with the Terms of Service",
+    ),
+    "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
   };
 }

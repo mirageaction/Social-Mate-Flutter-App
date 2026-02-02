@@ -138,6 +138,71 @@ class AppStrings {
   String get signUp {
     return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
   }
+
+  /// `Enter your name`
+  String get nameHint {
+    return Intl.message(
+      'Enter your name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Full Name`
+  String get nameLabel {
+    return Intl.message(
+      'Your Full Name',
+      name: 'nameLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your password`
+  String get confirmPasswordHint {
+    return Intl.message(
+      'Confirm your password',
+      name: 'confirmPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPasswordLabel {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join Now`
+  String get joinNow {
+    return Intl.message('Join Now', name: 'joinNow', desc: '', args: []);
+  }
+
+  /// `By Using this app you agree with the Terms of Service`
+  String get termsAgreement {
+    return Intl.message(
+      'By Using this app you agree with the Terms of Service',
+      name: 'termsAgreement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Service`
+  String get termsOfService {
+    return Intl.message(
+      'Terms of Service',
+      name: 'termsOfService',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {
