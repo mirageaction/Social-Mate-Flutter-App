@@ -21,4 +21,10 @@
     <color name="onlineColor">#0CCC92</color>
     <color name="heartColor">#FF1E1E</color>
     <color name="surfaceContainer">#F5F5F5</color>
+     <color name="light_base_shimmer_color">#E0E0E0</color>
+    <color name="light_highlightShimmerColor">#F5F5F5</color>
+
+    <color name="dark_base_shimmer_color">#3D3D3D</color>
+    <color name="dark_highlightShimmerColor">#7A7A7A</color>
+
 </resources>

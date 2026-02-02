@@ -14,6 +14,19 @@ import 'package:flutter/material.dart';
 class ColorName {
   ColorName._();
 
+   /// Color: #3D3D3D
+  static const Color darkBaseShimmerColor = Color(0xFF3D3D3D);
+
+  /// Color: #7A7A7A
+  static const Color darkHighlightShimmerColor = Color(0xFF7A7A7A);
+  
+  /// Color: #E0E0E0
+  static const Color lightBaseShimmerColor = Color(0xFFE0E0E0);
+
+  /// Color: #F5F5F5
+  static const Color lightHighlightShimmerColor = Color(0xFFF5F5F5);
+
+
   /// Color: #FFFFFF
   static const Color background = Color(0xFFFFFFFF);
 
