@@ -13,6 +13,15 @@
 
 ---
 
+> ⚠️ **Project Status: In Development**  
+>
+> This project is still under active development.  
+> Features, structure, and dependencies may change frequently until a stable release is published.  
+> Contributions and feedback are always welcome!
+
+
+---
+
 # 📱 Social Mate
 
 **Social Mate** is a cutting-edge, high-performance social networking platform engineered with **Flutter 🚀**. It represents a sophisticated mobile solution designed to provide users with a fluid, engaging, and secure environment for social interaction.
