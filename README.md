@@ -54,7 +54,7 @@ Whether it's sharing moments through rich media, navigating a dynamic social fee
 ### 🏠 Social Interaction
 - **Dynamic Home Feed** - Scroll through posts and updates 📰.
 - **Post Creation** - "What's on your mind?" widget with options for Text, Images, Videos, and Attachments 📸.
-- **Bottom Navigation** - Easy access to Home, Add Content, Marketplace (Bag), and Groups 🧭.
+- **Bottom Navigation** - Easy access to Home, Add Content, and Groups 🧭.
 
 ### 🎨 User Experience & Design
 - **Modern UI** - Clean, minimalist design with a focus on usability 💎.
