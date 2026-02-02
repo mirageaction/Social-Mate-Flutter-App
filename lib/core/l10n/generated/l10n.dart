@@ -53,6 +53,91 @@ class AppStrings {
   static AppStrings? maybeOf(BuildContext context) {
     return Localizations.of<AppStrings>(context, AppStrings);
   }
+
+  /// `Email/Phone`
+  String get emailOrPhoneHint {
+    return Intl.message(
+      'Email/Phone',
+      name: 'emailOrPhoneHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail/Phone`
+  String get emailOrPhoneLabel {
+    return Intl.message(
+      'E-mail/Phone',
+      name: 'emailOrPhoneLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Password`
+  String get enterPassword {
+    return Intl.message(
+      'Enter Password',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get passwordLabel {
+    return Intl.message('Password', name: 'passwordLabel', desc: '', args: []);
+  }
+
+  /// `Forgot Password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Or sign in with`
+  String get orSignInWith {
+    return Intl.message(
+      'Or sign in with',
+      name: 'orSignInWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google`
+  String get google {
+    return Intl.message('Google', name: 'google', desc: '', args: []);
+  }
+
+  /// `Microsoft`
+  String get microsoft {
+    return Intl.message('Microsoft', name: 'microsoft', desc: '', args: []);
+  }
+
+  /// `Don't have an account? `
+  String get dontHaveAccount {
+    return Intl.message(
+      'Don\'t have an account? ',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

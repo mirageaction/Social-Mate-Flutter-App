@@ -1,1 +1,13 @@
-{}
+{
+  "emailOrPhoneHint": "Email/Phone",
+  "emailOrPhoneLabel": "E-mail/Phone",
+  "enterPassword": "Enter Password",
+  "passwordLabel": "Password",
+  "forgotPassword": "Forgot Password?",
+  "login": "Login",
+  "orSignInWith": "Or sign in with",
+  "google": "Google",
+  "microsoft": "Microsoft",
+  "dontHaveAccount": "Don't have an account? ",
+  "signUp": "Sign Up"
+}

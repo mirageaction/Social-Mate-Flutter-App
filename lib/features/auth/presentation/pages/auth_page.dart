@@ -33,30 +33,33 @@ class _AuthPageState extends State<AuthPage>
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 27.w),
-          child: Column(
-            children: [
-              20.verticalSpace,
-              Assets.images.appLogo.image(width: 1.sw, height: 100.h),
-              30.verticalSpace,
-              TabBar(
-                controller: _tabController,
-                isScrollable: true,
-                tabAlignment: TabAlignment.start,
-                tabs: [
-                  Tab(text: 'Sign in'),
-                  Tab(text: 'Sign up'),
-                ],
-              ),
-              35.verticalSpace,
-              Expanded(
-                child: TabBarView(
-                  clipBehavior: Clip.none,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                20.verticalSpace,
+                Assets.images.appLogo.image(width: 1.sw, height: 100.h),
+                30.verticalSpace,
+                TabBar(
                   controller: _tabController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [SignInTab(), SignUpTab()],
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
+                  tabs: [
+                    Tab(text: 'Sign in'),
+                    Tab(text: 'Sign up'),
+                  ],
                 ),
-              ),
-            ],
+                35.verticalSpace,
+                SizedBox(
+                  height: 0.65.sh,
+                  child: TabBarView(
+                    clipBehavior: Clip.none,
+                    controller: _tabController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [SignInTab(), SignUpTab()],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
