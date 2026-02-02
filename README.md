@@ -1,187 +1,168 @@
-# Social Mate 📱
+[![Figma Design](screenshots/figma_thumbnail.png)](https://www.figma.com/community/file/1164103907030501213/social-mate-a-social-media-application-design)
+
+---
+
+## ✨ Badges
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-![Bloc](https://img.shields.io/badge/pro-bloc-40C4FF.svg?style=for-the-badge&logo=flutter&logoColor=black)
-![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)
+![Dart](https://img.shields.io/badge/Dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Android%20|%20iOS-blue.svg?style=for-the-badge)
+![State Management: Bloc](https://img.shields.io/badge/State%20Management-Bloc-purple.svg?style=for-the-badge)
+![Architecture: Clean](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange.svg?style=for-the-badge)
 
-**Social Mate** is a modern, feature-rich social media application built with **Flutter**. It leverages the power of **Clean Architecture** and **Supabase** to provide a scalable, secure, and responsive user experience. Connect with friends, share your moments, and discover new content in a beautifully designed interface.
+---
+
+# Social Mate
+
+**A modern, feature-rich social media application** built with **Flutter**, **Bloc**, **Clean Architecture**, and **Supabase**.
+
+Designed to connect people with a seamless and beautiful user experience. Featuring secure authentication, dynamic social feeds, and a polished UI.
 
 ---
 
 ## 📑 Table of Contents
-- [✨ Key Features](#-key-features)
-- [🏗️ Architecture & Tech Stack](#️-architecture--tech-stack)
-- [📦 Packages Used](#-packages-used)
+- [🎯 Key Features](#-key-features)
+- [✨ Badges](#-badges)
 - [🚀 Getting Started](#-getting-started)
-- [📂 Project Structure](#-project-structure)
+- [📦 Dependencies Used](#-dependencies-used)
 - [📸 Screenshots](#-screenshots)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [🛠️ Contributions](#️-contributions)
+- [📜 License](#-license)
 
 ---
 
-## ✨ Key Features
+## 🎯 Key Features
 
 ### 🔐 Authentication & Security
-- **Secure Sign Up & Sign In**: Robust authentication flow using Email/Password.
-- **Social Login**: Integration placeholders for Google and Microsoft authentication.
-- **Form Validation**: Real-time validation for emails, passwords, and phone numbers.
-- **Supabase Integration**: Backend powered by Supabase Auth.
+- **Secure Sign Up & Sign In** - Robust authentication flow using Email/Password.
+- **Social Login Support** - UI integration for Google and Microsoft authentication.
+- **Supabase Integration** - Backend authentication powered by Supabase.
+- **Form Validation** - Real-time validation for user inputs with localized feedback.
 
-### 🏠 Social Interaction
-- **Dynamic Home Feed**: Scroll through posts and updates from your network.
-- **Rich Content Sharing**: Create posts with **Text**, **Images**, and **Videos**.
-- **Interactive UI**: "What's on your mind?" quick post creation widget.
-- **Bottom Navigation**: Easy access to Home, Add Content, Bag (Marketplace), and Groups.
+### � Social Interaction
+- **Dynamic Home Feed** - Scroll through posts and updates.
+- **Post Creation** - "What's on your mind?" widget with options for Text, Images, Videos, and Attachments.
+- **Bottom Navigation** - Easy access to Home, Add Content, Marketplace (Bag), and Groups.
 
-### 🎨 UI/UX Design
-- **Modern Aesthetic**: Clean, minimalist design with a focus on usability.
-- **Responsive Layouts**: Fully responsive UI adapted for different screen sizes using `flutter_screenutil`.
-- **Custom Components**: Bespoke buttons, text fields, and dividers for a unique brand identity.
-- **Feedback Systems**: Integrated Toast notifications for user actions (Success, Error, Info).
+### 🎨 User Experience & Design
+- **Modern UI** - Clean, minimalist design with a focus on usability.
+- **Responsive Layout** - Optimized for all screen sizes using `flutter_screenutil`.
+- **Custom Components** - Tailored widgets for buttons, text fields, and dividers.
+- **Toast Notifications** - Beautiful, animated in-app notifications using `toastification`.
 
----
-
-## 🏗️ Architecture & Tech Stack
-
-This project follows **Clean Architecture** principles to ensure separation of concerns, testability, and maintainability.
-
-- **Presentation Layer**: Widgets, Pages, BLoCs (State Management).
-- **Domain Layer**: Entities, Usecases, Repository Interfaces (Pure Dart).
-- **Data Layer**: Repository Implementations, Data Sources, Models (API calls, DB interactions).
-
-### Core Technologies
-- **Framework**: [Flutter](https://flutter.dev/)
-- **Language**: [Dart](https://dart.dev/)
-- **Backend**: [Supabase](https://supabase.com/)
-- **State Management**: [BLoC / Cubit](https://bloclibrary.dev/)
-
----
-
-## 📦 Packages Used
-
-A curated list of dependencies that power Social Mate:
-
-### Core & Architecture
-- `flutter_bloc`: State management.
-- `get_it` & `injectable`: Dependency injection service locator.
-- `go_router`: Declarative routing handling.
-- `bloc_concurrency`: Advanced event processing for BLoC.
-- `equatable`: Value equality comparisons.
-
-### Networking & Backend
-- `supabase_flutter`: Supabase client integration.
-- `flutter_dotenv`: Environment variable management.
-
-### UI & Styling
-- `flutter_screenutil`: Screen adaptation and responsiveness.
-- `flutter_svg`: SVG asset rendering.
-- `toastification`: Beautiful toast notifications.
-- `flutter_decorated_container`: Enhanced container styling.
-- `flutter_dash`: Dashed line widgets.
-
-### Utilities & Dev Tools
-- `talker_bloc_logger`: Advanced logging for BLoC transitions.
-- `build_runner`: Code generation runner.
-- `flutter_gen_runner`: Asset generator.
+### � Architecture & Best Practices
+- **Clean Architecture** - Organized folder structure (Data, Domain, Presentation).
+- **BLoC Pattern** - Predictable state management using `flutter_bloc` and `cubit`.
+- **Dependency Injection** - Scalable service locator using `get_it` and `injectable`.
+- **Routing** - Declarative navigation with `go_router`.
+- **Localization** - Full multi-language support setup.
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these steps to run the project locally.
+To run this app locally:
 
-### Prerequisites
-- Flutter SDK installed (v3.0.0+)
-- Dart SDK installed
-- Supabase project set up
+```bash
+git clone https://github.com/AmrSalahDev/Social-Mate-Flutter-App.git
+cd Social-Mate-Flutter-App
+flutter pub get
+flutter run
+```
 
-### Installation
+### ✅ Prerequisites
+- 🐦 Flutter SDK 3.9.0 or higher
+- 🎯 Dart 3.9.0 or higher
+- 🏢 Android Studio / Xcode (for iOS development)
+- 📱 Android/iOS device or emulator
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/social_mate_app.git
-   cd social_mate_app
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Set up Environment Variables**
-   Create a `.env` file in the root directory and add your Supabase credentials:
-   ```env
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-4. **Generate Code (DI & Assets)**
-   ```bash
-   dart run build_runner build --delete-conflicting-outputs
-   ```
-
-5. **Run the App**
-   ```bash
-   flutter run
-   ```
+### 📋 Steps
+1. 📥 **Clone the repository**
+2. 📚 **Install dependencies**: `flutter pub get`
+3. ⚙️ **Generate code**: `flutter pub run build_runner build --delete-conflicting-outputs`
+4. 🔐 **Setup Environment**: Create a `.env` file with your `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
+5. ▶️ **Run the app**: `flutter run`
 
 ---
 
-## 📂 Project Structure
+## 📦 Dependencies Used
 
-```
-lib/
-├── core/                  # Core utilities, theme, routes, generic widgets
-│   ├── assets_gen/        # Generated assets
-│   ├── di/                # Dependency Injection setup
-│   ├── error/             # Error handling (Failures, Exceptions)
-│   ├── l10n/              # Localization (ARB files)
-│   ├── routes/            # App Router configuration
-│   └── services/          # Third-party services (services wrappers)
-├── features/              # Feature-based modules
-│   ├── auth/              # Authentication Feature
-│   │   ├── data/          # Data sources & Repositories
-│   │   ├── domain/        # Entities & Usecases
-│   │   └── presentation/  # Pages, Tabs, BLoCs
-│   ├── home/              # Home Feed Feature
-│   └── onboarding/        # Onboarding Feature
-├── global/                # Application-wide BLoCs (e.g., AppFlow)
-└── main.dart              # Application Entry Point
-```
+Below is a list of key packages used in this Flutter project:
+
+### �️ Architecture & State Management
+- `flutter_bloc: ^9.1.1` - State management library.
+- `bloc: ^9.2.0` - Core business logic component.
+- `bloc_concurrency: ^0.3.0` - Concurrency transformers for Bloc events.
+- `get_it: ^9.2.0` - Service locator for dependency injection.
+- `injectable: ^2.7.1` - Code generation for GetIt.
+- `go_router: ^17.0.1` - Declarative routing package.
+
+### ☁️ Backend & Data
+- `supabase_flutter: ^2.12.0` - Supabase client for Auth and Database.
+- `flutter_dotenv: ^6.0.0` - Load environment variables from `.env`.
+- `equatable: ^2.0.5` - Simplify object equality comparisons.
+
+### 🎨 UI & Assets
+- `flutter_screenutil: ^5.9.3` - Screen adaptation tool.
+- `flutter_svg: ^2.2.3` - SVG rendering support.
+- `toastification: ^3.0.3` - Customizable toast notifications.
+- `flutter_dash: ^1.0.0` - Dashed line widgets.
+- `flutter_decorated_container: ^1.0.0` - Advanced container styling.
+- `cupertino_icons: ^1.0.8` - iOS style icons.
+- `smooth_page_indicator: ^2.0.1` - Page indicators for onboarding.
+
+### 🛠️ Utilities & Dev Tools
+- `talker_bloc_logger: ^5.1.10` - Logging tool for Bloc state changes.
+- `my_flutter_toolkit` - Custom utility package.
+- `build_runner: ^2.10.5` - Build system for code generation.
+- `flutter_gen_runner: ^5.12.0` - Asset generator.
 
 ---
 
 ## 📸 Screenshots
 
-| Onboarding | Sign In | Sign Up | Home Feed |
-|:---:|:---:|:---:|:---:|
-| <img src="docs/screenshots/onboarding.png" width="200" /> | <img src="docs/screenshots/signin.png" width="200" /> | <img src="docs/screenshots/signup.png" width="200" /> | <img src="docs/screenshots/home.png" width="200" /> |
-
-*(Screenshots to be added)*
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to improve Social Mate, please follow these steps:
-
-1. Fork the project.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  Built with ❤️ using Flutter
+<p float="left">
+  <img src="screenshots/home_page.png" width="22%"/>
+  <img src="screenshots/onboarding_page.png" width="22%"/>
+  <img src="screenshots/sign_in_page.png" width="22%"/>
+  <img src="screenshots/comments_page.png" width="22%"/>
+  <img src="screenshots/profile_page.png" width="22%"/>
 </p>
+
+---
+
+## 🎨 Figma Design
+
+✨ Check out the app UI design in Figma:
+
+[![Figma Design](screenshots/figma_thumbnail.png)](https://www.figma.com/community/file/1164103907030501213/social-mate-a-social-media-application-design)
+
+📌 Click the image to view the live Figma prototype.
+
+---
+
+## 🛠️ Contributions
+
+🤝 Feel free to fork the repo, open issues, or submit PRs to improve the app!
+
+### 📝 To Contribute:
+1. 🍴 Fork the repository
+2. 🌿 Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
+5. 🔀 Open a Pull Request
+
+---
+
+## 📜 License
+
+⚖️ This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 📧 Support & Contact
+
+💬 For questions or support, feel free to open an issue on GitHub or contact the development team.
+
+**Built with ❤️ using Flutter**
