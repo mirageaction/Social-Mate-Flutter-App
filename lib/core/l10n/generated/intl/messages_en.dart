@@ -54,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
     "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
+    "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordRequired": MessageLookupByLibrary.simpleMessage(
       "Password is required",

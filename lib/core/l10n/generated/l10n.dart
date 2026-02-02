@@ -303,6 +303,16 @@ class AppStrings {
       args: [],
     );
   }
+
+  /// `Or sign up with`
+  String get orSignUpWith {
+    return Intl.message(
+      'Or sign up with',
+      name: 'orSignUpWith',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

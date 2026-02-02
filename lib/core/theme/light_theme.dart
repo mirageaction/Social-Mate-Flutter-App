@@ -43,6 +43,10 @@ ThemeData createLightTheme(TextTheme textTheme) {
       ),
       indicatorSize: TabBarIndicatorSize.tab,
     ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: LightColorScheme.onPrimary,
+      strokeWidth: 2,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: LightColorScheme.surface,
       foregroundColor: LightColorScheme.onSurface,

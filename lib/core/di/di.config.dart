@@ -12,6 +12,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:social_mate_app/core/di/register_module.dart' as _i124;
+import 'package:social_mate_app/core/services/toast_service.dart' as _i169;
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart' as _i944;
 import 'package:social_mate_app/features/auth/data/remote/auth_remote_datasource.dart'
     as _i250;
@@ -38,6 +39,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
+    gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );

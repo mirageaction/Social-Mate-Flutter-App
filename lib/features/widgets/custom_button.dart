@@ -5,11 +5,13 @@ class CustomButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
   final Color? backgroundColor;
+  final bool isLoading;
   const CustomButton({
     super.key,
     required this.title,
     required this.onPressed,
     this.backgroundColor,
+    this.isLoading = false,
   });
 
   @override
@@ -21,16 +23,18 @@ class CustomButton extends StatelessWidget {
       minWidth: 1.sw,
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
-      onPressed: onPressed,
+      onPressed: isLoading ? () {} : onPressed,
       color: backgroundColor ?? colorScheme.primary,
-      child: Text(
-        title,
-        style: textTheme.bodyLarge?.copyWith(
-          color: backgroundColor == null
-              ? colorScheme.onPrimary
-              : colorScheme.primary,
-        ),
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator()
+          : Text(
+              title,
+              style: textTheme.bodyLarge?.copyWith(
+                color: backgroundColor == null
+                    ? colorScheme.onPrimary
+                    : colorScheme.primary,
+              ),
+            ),
     );
   }
 }

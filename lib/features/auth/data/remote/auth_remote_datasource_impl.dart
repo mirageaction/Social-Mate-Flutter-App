@@ -13,7 +13,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> signIn(SignInEntity params) async {
-   try { 
+    try {
       await supabase.auth.signInWithPassword(
         email: params.emailOrPhone.isEmail ? params.emailOrPhone : null,
         phone: !params.emailOrPhone.isEmail ? params.emailOrPhone : null,
@@ -31,6 +31,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         email: params.emailOrPhone.isEmail ? params.emailOrPhone : null,
         phone: !params.emailOrPhone.isEmail ? params.emailOrPhone : null,
         password: params.password,
+        data: {'full_name': params.name},
       );
     } catch (e) {
       rethrow;
