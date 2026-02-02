@@ -60,6 +60,40 @@ Designed to connect people with a seamless and beautiful user experience. Featur
 
 ---
 
+## 🏗️ Project Architecture
+
+This project follows **Clean Architecture** principles to ensure a highly scalable, maintainable, and testable codebase. The separation of concerns is strictly maintained across three primary layers:
+
+### 1. 📂 Presentation Layer
+*   **Widgets & Pages**: Pure UI components built with Flutter.
+*   **BLoC / Cubit**: Handles state management and interacts with Domain usecases.
+*   **Routing**: Managed via `go_router` for declarative navigation.
+
+### 2. 🧠 Domain Layer (Pure Dart)
+*   **Entities**: Simple Dart classes representing the core data models.
+*   **Use Cases**: Contains specific business logic and coordinates data flow.
+*   **Repositories (Interfaces)**: Defines contracts for data operations, ensuring the domain layer is independent of external dependencies.
+
+### 3. 💾 Data Layer
+*   **Repositories (Implementations)**: Implements the contracts defined in the Domain layer.
+*   **Data Sources**: Handles direct communication with local storage or remote APIs (e.g., Supabase).
+*   **Models**: DTOs (Data Transfer Objects) that handle JSON serialization/deserialization.
+
+### 🧩 Folder Structure
+```text
+lib/
+├── core/                  # Shared utilities, themes, DI, and routes
+├── features/              # Modular features (e.g., auth, home)
+│   └── [feature_name]/
+│       ├── data/          # Repositories & Data Sources
+│       ├── domain/        # Entities & Use Cases
+│       └── presentation/  # UI (Pages & Widgets) & State Management
+├── global/                # App-wide BLoCs and Global State
+└── main.dart              # Entry point
+```
+
+---
+
 ## 🚀 Getting Started
 
 To run this app locally:
