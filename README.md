@@ -15,9 +15,11 @@
 
 # 📱 Social Mate
 
-**A modern, feature-rich social media application** built with **Flutter 🚀**, **Bloc 🧩**, **Clean Architecture 🏗️**, and **Supabase ☁️**.
+**Social Mate** is a cutting-edge, high-performance social networking platform engineered with **Flutter 🚀**. It represents a sophisticated mobile solution designed to provide users with a fluid, engaging, and secure environment for social interaction.
 
-Designed to connect people with a seamless and beautiful user experience. Featuring secure authentication, dynamic social feeds, and a polished UI. ✨
+Built upon the robust foundations of **Clean Architecture 🏗️** and the **BLoC pattern 🧩**, the application ensures exceptional maintainability and scalability. By leveraging **Supabase ☁️** as its backend infrastructure, Social Mate delivers real-time data synchronization and secure authentication, all wrapped in a visually stunning, responsive interface that adapts perfectly to any device size via **ScreenUtil 📱**.
+
+Whether it's sharing moments through rich media, navigating a dynamic social feed, or enjoying the seamless onboarding experience, every aspect of Social Mate is optimized for peak performance and visual excellence. ✨
 
 ---
 
@@ -178,10 +180,13 @@ Below is a list of key packages used in this Flutter project:
 
 <p float="left">
   <img src="screenshots/home_page.png" width="22%"/>
-  <img src="screenshots/onboarding_page.png" width="22%"/>
+  <img src="screenshots/onboarding_page.png" width="22%"/> 
   <img src="screenshots/sign_in_page.png" width="22%"/>
   <img src="screenshots/comments_page.png" width="22%"/>
   <img src="screenshots/profile_page.png" width="22%"/>
+  <img src="screenshots/create_post_page.png" width="22%"/>
+  <img src="screenshots/create_story_page.png" width="22%"/>
+  <img src="screenshots/communication_page.png" width="22%"/>
 </p>
 
 ---
