@@ -11,10 +11,6 @@
 ![State Management: Bloc](https://img.shields.io/badge/State%20Management-Bloc-purple.svg?style=for-the-badge)
 ![Architecture: Clean](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange.svg?style=for-the-badge)
 
-[![GitHub Stars](https://img.shields.io/github/stars/AmrSalahDev/Social-Mate-Flutter-App?style=social)](https://github.com/AmrSalahDev/Social-Mate-Flutter-App/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/AmrSalahDev/Social-Mate-Flutter-App?style=social)](https://github.com/AmrSalahDev/Social-Mate-Flutter-App/network/members)
-[![GitHub Issues](https://img.shields.io/github/issues/AmrSalahDev/Social-Mate-Flutter-App?style=social)](https://github.com/AmrSalahDev/Social-Mate-Flutter-App/issues)
-
 ---
 
 # 📱 Social Mate
