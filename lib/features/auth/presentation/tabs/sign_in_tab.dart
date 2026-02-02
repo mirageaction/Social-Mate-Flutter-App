@@ -1,3 +1,4 @@
+import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
@@ -6,6 +7,7 @@ import 'package:social_mate_app/features/widgets/custom_textfield.dart';
 import 'package:my_flutter_toolkit/ui/widgets/custom_divider.dart';
 import 'package:social_mate_app/features/widgets/social_button.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
+import 'package:my_flutter_toolkit/core/utils/text_field_utils/validators.dart';
 
 class SignInTab extends StatefulWidget {
   const SignInTab({super.key});
@@ -49,18 +51,42 @@ class _SignInTabState extends State<SignInTab>
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             focusNode: _emailFocusNode,
+            validator: (value) {
+              final text = value ?? '';
+
+              if (text.isEmail || !text.startsWith(RegExp(r'^\d+$'))) {
+                return Validators.email(
+                  value: text,
+                  errorMsg: strings.invalidEmail,
+                  emptyMsg: strings.emailOrPhoneRequired,
+                );
+              } else {
+                return Validators.phone(
+                  value: text,
+                  errorMsg: strings.egyptianPhoneError,
+                  emptyMsg: strings.emailOrPhoneRequired,
+                );
+              }
+            },
+
             textInputAction: TextInputAction.next,
             onSubmitted: (_) {
               FocusScope.of(context).requestFocus(_passwordFocusNode);
             },
           ),
-          24.verticalSpace,
+          30.verticalSpace,
           CustomTextField(
             hintText: strings.enterPassword,
             labelText: strings.passwordLabel,
             controller: _passwordController,
             keyboardType: TextInputType.visiblePassword,
             focusNode: _passwordFocusNode,
+            validator: (value) => Validators.password(
+              value: value,
+              warningPassLengthMsg: strings.passwordTooShort,
+              emptyMsg: strings.passwordRequired,
+              passwordLength: 6,
+            ),
             textInputAction: TextInputAction.done,
             onSubmitted: (_) {
               FocusScope.of(context).unfocus();
@@ -82,7 +108,12 @@ class _SignInTabState extends State<SignInTab>
             ),
           ),
           24.verticalSpace,
-          CustomButton(title: strings.login, onPressed: () {}),
+          CustomButton(
+            title: strings.login,
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {}
+            },
+          ),
           24.verticalSpace,
           CustomDivider(
             title: strings.orSignInWith,
@@ -91,7 +122,7 @@ class _SignInTabState extends State<SignInTab>
               color: colorScheme.onSurface,
             ),
           ),
-          16.verticalSpace,
+          24.verticalSpace,
           Row(
             children: [
               Expanded(

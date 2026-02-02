@@ -31,18 +31,42 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "egyptianPhoneError": MessageLookupByLibrary.simpleMessage(
+      "Only Egyptian phone numbers are allowed",
+    ),
     "emailOrPhoneHint": MessageLookupByLibrary.simpleMessage("Email/Phone"),
     "emailOrPhoneLabel": MessageLookupByLibrary.simpleMessage("E-mail/Phone"),
+    "emailOrPhoneRequired": MessageLookupByLibrary.simpleMessage(
+      "Phone number or email is required",
+    ),
+    "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
+    "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
+    "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Invalid phone number",
+    ),
     "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "microsoft": MessageLookupByLibrary.simpleMessage("Microsoft"),
     "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password is required",
+    ),
+    "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters long",
+    ),
+    "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
+    "phoneNumberRequired": MessageLookupByLibrary.simpleMessage(
+      "Phone number is required",
+    ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "termsAgreement": MessageLookupByLibrary.simpleMessage(
       "By Using this app you agree with the Terms of Service",

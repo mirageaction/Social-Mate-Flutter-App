@@ -203,6 +203,106 @@ class AppStrings {
       args: [],
     );
   }
+
+  /// `Invalid email`
+  String get invalidEmail {
+    return Intl.message(
+      'Invalid email',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is required`
+  String get emailRequired {
+    return Intl.message(
+      'Email is required',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required`
+  String get passwordRequired {
+    return Intl.message(
+      'Password is required',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters long`
+  String get passwordTooShort {
+    return Intl.message(
+      'Password must be at least 6 characters long',
+      name: 'passwordTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required`
+  String get nameRequired {
+    return Intl.message(
+      'Name is required',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordsDoNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordsDoNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number`
+  String get invalidPhoneNumber {
+    return Intl.message(
+      'Invalid phone number',
+      name: 'invalidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number is required`
+  String get phoneNumberRequired {
+    return Intl.message(
+      'Phone number is required',
+      name: 'phoneNumberRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number or email is required`
+  String get emailOrPhoneRequired {
+    return Intl.message(
+      'Phone number or email is required',
+      name: 'emailOrPhoneRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only Egyptian phone numbers are allowed`
+  String get egyptianPhoneError {
+    return Intl.message(
+      'Only Egyptian phone numbers are allowed',
+      name: 'egyptianPhoneError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

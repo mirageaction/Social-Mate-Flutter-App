@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/features/auth/presentation/tabs/sign_in_tab.dart';
 import 'package:social_mate_app/features/auth/presentation/tabs/sign_up_tab.dart';
+import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -43,8 +44,8 @@ class _AuthPageState extends State<AuthPage>
                 isScrollable: true,
                 tabAlignment: TabAlignment.start,
                 tabs: [
-                  Tab(text: 'Sign in'),
-                  Tab(text: 'Sign up'),
+                  Tab(text: AppStrings.of(context).login),
+                  Tab(text: AppStrings.of(context).signUp),
                 ],
               ),
 

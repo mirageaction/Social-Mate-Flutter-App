@@ -17,8 +17,8 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color background = Color(0xFFFFFFFF);
 
-  /// Color: #000000
-  static const Color error = Color(0xFF000000);
+  /// Color: #FF1E1E
+  static const Color error = Color(0xFFFF1E1E);
 
   /// Color: #000000
   static const Color errorContainer = Color(0xFF000000);

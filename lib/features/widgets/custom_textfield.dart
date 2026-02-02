@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final String? hintText;
   final String? labelText;
   final FocusNode? focusNode;
@@ -25,57 +23,44 @@ class CustomTextField extends StatefulWidget {
   });
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  bool _isFocused = false;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.focusNode?.addListener(_onFocusChange);
-  }
-
-  void _onFocusChange() {
-    setState(() {
-      _isFocused = widget.focusNode!.hasFocus;
-    });
-  }
-
-  @override
-  void dispose() {
-    widget.focusNode?.removeListener(_onFocusChange);
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return TextFormField(
-      textInputAction: widget.textInputAction,
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      focusNode: widget.focusNode,
-      validator: widget.validator,
-      onFieldSubmitted: widget.onSubmitted,
+      textInputAction: textInputAction,
+      controller: controller,
+      keyboardType: keyboardType,
+      focusNode: focusNode,
+      validator: validator,
+      onFieldSubmitted: onSubmitted,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelStyle: textTheme.headlineSmall?.copyWith(
           fontWeight: FontWeight.w400,
-          color: _isFocused
-              ? colorScheme.primary
-              : colorScheme.onSurfaceVariant,
+          color: colorScheme.onSurfaceVariant,
         ),
-        floatingLabelStyle: textTheme.headlineSmall?.copyWith(
-          fontWeight: FontWeight.w400,
-          color: _isFocused
-              ? colorScheme.primary
-              : colorScheme.onSurfaceVariant,
-        ),
-        hintText: widget.hintText,
-        labelText: widget.labelText,
+        floatingLabelStyle: WidgetStateTextStyle.resolveWith((states) {
+          if (states.contains(WidgetState.error)) {
+            return textTheme.headlineSmall!.copyWith(
+              fontWeight: FontWeight.w400,
+              color: colorScheme.error,
+            );
+          }
+
+          if (states.contains(WidgetState.focused)) {
+            return textTheme.headlineSmall!.copyWith(
+              fontWeight: FontWeight.w400,
+              color: colorScheme.primary,
+            );
+          }
+
+          return textTheme.headlineSmall!.copyWith(
+            fontWeight: FontWeight.w400,
+            color: colorScheme.onSurfaceVariant,
+          );
+        }),
+        hintText: hintText,
+        labelText: labelText,
       ),
     );
   }

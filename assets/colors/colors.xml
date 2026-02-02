@@ -5,7 +5,7 @@
     <color name="onSurface">#000000</color>
     <color name="background">#FFFFFF</color>
     <color name="onBackground">#000000</color>
-    <color name="error">#000000</color>
+    <color name="error">#FF1E1E</color>
     <color name="errorContainer">#000000</color>
     <color name="outline">#DADADA</color>
     <color name="outlineVariant">#000000</color>
