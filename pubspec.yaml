@@ -39,10 +39,9 @@ dependencies:
   extension: ^1.0.0
   flutter_svg: ^2.2.3
   toastification: ^3.0.3
-  flutter_dash: ^1.0.0
-  flutter_decorated_container: ^1.0.0
   cached_network_image: ^3.4.1
   shimmer: ^3.0.0
+  dotted_border: ^3.1.0
 
 
 dev_dependencies:

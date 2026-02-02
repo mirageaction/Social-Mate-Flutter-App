@@ -1,5 +1,5 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_decorated_container/flutter_decorated_container.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
@@ -18,11 +18,12 @@ class PostWritingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedContainer(
-      strokeColor: colorScheme.secondary,
-      strokeWidth: 1,
-      dashSpace: 1,
-      dashWidth: 3,
+    return DottedBorder(
+      options: RoundedRectDottedBorderOptions(
+        padding: EdgeInsets.zero,
+        color: colorScheme.secondary,
+        radius: Radius.circular(12.r),
+      ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.w),
         decoration: BoxDecoration(
