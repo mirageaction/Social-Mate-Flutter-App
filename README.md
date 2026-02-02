@@ -94,6 +94,26 @@ lib/
 
 ---
 
+## 🎨 UI Kit / Design System
+
+The application follows a consistent and modern design language to ensure a premium feel across all screens.
+
+### 🎨 Color Palette
+*   **Primary**: `#007AFF` 🔵 - Used for main actions, active states, and branding.
+*   **Secondary**: `#0779B8` 🔹 - Used for accents and secondary elements.
+*   **Surface**: `#FFFFFF` ⚪ - Clean white background for a minimalist look.
+*   **Error**: `#FF1E1E` 🔴 - Clear visibility for error states and destructive actions.
+
+### ✍️ Typography
+*   **Body & Headings**: Utilizing the default Material Design typography scale, optimized for readability.
+*   **Responsive Scaling**: All text sizes are dynamically scaled using `flutter_screenutil` to ensure consistency across various device densities.
+
+### 🖼️ Iconography
+*   **SVG Icons**: Custom managed high-quality SVGs via `flutter_gen` for sharp visuals at any size.
+*   **Cupertino Icons**: Standard iOS-style icons for a familiar and native mobile experience.
+
+---
+
 ## 🚀 Getting Started
 
 To run this app locally:
