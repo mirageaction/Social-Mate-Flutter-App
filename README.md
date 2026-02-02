@@ -11,6 +11,9 @@
 ![State Management: Bloc](https://img.shields.io/badge/State%20Management-Bloc-purple.svg?style=for-the-badge)
 ![Architecture: Clean](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange.svg?style=for-the-badge)
 
+![GitHub stars](https://img.shields.io/github/stars/AmrSalahDev/Social-Mate-Flutter-App?style=social)
+![GitHub forks](https://img.shields.io/github/forks/AmrSalahDev/Social-Mate-Flutter-App?style=social)
+
 ---
 
 # 📱 Social Mate
