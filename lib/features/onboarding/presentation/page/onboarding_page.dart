@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:social_mate_app/features/onboarding/presentation/views/onboarding_item.dart';
 import 'package:social_mate_app/features/widgets/custom_button.dart';
@@ -53,7 +55,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   itemCount: items.length,
                   itemBuilder: (context, index) {
                     final onboarding = items[index];
-                    
+
                     return OnboardingItem(
                       onboarding: onboarding,
                       textTheme: textTheme,
@@ -75,11 +77,15 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
               if (_currentIndex != 0) ...[
                 50.verticalSpace,
-                CustomButton(title: 'Join Now', onPressed: () {}),
+                CustomButton(title: 'Join Now', onPressed: () {
+                  context.push(AppPaths.auth);
+                }),
                 24.verticalSpace,
                 CustomButton(
                   title: 'Sign in',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push(AppPaths.auth);
+                  },
                   backgroundColor: colorScheme.surface,
                 ),
               ],

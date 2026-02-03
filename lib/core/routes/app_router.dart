@@ -5,6 +5,7 @@ import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
 import 'package:social_mate_app/features/widgets/bottom_nav_bar.dart';
@@ -31,7 +32,10 @@ class AppRouter {
           routes: [
             GoRoute(
               path: AppPaths.home,
-              builder: (context, state) => const HomePage(),
+              builder: (context, state) => BlocProvider(
+                create: (context) => getIt<StoryBloc>(),
+                child: const HomePage(),
+              ),
             ),
           ],
         ),

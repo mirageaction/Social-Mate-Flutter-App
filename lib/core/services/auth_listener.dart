@@ -10,4 +10,13 @@ class AuthListener {
   Stream<AuthState> listen() {
     return _client.auth.onAuthStateChange;
   }
+
+  Future<User?> getUser() async {
+    try {
+      final response = await _client.auth.getUser();
+      return response.user;
+    } catch (_) {
+      return null;
+    }
+  }
 }

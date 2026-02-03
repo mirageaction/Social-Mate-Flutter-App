@@ -29,6 +29,18 @@ import 'package:social_mate_app/features/auth/domain/usecases/sign_out_usecase.d
     as _i691;
 import 'package:social_mate_app/features/auth/domain/usecases/sign_up_usecase.dart'
     as _i424;
+import 'package:social_mate_app/features/home/data/remote/story_remote_datasource.dart'
+    as _i915;
+import 'package:social_mate_app/features/home/data/remote/story_remote_datasource_impl.dart'
+    as _i24;
+import 'package:social_mate_app/features/home/data/repos/story_repo_impl.dart'
+    as _i444;
+import 'package:social_mate_app/features/home/domain/repos/story_repo.dart'
+    as _i590;
+import 'package:social_mate_app/features/home/domain/usecases/get_stories_usecase.dart'
+    as _i580;
+import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
+    as _i200;
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart' as _i845;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
@@ -42,6 +54,11 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
+    gh.lazySingleton<_i915.StoryRemoteDataSource>(
+      () => _i24.StoryRemoteDatasourceImpl(
+        supabaseClient: gh<_i454.SupabaseClient>(),
+      ),
+    );
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );
@@ -50,6 +67,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
+    );
+    gh.lazySingleton<_i590.StoryRepo>(
+      () => _i444.StoryRepoImpl(
+        storyRemoteDataSource: gh<_i915.StoryRemoteDataSource>(),
+      ),
     );
     gh.lazySingleton<_i358.AuthRepo>(
       () => _i375.AuthRepoImpl(gh<_i250.AuthRemoteDataSource>()),
@@ -69,6 +91,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i424.SignUpUsecase>(),
         gh<_i691.SignOutUsecase>(),
       ),
+    );
+    gh.lazySingleton<_i580.GetStoriesUseCase>(
+      () => _i580.GetStoriesUseCase(gh<_i590.StoryRepo>()),
+    );
+    gh.factory<_i200.StoryBloc>(
+      () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
     );
     return this;
   }
