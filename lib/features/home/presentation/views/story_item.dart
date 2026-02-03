@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/features/widgets/shimmer_image.dart';
 
-
 class StoryItem extends StatelessWidget {
   final String imageUrl;
   final String name;
@@ -26,7 +25,7 @@ class StoryItem extends StatelessWidget {
       children: [
         DottedBorder(
           options: CircularDottedBorderOptions(
-            strokeWidth: 1.5,
+            strokeWidth: 2,
             padding: EdgeInsets.zero,
             color: colorScheme.secondary,
           ),
