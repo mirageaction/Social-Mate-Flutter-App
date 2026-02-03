@@ -313,6 +313,36 @@ class AppStrings {
       args: [],
     );
   }
+
+  /// `Share Story`
+  String get shareStory {
+    return Intl.message('Share Story', name: 'shareStory', desc: '', args: []);
+  }
+
+  /// `Create a Story`
+  String get createStory {
+    return Intl.message(
+      'Create a Story',
+      name: 'createStory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text Story`
+  String get textStory {
+    return Intl.message('Text Story', name: 'textStory', desc: '', args: []);
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message('Camera', name: 'camera', desc: '', args: []);
+  }
+
+  /// `Music`
+  String get music {
+    return Intl.message('Music', name: 'music', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

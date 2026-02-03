@@ -5,6 +5,8 @@ import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_bloc.dart';
+import 'package:social_mate_app/features/create_story/presentation/pages/create_story_page.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
@@ -23,7 +25,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.splash,
+      initialLocation: AppPaths.createStory,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -71,6 +73,13 @@ class AppRouter {
         GoRoute(
           path: AppPaths.onboarding,
           builder: (context, state) => const OnboardingPage(),
+        ),
+        GoRoute(
+          path: AppPaths.createStory,
+          builder: (context, state) => BlocProvider(
+            create: (context) => getIt<GalleryBloc>(),
+            child: const CreateStoryPage(),
+          ),
         ),
         GoRoute(
           path: AppPaths.splash,

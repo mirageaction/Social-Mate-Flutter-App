@@ -29,6 +29,18 @@ import 'package:social_mate_app/features/auth/domain/usecases/sign_out_usecase.d
     as _i691;
 import 'package:social_mate_app/features/auth/domain/usecases/sign_up_usecase.dart'
     as _i424;
+import 'package:social_mate_app/features/create_story/data/local/gallery_local_datasource.dart'
+    as _i164;
+import 'package:social_mate_app/features/create_story/data/local/gallery_local_datasource_impl.dart'
+    as _i860;
+import 'package:social_mate_app/features/create_story/data/repos/gallery_repo_impl.dart'
+    as _i925;
+import 'package:social_mate_app/features/create_story/domain/repos/gallery_repo.dart'
+    as _i579;
+import 'package:social_mate_app/features/create_story/domain/usecases/get_photos_usecase.dart'
+    as _i540;
+import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_bloc.dart'
+    as _i853;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource.dart'
     as _i915;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource_impl.dart'
@@ -54,6 +66,14 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
+    gh.lazySingleton<_i164.GalleryLocalDataSource>(
+      () => _i860.GalleryLocalDatasourceImpl(),
+    );
+    gh.lazySingleton<_i579.GalleryRepo>(
+      () => _i925.GalleryRepoImpl(
+        galleryLocalDataSource: gh<_i164.GalleryLocalDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i915.StoryRemoteDataSource>(
       () => _i24.StoryRemoteDatasourceImpl(
         supabaseClient: gh<_i454.SupabaseClient>(),
@@ -61,6 +81,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
+    gh.lazySingleton<_i540.GetPhotosUsecase>(
+      () => _i540.GetPhotosUsecase(galleryRepo: gh<_i579.GalleryRepo>()),
     );
     gh.lazySingleton<_i859.AuthListener>(
       () => _i859.AuthListener(gh<_i454.SupabaseClient>()),
@@ -84,6 +107,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i424.SignUpUsecase>(
       () => _i424.SignUpUsecase(gh<_i358.AuthRepo>()),
+    );
+    gh.factory<_i853.GalleryBloc>(
+      () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
     gh.factory<_i944.AuthBloc>(
       () => _i944.AuthBloc(

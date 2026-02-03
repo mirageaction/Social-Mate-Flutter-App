@@ -34,9 +34,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/bookmark.svg
   SvgGenImage get bookmark => const SvgGenImage('assets/icons/bookmark.svg');
 
+  /// File path: assets/icons/camera_focus.svg
+  SvgGenImage get cameraFocus =>
+      const SvgGenImage('assets/icons/camera_focus.svg');
+
   /// File path: assets/icons/chat_circle_dots.svg
   SvgGenImage get chatCircleDots =>
       const SvgGenImage('assets/icons/chat_circle_dots.svg');
+
+  /// File path: assets/icons/font.svg
+  SvgGenImage get font => const SvgGenImage('assets/icons/font.svg');
 
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
@@ -52,6 +59,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/microsoft.svg
   SvgGenImage get microsoft => const SvgGenImage('assets/icons/microsoft.svg');
+
+  /// File path: assets/icons/music.svg
+  SvgGenImage get music => const SvgGenImage('assets/icons/music.svg');
 
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
@@ -78,12 +88,15 @@ class $AssetsIconsGen {
     bag,
     bellRinging,
     bookmark,
+    cameraFocus,
     chatCircleDots,
+    font,
     google,
     group,
     home,
     image,
     microsoft,
+    music,
     search,
     send,
     share,

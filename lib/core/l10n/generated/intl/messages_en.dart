@@ -22,12 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "camera": MessageLookupByLibrary.simpleMessage("Camera"),
     "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
       "Confirm your password",
     ),
     "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
+    "createStory": MessageLookupByLibrary.simpleMessage("Create a Story"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "microsoft": MessageLookupByLibrary.simpleMessage("Microsoft"),
+    "music": MessageLookupByLibrary.simpleMessage("Music"),
     "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
     "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
@@ -68,10 +71,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumberRequired": MessageLookupByLibrary.simpleMessage(
       "Phone number is required",
     ),
+    "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "termsAgreement": MessageLookupByLibrary.simpleMessage(
       "By Using this app you agree with the Terms of Service",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
+    "textStory": MessageLookupByLibrary.simpleMessage("Text Story"),
   };
 }

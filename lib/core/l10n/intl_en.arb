@@ -27,5 +27,10 @@
   "phoneNumberRequired": "Phone number is required",
   "emailOrPhoneRequired": "Phone number or email is required",
   "egyptianPhoneError": "Only Egyptian phone numbers are allowed",
-  "orSignUpWith": "Or sign up with"
+  "orSignUpWith": "Or sign up with",
+  "shareStory": "Share Story",
+  "createStory": "Create a Story",
+  "textStory": "Text Story",
+  "camera": "Camera",
+  "music": "Music"
 }
