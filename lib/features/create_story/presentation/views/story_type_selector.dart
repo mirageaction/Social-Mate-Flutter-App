@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/create_story/presentation/views/story_type_button.dart';
 
 class StoryTypeSelector extends StatelessWidget {
@@ -15,7 +17,9 @@ class StoryTypeSelector extends StatelessWidget {
         StoryTypeButton(
           title: strings.textStory,
           path: Assets.icons.font.path,
-          onTap: () {},
+          onTap: () {
+            context.push(AppPaths.createTextStory);
+          },
         ),
         StoryTypeButton(
           title: strings.camera,

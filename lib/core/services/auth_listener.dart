@@ -11,6 +11,8 @@ class AuthListener {
     return _client.auth.onAuthStateChange;
   }
 
+  Session? get currentSession => _client.auth.currentSession;
+
   Future<User?> getUser() async {
     try {
       final response = await _client.auth.getUser();

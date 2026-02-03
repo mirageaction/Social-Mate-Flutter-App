@@ -44,4 +44,3 @@ class _CreateStoryPageState extends State<CreateStoryPage> {
     );
   }
 }
-

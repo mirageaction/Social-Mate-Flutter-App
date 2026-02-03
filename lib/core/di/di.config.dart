@@ -41,6 +41,8 @@ import 'package:social_mate_app/features/create_story/domain/usecases/get_photos
     as _i540;
 import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_bloc.dart'
     as _i853;
+import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart'
+    as _i698;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource.dart'
     as _i915;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource_impl.dart'
@@ -64,6 +66,9 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final registerModule = _$RegisterModule();
+    gh.factory<_i698.StoryBgControllerCubit>(
+      () => _i698.StoryBgControllerCubit(),
+    );
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
     gh.lazySingleton<_i164.GalleryLocalDataSource>(
