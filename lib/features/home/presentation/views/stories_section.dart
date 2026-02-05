@@ -51,7 +51,6 @@ class StoriesSection extends StatelessWidget {
               },
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 itemCount: stories.length + 1,
                 clipBehavior: Clip.none,
                 separatorBuilder: (context, index) => 12.horizontalSpace,
@@ -67,7 +66,7 @@ class StoriesSection extends StatelessWidget {
                           state.activeAuthorId == story.authorId;
                       return StoryItem(
                         type: story.type,
-                        imageUrl: story.mediaUrl, 
+                        imageUrl: story.mediaUrl,
                         name: story.name,
                         text: story.content,
                         isLoading: isLoading,

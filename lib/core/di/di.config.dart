@@ -43,16 +43,28 @@ import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_
     as _i853;
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart'
     as _i698;
+import 'package:social_mate_app/features/home/data/remote/post_remote_datasource.dart'
+    as _i284;
+import 'package:social_mate_app/features/home/data/remote/post_remote_datasource_impl.dart'
+    as _i134;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource.dart'
     as _i915;
 import 'package:social_mate_app/features/home/data/remote/story_remote_datasource_impl.dart'
     as _i24;
+import 'package:social_mate_app/features/home/data/repos/post_repo_impl.dart'
+    as _i520;
 import 'package:social_mate_app/features/home/data/repos/story_repo_impl.dart'
     as _i444;
+import 'package:social_mate_app/features/home/domain/repos/post_repo.dart'
+    as _i358;
 import 'package:social_mate_app/features/home/domain/repos/story_repo.dart'
     as _i590;
+import 'package:social_mate_app/features/home/domain/usecases/get_posts_usecse.dart'
+    as _i817;
 import 'package:social_mate_app/features/home/domain/usecases/get_stories_usecase.dart'
     as _i580;
+import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart'
+    as _i853;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
     as _i200;
 import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource.dart'
@@ -104,6 +116,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );
+    gh.lazySingleton<_i284.PostRemoteDatasource>(
+      () => _i134.PostRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i540.GetPhotosUsecase>(
       () => _i540.GetPhotosUsecase(galleryRepo: gh<_i579.GalleryRepo>()),
     );
@@ -117,6 +132,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
+    );
+    gh.lazySingleton<_i358.PostRepo>(
+      () => _i520.PostRepoImpl(gh<_i284.PostRemoteDatasource>()),
     );
     gh.lazySingleton<_i473.GetAuthorStoriesUseCase>(
       () => _i473.GetAuthorStoriesUseCase(
@@ -148,6 +166,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
+    gh.lazySingleton<_i817.GetPostsUsecse>(
+      () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
+    );
     gh.factory<_i944.AuthBloc>(
       () => _i944.AuthBloc(
         gh<_i525.SignInUsecase>(),
@@ -157,6 +178,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i580.GetStoriesUseCase>(
       () => _i580.GetStoriesUseCase(gh<_i590.StoryRepo>()),
+    );
+    gh.factory<_i853.PostBloc>(
+      () => _i853.PostBloc(gh<_i817.GetPostsUsecse>()),
     );
     gh.factory<_i200.StoryBloc>(
       () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),

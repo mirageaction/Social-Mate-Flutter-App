@@ -12,7 +12,7 @@ class ShimmerStories extends StatelessWidget {
       height: 95.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+
         itemCount: 10,
         clipBehavior: Clip.none,
         separatorBuilder: (context, index) => 12.horizontalSpace,

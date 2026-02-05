@@ -493,6 +493,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.2.0"
+  get_time_ago:
+    dependency: "direct main"
+    description:
+      name: get_time_ago
+      sha256: cd111914562ca2b938afbc73f715fab1f37795cc053924d08f6de59878781388
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
   glob:
     dependency: transitive
     description:
@@ -758,6 +766,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  number_display:
+    dependency: "direct main"
+    description:
+      name: number_display
+      sha256: c465e6a3dd00f56532fa585c2085a593372279ecb3179fa86357c203f7c6bd59
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -958,6 +974,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  readmore:
+    dependency: "direct main"
+    description:
+      name: readmore
+      sha256: e8fca2bd397b86342483b409e2ec26f06560a5963aceaa39b27f30722b506187
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   realtime_client:
     dependency: transitive
     description:

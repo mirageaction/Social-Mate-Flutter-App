@@ -10,6 +10,7 @@ import 'package:social_mate_app/features/create_story/presentation/cubit/story_b
 import 'package:social_mate_app/features/create_story/presentation/pages/create_story_page.dart';
 import 'package:social_mate_app/features/create_story/presentation/pages/create_text_story_page.dart';
 import 'package:social_mate_app/features/home/domain/entities/story_entity.dart';
+import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
@@ -72,6 +73,7 @@ class AppRouter {
                 providers: [
                   BlocProvider(create: (context) => getIt<StoryBloc>()),
                   BlocProvider(create: (context) => getIt<StoryViewerBloc>()),
+                  BlocProvider(create: (context) => getIt<PostBloc>()),
                 ],
                 child: const HomePage(),
               ),

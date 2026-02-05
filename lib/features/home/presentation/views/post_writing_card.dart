@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
-import 'package:social_mate_app/features/widgets/shimmer_image.dart';
+import 'package:social_mate_app/features/widgets/shimmer_avater.dart';
 import 'package:social_mate_app/features/widgets/svg_icon.dart';
 
 class PostWritingCard extends StatelessWidget {
@@ -41,7 +41,7 @@ class PostWritingCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                ShimmerImage(
+                ShimmerAvatar(
                   size: 40.w,
                   imageUrl:
                       'https://avatars.githubusercontent.com/u/87110578?v=4',

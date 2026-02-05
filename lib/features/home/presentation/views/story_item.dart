@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:social_mate_app/features/widgets/shimmer_image.dart';
+import 'package:social_mate_app/features/widgets/shimmer_avater.dart';
 
 class StoryItem extends StatelessWidget {
   final String name;
@@ -73,7 +73,7 @@ class StoryItem extends StatelessWidget {
     if (type == 'image' && imageUrl != null) {
       return Stack(
         children: [
-          ShimmerImage(size: 56.w, imageUrl: imageUrl!),
+          ShimmerAvatar(size: 56.w, imageUrl: imageUrl!),
           if (isLoading) ...[
             Positioned.fill(
               child: Container(
