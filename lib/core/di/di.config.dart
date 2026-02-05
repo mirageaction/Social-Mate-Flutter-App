@@ -55,6 +55,18 @@ import 'package:social_mate_app/features/home/domain/usecases/get_stories_usecas
     as _i580;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
     as _i200;
+import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource.dart'
+    as _i954;
+import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource_impl.dart'
+    as _i852;
+import 'package:social_mate_app/features/story_viewer/data/repos/story_viewer_repo_impl.dart'
+    as _i249;
+import 'package:social_mate_app/features/story_viewer/domain/repos/story_viewer_repo.dart'
+    as _i351;
+import 'package:social_mate_app/features/story_viewer/domain/usecases/get_author_stories_usecase.dart'
+    as _i473;
+import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart'
+    as _i206;
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart' as _i845;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
@@ -71,6 +83,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
+    gh.lazySingleton<_i954.StoryViewerRemoteDatasource>(
+      () => _i852.StoryViewerRemoteDatasourceImpl(
+        supabaseClient: gh<_i454.SupabaseClient>(),
+      ),
+    );
     gh.lazySingleton<_i164.GalleryLocalDataSource>(
       () => _i860.GalleryLocalDatasourceImpl(),
     );
@@ -93,8 +110,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i859.AuthListener>(
       () => _i859.AuthListener(gh<_i454.SupabaseClient>()),
     );
+    gh.lazySingleton<_i351.StoryViewerRepo>(
+      () => _i249.StoryViewerRepoImpl(
+        remoteDatasource: gh<_i954.StoryViewerRemoteDatasource>(),
+      ),
+    );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
+    );
+    gh.lazySingleton<_i473.GetAuthorStoriesUseCase>(
+      () => _i473.GetAuthorStoriesUseCase(
+        repository: gh<_i351.StoryViewerRepo>(),
+      ),
     );
     gh.lazySingleton<_i590.StoryRepo>(
       () => _i444.StoryRepoImpl(
@@ -112,6 +139,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i424.SignUpUsecase>(
       () => _i424.SignUpUsecase(gh<_i358.AuthRepo>()),
+    );
+    gh.factory<_i206.StoryViewerBloc>(
+      () => _i206.StoryViewerBloc(
+        getAuthorStoriesUseCase: gh<_i473.GetAuthorStoriesUseCase>(),
+      ),
     );
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),

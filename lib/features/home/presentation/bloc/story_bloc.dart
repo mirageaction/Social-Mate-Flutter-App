@@ -11,11 +11,15 @@ part 'story_state.dart';
 @injectable
 class StoryBloc extends Bloc<StoryEvent, StoryState> {
   final GetStoriesUseCase getStoriesUseCase;
+
   StoryBloc({required this.getStoriesUseCase}) : super(StoryInitial()) {
     on<GetStoriesEvent>(_getStories, transformer: droppable());
   }
 
-  Future<void> _getStories(GetStoriesEvent event, Emitter<StoryState> emit) async {
+  Future<void> _getStories(
+    GetStoriesEvent event,
+    Emitter<StoryState> emit,
+  ) async {
     emit(StoryLoading());
     try {
       final result = await getStoriesUseCase();

@@ -5,4 +5,5 @@ class AppPaths {
   static const String splash = '/splash';
   static const String createStory = '/createStory';
   static const String createTextStory = '/createTextStory';
+  static const String storyViewer = '/storyViewer';
 }

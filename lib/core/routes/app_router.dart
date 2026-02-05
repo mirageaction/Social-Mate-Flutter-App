@@ -9,12 +9,15 @@ import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart';
 import 'package:social_mate_app/features/create_story/presentation/pages/create_story_page.dart';
 import 'package:social_mate_app/features/create_story/presentation/pages/create_text_story_page.dart';
+import 'package:social_mate_app/features/home/domain/entities/story_entity.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
 import 'package:social_mate_app/features/splash/presentation/page/splash_page.dart';
+import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart';
 import 'package:social_mate_app/features/widgets/bottom_nav_bar.dart';
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart';
+import 'package:social_mate_app/features/story_viewer/presentation/pages/story_viewer_page.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
   GoRouterRefreshStream(Stream stream) {
@@ -27,7 +30,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.createTextStory,
+      initialLocation: AppPaths.splash,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -65,8 +68,11 @@ class AppRouter {
           routes: [
             GoRoute(
               path: AppPaths.home,
-              builder: (context, state) => BlocProvider(
-                create: (context) => getIt<StoryBloc>(),
+              builder: (context, state) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (context) => getIt<StoryBloc>()),
+                  BlocProvider(create: (context) => getIt<StoryViewerBloc>()),
+                ],
                 child: const HomePage(),
               ),
             ),
@@ -100,6 +106,13 @@ class AppRouter {
             create: (context) => getIt<AuthBloc>(),
             child: const AuthPage(),
           ),
+        ),
+        GoRoute(
+          path: AppPaths.storyViewer,
+          builder: (context, state) {
+            final stories = state.extra as List<StoryEntity>;
+            return StoryViewerPage(stories: stories);
+          },
         ),
       ],
     );
