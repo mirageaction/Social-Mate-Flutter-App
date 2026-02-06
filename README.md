@@ -53,14 +53,16 @@ Whether it's sharing moments through rich media, navigating a dynamic social fee
 
 ### 🏠 Social Interaction
 - **Dynamic Home Feed** - Scroll through posts and updates 📰.
-- **Post Creation** - "What's on your mind?" widget with options for Text, Images, Videos, and Attachments 📸.
-- **Bottom Navigation** - Easy access to Home, Add Content, and Groups 🧭.
+- **Stories System** - Interactive story viewing experience with immersive transitions 📱.
+- **Post Creation** - "What's on your mind?" widget with multi-media support 📸.
+- **Media Gallery Integration** - Seamless browsing and selection of local media 🖼️.
+- **Bottom Navigation** - Quick access to key modules like Home, Add, and Groups 🧭.
 
 ### 🎨 User Experience & Design
-- **Modern UI** - Clean, minimalist design with a focus on usability 💎.
-- **Responsive Layout** - Optimized for all screen sizes using `flutter_screenutil` 📱.
-- **Custom Components** - Tailored widgets for buttons, text fields, and dividers 🛠️.
-- **Toast Notifications** - Beautiful, animated in-app notifications using `toastification` 🔔.
+- **Modern & Premium UI** - A polished, high-fidelity design focused on user engagement 💎.
+- **Responsive Layout** - Adapts perfectly to various screen sizes and densities 📱.
+- **Efficient Media Loading** - Optimized image caching and shimmering effects for a fluid experience ✨.
+- **Interactive Toast Notifications** - Sleek, non-intrusive feedback for app actions 🔔.
 
 ### 🏗️ Architecture & Best Practices
 - **Clean Architecture** - Organized folder structure (Data, Domain, Presentation) 📂.
@@ -160,26 +162,33 @@ Below is a list of key packages used in this Flutter project:
 - `bloc: ^9.2.0` - Core business logic component ⚙️.
 - `bloc_concurrency: ^0.3.0` - Concurrency transformers for Bloc events ⚡.
 - `get_it: ^9.2.0` - Service locator for dependency injection 💉.
-- `injectable: ^2.7.1` - Code generation for GetIt 🏗️.
+- `injectable: ^2.7.1+4` - Code generation for GetIt 🏗️.
 - `go_router: ^17.0.1` - Declarative routing package 🛣️.
 
 ### ☁️ Backend & Data
 - `supabase_flutter: ^2.12.0` - Supabase client for Auth and Database ⚡.
 - `flutter_dotenv: ^6.0.0` - Load environment variables from `.env` 🔐.
 - `equatable: ^2.0.5` - Simplify object equality comparisons ⚖️.
+- `photo_manager: ^3.8.3` - Handling local media assets with ease 📸.
 
 ### 🎨 UI & Assets
 - `flutter_screenutil: ^5.9.3` - Screen adaptation tool 📱.
 - `flutter_svg: ^2.2.3` - SVG rendering support 🖼️.
 - `toastification: ^3.0.3` - Customizable toast notifications 🔔.
-- `flutter_dash: ^1.0.0` - Dashed line widgets ➖.
-- `flutter_decorated_container: ^1.0.0` - Advanced container styling 🎨.
-- `cupertino_icons: ^1.0.8` - iOS style icons 🍎.
+- `cached_network_image: ^3.4.1` - Caching and displaying network images efficiently 🖼️.
+- `shimmer: ^3.0.0` - Shimmer loading effects for a premium feel ✨.
+- `story_view: ^0.16.6` - Full-featured story viewing experience 📱.
+- `dotted_border: ^3.1.0` - Easily create dashed or dotted borders 🔳.
+- `readmore: ^3.0.0` - Expandable/collapsible long text segments 📖.
 - `smooth_page_indicator: ^2.0.1` - Page indicators for onboarding 📑.
+- `cupertino_icons: ^1.0.8` - iOS style icons 🍎.
 
 ### 🛠️ Utilities & Dev Tools
 - `talker_bloc_logger: ^5.1.10` - Logging tool for Bloc state changes 📝.
 - `my_flutter_toolkit` - Custom utility package 🧰.
+- `get_time_ago: ^2.3.2` - Human-readable time formatting ⏳.
+- `number_display: ^3.0.0` - High-performance number formatting for UI 🔢.
+- `flutter_localization: ^0.3.3` - Advanced localization support 🌍.
 - `build_runner: ^2.10.5` - Build system for code generation 🏗️.
 - `flutter_gen_runner: ^5.12.0` - Asset generator 📂.
 

@@ -64,14 +64,16 @@ class PostCard extends StatelessWidget {
             style: textTheme.bodyMedium,
           ),
           12.verticalSpace,
-          ShimmerImage(
-            width: double.infinity,
-            height: 200.h,
-            imageUrl: post.mediaUrl,
-            borderRadius: 12.r,
-            alignment: Alignment.topCenter,
-            fit: BoxFit.cover,
-          ),
+          if (post.mediaUrl.isNotEmpty) ...[
+            ShimmerImage(
+              width: double.infinity,
+              height: 200.h,
+              imageUrl: post.mediaUrl,
+              borderRadius: 12.r,
+              alignment: Alignment.topCenter,
+              fit: BoxFit.cover,
+            ),
+          ],
           12.verticalSpace,
           Row(
             children: [
