@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
-import 'package:social_mate_app/features/widgets/svg_icon.dart';
+import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
 class AddStoryItem extends StatelessWidget {
   const AddStoryItem({super.key});

@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:social_mate_app/features/widgets/shimmer_avater.dart';
+import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
 class StoryItem extends StatelessWidget {
   final String name;

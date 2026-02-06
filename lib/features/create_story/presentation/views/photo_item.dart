@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
-import 'package:social_mate_app/features/widgets/shimmer_box.dart';
+import 'package:social_mate_app/global/widgets/shimmer_box.dart';
 
 class PhotoItem extends StatelessWidget {
   final AssetEntity photo;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/features/home/presentation/views/add_story_item.dart';
-import 'package:social_mate_app/features/widgets/shimmer_box.dart';
+import 'package:social_mate_app/global/widgets/shimmer_box.dart';
 
 class ShimmerStories extends StatelessWidget {
   const ShimmerStories({super.key});

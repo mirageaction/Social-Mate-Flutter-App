@@ -7,10 +7,10 @@ import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/auth/domain/entities/sign_in_entity.dart';
-import 'package:social_mate_app/features/widgets/custom_button.dart';
-import 'package:social_mate_app/features/widgets/custom_textfield.dart';
+import 'package:social_mate_app/global/widgets/custom_button.dart';
+import 'package:social_mate_app/global/widgets/custom_textfield.dart';
 import 'package:my_flutter_toolkit/ui/widgets/custom_divider.dart';
-import 'package:social_mate_app/features/widgets/social_button.dart';
+import 'package:social_mate_app/global/widgets/social_button.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:my_flutter_toolkit/core/utils/text_field_utils/validators.dart';
 

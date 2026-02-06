@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key, required this.child});
@@ -28,7 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         unselectedFontSize: 0,
         items: [
           BottomNavigationBarItem(
-            icon: BottomNavBarItem(
+            icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.home.path,
               isSelected: _currentIndex == 0,
@@ -36,7 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: BottomNavBarItem(
+            icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.userPlus.path,
               isSelected: _currentIndex == 1,
@@ -44,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: BottomNavBarItem(
+            icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.bag.path,
               isSelected: _currentIndex == 2,
@@ -52,12 +53,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Bag',
           ),
           BottomNavigationBarItem(
-            icon: BottomNavBarItem(
+            icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.group.path,
               isSelected: _currentIndex == 3,
             ),
             label: 'Group',
+          ),
+          BottomNavigationBarItem(
+            icon: ShimmerAvatar(size: 30.w, imageUrl: ''),
+            label: 'Profile',
           ),
         ],
         currentIndex: _currentIndex,
@@ -72,9 +77,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 }
 
-class BottomNavBarItem extends StatelessWidget {
-  const BottomNavBarItem({
-    super.key,
+class _BottomNavBarItem extends StatelessWidget {
+  const _BottomNavBarItem({
     required this.colorScheme,
     required this.icon,
     this.isSelected = false,

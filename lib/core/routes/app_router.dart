@@ -16,7 +16,7 @@ import 'package:social_mate_app/features/home/presentation/pages/home_page.dart'
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
 import 'package:social_mate_app/features/splash/presentation/page/splash_page.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart';
-import 'package:social_mate_app/features/widgets/bottom_nav_bar.dart';
+import 'package:social_mate_app/global/widgets/bottom_nav_bar.dart';
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/pages/story_viewer_page.dart';
 

@@ -5,7 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:social_mate_app/features/onboarding/presentation/views/onboarding_item.dart';
-import 'package:social_mate_app/features/widgets/custom_button.dart';
+import 'package:social_mate_app/global/widgets/custom_button.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:social_mate_app/features/widgets/svg_icon.dart';
+import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
 class StoryTypeButton extends StatelessWidget {
   const StoryTypeButton({

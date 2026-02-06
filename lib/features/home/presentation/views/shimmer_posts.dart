@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:social_mate_app/features/widgets/shimmer_box.dart';
+import 'package:social_mate_app/global/widgets/shimmer_box.dart';
 
 class ShimmerPosts extends StatelessWidget {
   const ShimmerPosts({super.key});

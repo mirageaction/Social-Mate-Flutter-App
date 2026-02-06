@@ -5,9 +5,9 @@ import 'package:number_display/number_display.dart';
 import 'package:readmore/readmore.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/features/home/domain/entities/post_entity.dart';
-import 'package:social_mate_app/features/widgets/shimmer_avater.dart';
-import 'package:social_mate_app/features/widgets/shimmer_image.dart';
-import 'package:social_mate_app/features/widgets/svg_icon.dart';
+import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
+import 'package:social_mate_app/global/widgets/shimmer_image.dart';
+import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
 class PostCard extends StatelessWidget {
   const PostCard({super.key, required this.post});
