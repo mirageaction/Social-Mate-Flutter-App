@@ -32,5 +32,15 @@
   "createStory": "Create a Story",
   "textStory": "Text Story",
   "camera": "Camera",
-  "music": "Music"
+  "music": "Music",
+  "addPhoto": "Add A Photo",
+  "addVideo": "Add A Video",
+  "addDocument": "Add A Document",
+  "backgroundColor": "Background Color",
+  "addGif": "Add Gif",
+  "liveVideo": "Live Video",
+  "public": "Public",
+  "whatsOnYourMind": "What's on your mind?",
+  "createPost": "Create a Post",
+  "post": "Post"
 }

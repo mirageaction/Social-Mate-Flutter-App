@@ -343,6 +343,76 @@ class AppStrings {
   String get music {
     return Intl.message('Music', name: 'music', desc: '', args: []);
   }
+
+  /// `Add A Photo`
+  String get addPhoto {
+    return Intl.message('Add A Photo', name: 'addPhoto', desc: '', args: []);
+  }
+
+  /// `Add A Video`
+  String get addVideo {
+    return Intl.message('Add A Video', name: 'addVideo', desc: '', args: []);
+  }
+
+  /// `Add A Document`
+  String get addDocument {
+    return Intl.message(
+      'Add A Document',
+      name: 'addDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Background Color`
+  String get backgroundColor {
+    return Intl.message(
+      'Background Color',
+      name: 'backgroundColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Gif`
+  String get addGif {
+    return Intl.message('Add Gif', name: 'addGif', desc: '', args: []);
+  }
+
+  /// `Live Video`
+  String get liveVideo {
+    return Intl.message('Live Video', name: 'liveVideo', desc: '', args: []);
+  }
+
+  /// `Public`
+  String get public {
+    return Intl.message('Public', name: 'public', desc: '', args: []);
+  }
+
+  /// `What's on your mind?`
+  String get whatsOnYourMind {
+    return Intl.message(
+      'What\'s on your mind?',
+      name: 'whatsOnYourMind',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create a Post`
+  String get createPost {
+    return Intl.message(
+      'Create a Post',
+      name: 'createPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post`
+  String get post {
+    return Intl.message('Post', name: 'post', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

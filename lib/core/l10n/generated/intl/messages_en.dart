@@ -22,6 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addDocument": MessageLookupByLibrary.simpleMessage("Add A Document"),
+    "addGif": MessageLookupByLibrary.simpleMessage("Add Gif"),
+    "addPhoto": MessageLookupByLibrary.simpleMessage("Add A Photo"),
+    "addVideo": MessageLookupByLibrary.simpleMessage("Add A Video"),
+    "backgroundColor": MessageLookupByLibrary.simpleMessage("Background Color"),
     "camera": MessageLookupByLibrary.simpleMessage("Camera"),
     "confirmPasswordHint": MessageLookupByLibrary.simpleMessage(
       "Confirm your password",
@@ -29,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
+    "createPost": MessageLookupByLibrary.simpleMessage("Create a Post"),
     "createStory": MessageLookupByLibrary.simpleMessage("Create a Story"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
@@ -50,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Invalid phone number",
     ),
     "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
+    "liveVideo": MessageLookupByLibrary.simpleMessage("Live Video"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "microsoft": MessageLookupByLibrary.simpleMessage("Microsoft"),
     "music": MessageLookupByLibrary.simpleMessage("Music"),
@@ -71,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumberRequired": MessageLookupByLibrary.simpleMessage(
       "Phone number is required",
     ),
+    "post": MessageLookupByLibrary.simpleMessage("Post"),
+    "public": MessageLookupByLibrary.simpleMessage("Public"),
     "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "termsAgreement": MessageLookupByLibrary.simpleMessage(
@@ -78,5 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
     "textStory": MessageLookupByLibrary.simpleMessage("Text Story"),
+    "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
+      "What\'s on your mind?",
+    ),
   };
 }

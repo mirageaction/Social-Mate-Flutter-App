@@ -21,8 +21,19 @@ class $AssetsIconsGen {
   SvgGenImage get addCircleOutline =>
       const SvgGenImage('assets/icons/add_circle_outline.svg');
 
+  /// File path: assets/icons/add_document.svg
+  SvgGenImage get addDocument =>
+      const SvgGenImage('assets/icons/add_document.svg');
+
+  /// File path: assets/icons/add_video.svg
+  SvgGenImage get addVideo => const SvgGenImage('assets/icons/add_video.svg');
+
   /// File path: assets/icons/attach.svg
   SvgGenImage get attach => const SvgGenImage('assets/icons/attach.svg');
+
+  /// File path: assets/icons/background_color.svg
+  SvgGenImage get backgroundColor =>
+      const SvgGenImage('assets/icons/background_color.svg');
 
   /// File path: assets/icons/bag.svg
   SvgGenImage get bag => const SvgGenImage('assets/icons/bag.svg');
@@ -38,12 +49,19 @@ class $AssetsIconsGen {
   SvgGenImage get cameraFocus =>
       const SvgGenImage('assets/icons/camera_focus.svg');
 
+  /// File path: assets/icons/camera_outline.svg
+  SvgGenImage get cameraOutline =>
+      const SvgGenImage('assets/icons/camera_outline.svg');
+
   /// File path: assets/icons/chat_circle_dots.svg
   SvgGenImage get chatCircleDots =>
       const SvgGenImage('assets/icons/chat_circle_dots.svg');
 
   /// File path: assets/icons/font.svg
   SvgGenImage get font => const SvgGenImage('assets/icons/font.svg');
+
+  /// File path: assets/icons/gif.svg
+  SvgGenImage get gif => const SvgGenImage('assets/icons/gif.svg');
 
   /// File path: assets/icons/google.svg
   SvgGenImage get google => const SvgGenImage('assets/icons/google.svg');
@@ -56,6 +74,13 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/image.svg
   SvgGenImage get image => const SvgGenImage('assets/icons/image.svg');
+
+  /// File path: assets/icons/image_outline.svg
+  SvgGenImage get imageOutline =>
+      const SvgGenImage('assets/icons/image_outline.svg');
+
+  /// File path: assets/icons/live_video.svg
+  SvgGenImage get liveVideo => const SvgGenImage('assets/icons/live_video.svg');
 
   /// File path: assets/icons/microsoft.svg
   SvgGenImage get microsoft => const SvgGenImage('assets/icons/microsoft.svg');
@@ -84,17 +109,24 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
     addCircleOutline,
+    addDocument,
+    addVideo,
     attach,
+    backgroundColor,
     bag,
     bellRinging,
     bookmark,
     cameraFocus,
+    cameraOutline,
     chatCircleDots,
     font,
+    gif,
     google,
     group,
     home,
     image,
+    imageOutline,
+    liveVideo,
     microsoft,
     music,
     search,
