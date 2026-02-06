@@ -1,9 +1,10 @@
+import 'package:animated_hint_textfield/animated_hint_textfield.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
@@ -13,10 +14,12 @@ class PostWritingCard extends StatelessWidget {
     super.key,
     required this.colorScheme,
     required this.textTheme,
+    required this.strings,
   });
 
   final ColorScheme colorScheme;
   final TextTheme textTheme;
+  final AppStrings strings;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class PostWritingCard extends StatelessWidget {
       ),
       child: InkWell(
         borderRadius: BorderRadius.circular(12.r),
+        canRequestFocus: false,
         onTap: () {
           context.push(AppPaths.createPost);
         },
@@ -54,13 +58,36 @@ class PostWritingCard extends StatelessWidget {
                         'https://avatars.githubusercontent.com/u/87110578?v=4',
                   ),
                   16.horizontalSpace,
-                  Shimmer.fromColors(
-                    baseColor: colorScheme.onSurfaceVariant,
-                    period: const Duration(seconds: 2),
-                    highlightColor: colorScheme.onSurface,
-                    child: Text(
-                      'What\'s on your mind?',
-                      style: textTheme.bodyLarge,
+                  Expanded(
+                    child: IgnorePointer(
+                      child: AnimatedTextField(
+                        animationType: Animationtype.typer,
+                        readOnly: true,
+                        enabled: false,
+                        hintTexts: [
+                          strings.whatsOnYourMind,
+                          strings.shareThoughts,
+                          strings.tellYourStory,
+                          strings.thinkingAboutToday,
+                          strings.writeSomething,
+                        ],
+                        hintTextStyle: textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          color: colorScheme.onSurfaceVariant.withValues(
+                            alpha: 0.8,
+                          ),
+                        ),
+
+                        decoration: InputDecoration(
+                          filled: false,
+                          contentPadding: EdgeInsets.zero,
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -115,14 +142,13 @@ class _PostWritingCardActions extends StatelessWidget {
   final ColorScheme colorScheme;
   final TextTheme textTheme;
   final bool? isLast;
-   
 
   const _PostWritingCardActions({
     required this.path,
     required this.label,
     required this.colorScheme,
     required this.textTheme,
-    
+
     this.isLast,
   });
 

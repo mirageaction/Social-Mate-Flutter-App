@@ -1,0 +1,92 @@
+import 'dart:io';
+
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_camera_usecase.dart';
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_gallery_usecase.dart';
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_from_camera_usecase.dart';
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_from_gallery_usecase.dart';
+
+part 'media_picker_event.dart';
+part 'media_picker_state.dart';
+
+@injectable
+class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
+  final PickImageFromCameraUsecase _pickImageFromCameraUsecase;
+  final PickImageFromGalleryUsecase _pickImageFromGalleryUsecase;
+  final PickVideoFromCameraUsecase _pickVideoFromCameraUsecase;
+  final PickVideoFromGalleryUsecase _pickVideoFromGalleryUsecase;
+
+  MediaPickerBloc(
+    this._pickImageFromCameraUsecase,
+    this._pickImageFromGalleryUsecase,
+    this._pickVideoFromCameraUsecase,
+    this._pickVideoFromGalleryUsecase,
+  ) : super(MediaPickerInitial()) {
+    on<PickImageFromGalleryEvent>(_onPickImageFromGalleryEvent);
+    on<PickImageFromCameraEvent>(_onPickImageFromCameraEvent);
+    on<PickVideoFromGalleryEvent>(_onPickVideoFromGalleryEvent);
+    on<PickVideoFromCameraEvent>(_onPickVideoFromCameraEvent);
+    on<ClearMediaEvent>(_onClearMediaEvent);
+  }
+
+  Future<void> _onPickImageFromGalleryEvent(
+    PickImageFromGalleryEvent event,
+    Emitter<MediaPickerState> emit,
+  ) async {
+    try {
+      emit(MediaPickerLoading());
+      final result = await _pickImageFromGalleryUsecase();
+      emit(MediaPickerSuccess(file: result));
+    } catch (e) {
+      emit(MediaPickerError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onPickImageFromCameraEvent(
+    PickImageFromCameraEvent event,
+    Emitter<MediaPickerState> emit,
+  ) async {
+    try {
+      emit(MediaPickerLoading());
+      final result = await _pickImageFromCameraUsecase();
+      emit(MediaPickerSuccess(file: result));
+    } catch (e) {
+      emit(MediaPickerError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onPickVideoFromGalleryEvent(
+    PickVideoFromGalleryEvent event,
+    Emitter<MediaPickerState> emit,
+  ) async {
+    try {
+      emit(MediaPickerLoading());
+      final result = await _pickVideoFromGalleryUsecase();
+      emit(MediaPickerSuccess(file: result));
+    } catch (e) {
+      emit(MediaPickerError(message: e.toString()));
+    }
+  }
+
+  Future<void> _onPickVideoFromCameraEvent(
+    PickVideoFromCameraEvent event,
+    Emitter<MediaPickerState> emit,
+  ) async {
+    try {
+      emit(MediaPickerLoading());
+      final result = await _pickVideoFromCameraUsecase();
+      emit(MediaPickerSuccess(file: result));
+    } catch (e) {
+      emit(MediaPickerError(message: e.toString()));
+    }
+  }
+
+  void _onClearMediaEvent(
+    ClearMediaEvent event,
+    Emitter<MediaPickerState> emit,
+  ) {
+    emit(MediaPickerInitial());
+  }
+}

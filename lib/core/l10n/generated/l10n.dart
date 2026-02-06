@@ -413,6 +413,46 @@ class AppStrings {
   String get post {
     return Intl.message('Post', name: 'post', desc: '', args: []);
   }
+
+  /// `Share your thoughts and experiences with the world.`
+  String get shareThoughts {
+    return Intl.message(
+      'Share your thoughts and experiences with the world.',
+      name: 'shareThoughts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell your story.`
+  String get tellYourStory {
+    return Intl.message(
+      'Tell your story.',
+      name: 'tellYourStory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you thinking about today?`
+  String get thinkingAboutToday {
+    return Intl.message(
+      'What are you thinking about today?',
+      name: 'thinkingAboutToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write something here...`
+  String get writeSomething {
+    return Intl.message(
+      'Write something here...',
+      name: 'writeSomething',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

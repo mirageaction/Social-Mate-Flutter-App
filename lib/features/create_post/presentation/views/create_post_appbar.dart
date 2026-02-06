@@ -18,6 +18,7 @@ class CreatePostAppBar extends StatelessWidget implements PreferredSizeWidget {
     final strings = AppStrings.of(context);
 
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

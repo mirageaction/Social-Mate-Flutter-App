@@ -5,6 +5,7 @@ import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:social_mate_app/features/create_post/presentation/pages/create_post_page.dart';
 import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_bloc.dart';
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart';
@@ -32,7 +33,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.createPost,
+      initialLocation: AppPaths.home,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -112,7 +113,10 @@ class AppRouter {
         ),
         GoRoute(
           path: AppPaths.createPost,
-          builder: (context, state) => const CreatePostPage(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => getIt<MediaPickerBloc>(),
+            child: const CreatePostPage(),
+          ),
         ),
         GoRoute(
           path: AppPaths.storyViewer,

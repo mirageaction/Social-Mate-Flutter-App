@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
+import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
 void showCreatePostSheet(BuildContext context) {
@@ -9,8 +12,11 @@ void showCreatePostSheet(BuildContext context) {
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
-    builder: (context) {
-      return const _DraggablePostSheet();
+    builder: (_) {
+      return BlocProvider.value(
+        value: context.read<MediaPickerBloc>(),
+        child: const _DraggablePostSheet(),
+      );
     },
   );
 }
@@ -50,7 +56,12 @@ class _DraggablePostSheetState extends State<_DraggablePostSheet> {
                       _PostOption(
                         icon: icons.imageOutline.path,
                         title: strings.addPhoto,
-                        onTap: () {},
+                        onTap: () {
+                          context.read<MediaPickerBloc>().add(
+                            PickImageFromGalleryEvent(),
+                          );
+                          context.pop();
+                        },
                       ),
                       _PostOption(
                         icon: icons.addVideo.path,

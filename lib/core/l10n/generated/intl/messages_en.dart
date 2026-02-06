@@ -81,14 +81,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "post": MessageLookupByLibrary.simpleMessage("Post"),
     "public": MessageLookupByLibrary.simpleMessage("Public"),
     "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
+    "shareThoughts": MessageLookupByLibrary.simpleMessage(
+      "Share your thoughts and experiences with the world.",
+    ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "tellYourStory": MessageLookupByLibrary.simpleMessage("Tell your story."),
     "termsAgreement": MessageLookupByLibrary.simpleMessage(
       "By Using this app you agree with the Terms of Service",
     ),
     "termsOfService": MessageLookupByLibrary.simpleMessage("Terms of Service"),
     "textStory": MessageLookupByLibrary.simpleMessage("Text Story"),
+    "thinkingAboutToday": MessageLookupByLibrary.simpleMessage(
+      "What are you thinking about today?",
+    ),
     "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
       "What\'s on your mind?",
+    ),
+    "writeSomething": MessageLookupByLibrary.simpleMessage(
+      "Write something here...",
     ),
   };
 }

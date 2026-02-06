@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:image_picker/image_picker.dart' as _i183;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:social_mate_app/core/di/register_module.dart' as _i124;
 import 'package:social_mate_app/core/services/auth_listener.dart' as _i859;
@@ -29,6 +30,24 @@ import 'package:social_mate_app/features/auth/domain/usecases/sign_out_usecase.d
     as _i691;
 import 'package:social_mate_app/features/auth/domain/usecases/sign_up_usecase.dart'
     as _i424;
+import 'package:social_mate_app/features/create_post/data/local/media_picker_local_datasource.dart'
+    as _i498;
+import 'package:social_mate_app/features/create_post/data/local/media_picker_local_datasource_impl.dart'
+    as _i67;
+import 'package:social_mate_app/features/create_post/data/repos/media_picker_repo_impl.dart'
+    as _i842;
+import 'package:social_mate_app/features/create_post/domain/repos/media_picker_repo.dart'
+    as _i206;
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_camera_usecase.dart'
+    as _i838;
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_gallery_usecase.dart'
+    as _i365;
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_from_camera_usecase.dart'
+    as _i1013;
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_from_gallery_usecase.dart'
+    as _i437;
+import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart'
+    as _i76;
 import 'package:social_mate_app/features/create_story/data/local/gallery_local_datasource.dart'
     as _i164;
 import 'package:social_mate_app/features/create_story/data/local/gallery_local_datasource_impl.dart'
@@ -94,6 +113,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i698.StoryBgControllerCubit(),
     );
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
+    gh.lazySingleton<_i183.ImagePicker>(() => registerModule.imagePicker);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
     gh.lazySingleton<_i954.StoryViewerRemoteDatasource>(
       () => _i852.StoryViewerRemoteDatasourceImpl(
@@ -136,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i358.PostRepo>(
       () => _i520.PostRepoImpl(gh<_i284.PostRemoteDatasource>()),
     );
+    gh.lazySingleton<_i498.MediaPickerLocalDataSource>(
+      () => _i67.MediaPickerLocalDataSourceImpl(gh<_i183.ImagePicker>()),
+    );
     gh.lazySingleton<_i473.GetAuthorStoriesUseCase>(
       () => _i473.GetAuthorStoriesUseCase(
         repository: gh<_i351.StoryViewerRepo>(),
@@ -166,6 +189,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
+    gh.lazySingleton<_i206.MediaPickerRepo>(
+      () => _i842.MediaPickerRepoImpl(gh<_i498.MediaPickerLocalDataSource>()),
+    );
     gh.lazySingleton<_i817.GetPostsUsecse>(
       () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
     );
@@ -178,6 +204,26 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i580.GetStoriesUseCase>(
       () => _i580.GetStoriesUseCase(gh<_i590.StoryRepo>()),
+    );
+    gh.lazySingleton<_i838.PickImageFromCameraUsecase>(
+      () => _i838.PickImageFromCameraUsecase(gh<_i206.MediaPickerRepo>()),
+    );
+    gh.lazySingleton<_i365.PickImageFromGalleryUsecase>(
+      () => _i365.PickImageFromGalleryUsecase(gh<_i206.MediaPickerRepo>()),
+    );
+    gh.lazySingleton<_i1013.PickVideoFromCameraUsecase>(
+      () => _i1013.PickVideoFromCameraUsecase(gh<_i206.MediaPickerRepo>()),
+    );
+    gh.lazySingleton<_i437.PickVideoFromGalleryUsecase>(
+      () => _i437.PickVideoFromGalleryUsecase(gh<_i206.MediaPickerRepo>()),
+    );
+    gh.factory<_i76.MediaPickerBloc>(
+      () => _i76.MediaPickerBloc(
+        gh<_i838.PickImageFromCameraUsecase>(),
+        gh<_i365.PickImageFromGalleryUsecase>(),
+        gh<_i1013.PickVideoFromCameraUsecase>(),
+        gh<_i437.PickVideoFromGalleryUsecase>(),
+      ),
     );
     gh.factory<_i853.PostBloc>(
       () => _i853.PostBloc(gh<_i817.GetPostsUsecse>()),
