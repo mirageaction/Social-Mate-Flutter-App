@@ -22,7 +22,6 @@ class _CreatePostPageState extends State<CreatePostPage> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final strings = AppStrings.of(context);
 
     return Scaffold(
       appBar: CreatePostAppBar(textTheme: textTheme, colorScheme: colorScheme),
@@ -38,73 +37,13 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 children: [
                   ShimmerAvatar(size: 40.w, imageUrl: ''),
                   10.horizontalSpace,
-                  InkWell(
-                    onTap: () {},
-                    excludeFromSemantics: true,
-                    borderRadius: BorderRadius.circular(12.r),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                        vertical: 4.w,
-                      ),
-                      decoration: BoxDecoration(
-                        color: colorScheme.surface,
-                        borderRadius: BorderRadius.circular(12.r),
-                        border: Border.all(
-                          color: colorScheme.outline,
-                          width: 1.w,
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            strings.public,
-                            style: textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                          4.horizontalSpace,
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  const PrivacySelector(),
                 ],
               ),
               16.verticalSpace,
-              AnimatedTextField(
-                animationType: Animationtype.typer,
-                hintTexts: [
-                  strings.whatsOnYourMind,
-                  strings.shareThoughts,
-                  strings.tellYourStory,
-                  strings.thinkingAboutToday,
-                  strings.writeSomething,
-                ],
-                hintTextStyle: textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
-                ),
-                maxLines: null,
-                autocorrect: false,
-                enableSuggestions: false,
-                keyboardType: TextInputType.multiline,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.zero,
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
-                ),
-              ),
+              const PostTextField(),
               30.verticalSpace,
-              const MediaPreview(),
+              const ImagePreview(),
               50.verticalSpace,
             ],
           ),
@@ -118,8 +57,84 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 }
 
-class MediaPreview extends StatelessWidget {
-  const MediaPreview({super.key});
+class PrivacySelector extends StatelessWidget {
+  const PrivacySelector({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final strings = AppStrings.of(context);
+    return InkWell(
+      onTap: () {},
+      excludeFromSemantics: true,
+      borderRadius: BorderRadius.circular(12.r),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.w),
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: colorScheme.outline, width: 1.w),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              strings.public,
+              style: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
+            4.horizontalSpace,
+            Icon(Icons.arrow_drop_down, color: colorScheme.onSurfaceVariant),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PostTextField extends StatelessWidget {
+  const PostTextField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AppStrings.of(context);
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return AnimatedTextField(
+      animationType: Animationtype.typer,
+      hintTexts: [
+        strings.whatsOnYourMind,
+        strings.shareThoughts,
+        strings.tellYourStory,
+        strings.thinkingAboutToday,
+        strings.writeSomething,
+      ],
+      hintTextStyle: textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w400,
+        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
+      ),
+      maxLines: null,
+      autocorrect: false,
+      enableSuggestions: false,
+      keyboardType: TextInputType.multiline,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
+        border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        focusedBorder: InputBorder.none,
+        errorBorder: InputBorder.none,
+        disabledBorder: InputBorder.none,
+      ),
+    );
+  }
+}
+
+class ImagePreview extends StatelessWidget {
+  const ImagePreview({super.key});
 
   @override
   Widget build(BuildContext context) {
