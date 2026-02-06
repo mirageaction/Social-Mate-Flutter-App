@@ -6,4 +6,5 @@ class AppPaths {
   static const String createStory = '/createStory';
   static const String createTextStory = '/createTextStory';
   static const String storyViewer = '/storyViewer';
+  static const String createPost = '/createPost';
 }

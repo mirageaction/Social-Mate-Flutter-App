@@ -16,6 +16,7 @@ class CreateTextStoryAppBar extends StatelessWidget
     return AppBar(
       backgroundColor: color,
       surfaceTintColor: color,
+      automaticallyImplyLeading: false,
       elevation: 0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
