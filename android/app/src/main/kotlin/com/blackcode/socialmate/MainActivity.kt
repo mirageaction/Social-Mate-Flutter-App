@@ -1,4 +1,4 @@
-package com.example.social_mate_app
+package com.blackcode.socialmate
 
 import io.flutter.embedding.android.FlutterActivity
 

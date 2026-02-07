@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
+import 'package:social_mate_app/core/services/media_cache_service.dart';
 
 class PostVideoPlayer extends StatefulWidget {
   final String videoUrl;
@@ -11,21 +12,52 @@ class PostVideoPlayer extends StatefulWidget {
 }
 
 class _PostVideoPlayerState extends State<PostVideoPlayer> {
-  late VideoPlayerController _controller;
+  VideoPlayerController? _controller;
   bool _initialized = false;
+  bool _hasError = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
-      ..initialize().then((_) {
-        if (mounted) {
-          setState(() {
-            _initialized = true;
-          });
-        }
-      });
-    _controller.addListener(_listener);
+    _initializeController();
+  }
+
+  Future<void> _initializeController() async {
+    try {
+      final fileInfo = await MediaCacheService.videoCache.getFileFromCache(
+        widget.videoUrl,
+      );
+
+      if (fileInfo != null) {
+        _controller = VideoPlayerController.file(fileInfo.file);
+        debugPrint("Video cached: ${fileInfo.file.path}");
+      } else {
+        debugPrint("Video not cached: ${widget.videoUrl}");
+        _controller = VideoPlayerController.networkUrl(
+          Uri.parse(widget.videoUrl),
+        );
+        // Trigger cache in background
+        MediaCacheService.videoCache
+            .getSingleFile(widget.videoUrl)
+            .then((_) => null)
+            .catchError((_) => null);
+      }
+
+      await _controller!.initialize();
+      _controller!.addListener(_listener);
+
+      if (mounted) {
+        setState(() {
+          _initialized = true;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+        });
+      }
+    }
   }
 
   void _listener() {
@@ -34,14 +66,28 @@ class _PostVideoPlayerState extends State<PostVideoPlayer> {
 
   @override
   void dispose() {
-    _controller.removeListener(_listener);
-    _controller.dispose();
+    _controller?.removeListener(_listener);
+    _controller?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!_initialized) {
+    if (_hasError) {
+      return Container(
+        height: 200.h,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.black12,
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: const Center(
+          child: Icon(Icons.error_outline, color: Colors.red),
+        ),
+      );
+    }
+
+    if (!_initialized || _controller == null) {
       return Container(
         height: 200.h,
         width: double.infinity,
@@ -59,15 +105,15 @@ class _PostVideoPlayerState extends State<PostVideoPlayer> {
         alignment: Alignment.center,
         children: [
           AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
+            aspectRatio: _controller!.value.aspectRatio,
+            child: VideoPlayer(_controller!),
           ),
           GestureDetector(
             onTap: () {
               setState(() {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
+                _controller!.value.isPlaying
+                    ? _controller!.pause()
+                    : _controller!.play();
               });
             },
             child: Container(
@@ -77,7 +123,7 @@ class _PostVideoPlayerState extends State<PostVideoPlayer> {
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                _controller!.value.isPlaying ? Icons.pause : Icons.play_arrow,
                 color: Colors.white,
                 size: 40.w,
               ),
@@ -88,7 +134,7 @@ class _PostVideoPlayerState extends State<PostVideoPlayer> {
             left: 0,
             right: 0,
             child: VideoProgressIndicator(
-              _controller,
+              _controller!,
               allowScrubbing: true,
               colors: VideoProgressColors(
                 playedColor: Theme.of(context).colorScheme.primary,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:social_mate_app/global/widgets/shimmer_box.dart';
+import 'package:social_mate_app/core/services/media_cache_service.dart';
 
 class ShimmerAvatar extends StatelessWidget {
   final double size;
@@ -12,6 +13,7 @@ class ShimmerAvatar extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(100),
       child: CachedNetworkImage(
+        cacheManager: MediaCacheService.imageCache,
         imageUrl: imageUrl,
         width: size,
         height: size,

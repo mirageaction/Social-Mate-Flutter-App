@@ -28,14 +28,6 @@ class AppFlowBloc extends Cubit<AppFlowState> {
       final session = data.session;
 
       if (session != null) {
-        if (event == AuthChangeEvent.initialSession ||
-            event == AuthChangeEvent.tokenRefreshed) {
-          final user = await authListener.getUser();
-          if (user == null) {
-            emit(const AppFlowState(status: AppFlowStatus.unauthenticated));
-            return;
-          }
-        }
         emit(
           AppFlowState(status: AppFlowStatus.authenticated, session: session),
         );
