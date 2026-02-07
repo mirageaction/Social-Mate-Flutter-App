@@ -76,6 +76,8 @@ import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_
     as _i853;
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart'
     as _i698;
+import 'package:social_mate_app/features/home/data/local/post_local_datasource.dart'
+    as _i531;
 import 'package:social_mate_app/features/home/data/remote/post_remote_datasource.dart'
     as _i284;
 import 'package:social_mate_app/features/home/data/remote/post_remote_datasource_impl.dart'
@@ -151,6 +153,9 @@ extension GetItInjectableX on _i174.GetIt {
         supabaseClient: gh<_i454.SupabaseClient>(),
       ),
     );
+    gh.lazySingleton<_i531.PostLocalDatasource>(
+      () => _i531.PostLocalDatasourceImpl(),
+    );
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );
@@ -171,11 +176,23 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDatasource: gh<_i954.StoryViewerRemoteDatasource>(),
       ),
     );
+    gh.lazySingleton<_i358.PostRepo>(
+      () => _i520.PostRepoImpl(
+        gh<_i284.PostRemoteDatasource>(),
+        gh<_i531.PostLocalDatasource>(),
+      ),
+    );
+    gh.factory<_i183.ToggleDislikeUsecase>(
+      () => _i183.ToggleDislikeUsecase(gh<_i358.PostRepo>()),
+    );
+    gh.factory<_i854.ToggleLikeUsecase>(
+      () => _i854.ToggleLikeUsecase(gh<_i358.PostRepo>()),
+    );
+    gh.lazySingleton<_i817.GetPostsUsecse>(
+      () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
+    );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
-    );
-    gh.lazySingleton<_i358.PostRepo>(
-      () => _i520.PostRepoImpl(gh<_i284.PostRemoteDatasource>()),
     );
     gh.lazySingleton<_i80.CreatePostRepo>(
       () => _i971.CreatePostRepoImpl(gh<_i285.CreatePostRemoteDataSource>()),
@@ -219,14 +236,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i206.MediaPickerRepo>(
       () => _i842.MediaPickerRepoImpl(gh<_i498.MediaPickerLocalDataSource>()),
     );
-    gh.factory<_i183.ToggleDislikeUsecase>(
-      () => _i183.ToggleDislikeUsecase(gh<_i358.PostRepo>()),
-    );
-    gh.factory<_i854.ToggleLikeUsecase>(
-      () => _i854.ToggleLikeUsecase(gh<_i358.PostRepo>()),
-    );
-    gh.lazySingleton<_i817.GetPostsUsecse>(
-      () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
+    gh.factory<_i853.PostBloc>(
+      () => _i853.PostBloc(
+        gh<_i817.GetPostsUsecse>(),
+        gh<_i854.ToggleLikeUsecase>(),
+        gh<_i183.ToggleDislikeUsecase>(),
+      ),
     );
     gh.factory<_i944.AuthBloc>(
       () => _i944.AuthBloc(
@@ -258,13 +273,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i200.StoryBloc>(
       () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
-    );
-    gh.factory<_i853.PostBloc>(
-      () => _i853.PostBloc(
-        gh<_i817.GetPostsUsecse>(),
-        gh<_i854.ToggleLikeUsecase>(),
-        gh<_i183.ToggleDislikeUsecase>(),
-      ),
     );
     gh.factory<_i76.MediaPickerBloc>(
       () => _i76.MediaPickerBloc(

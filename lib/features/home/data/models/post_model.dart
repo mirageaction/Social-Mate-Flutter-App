@@ -42,4 +42,23 @@ class PostModel extends PostEntity {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'content': content,
+      'media_url': mediaUrl,
+      'author_id': authorId,
+      'name': name,
+      'avatar': avatar,
+      'created_at': createdAt.toIso8601String(),
+      'likes': likesCount,
+      'dislikes': dislikesCount,
+      'comments_count': commentsCount,
+      'is_liked': isLiked,
+      'is_disliked': isDisliked,
+      'users': (user as UserModel).toJson(),
+      'media_type': mediaType?.name,
+    };
+  }
 }
