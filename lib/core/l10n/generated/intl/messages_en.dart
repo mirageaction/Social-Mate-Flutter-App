@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "createPost": MessageLookupByLibrary.simpleMessage("Create a Post"),
     "createStory": MessageLookupByLibrary.simpleMessage("Create a Story"),
+    "document": MessageLookupByLibrary.simpleMessage("Document"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),

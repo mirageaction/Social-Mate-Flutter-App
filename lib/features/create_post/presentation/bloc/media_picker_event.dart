@@ -8,36 +8,49 @@ sealed class MediaPickerEvent extends Equatable {
 }
 
 class PickImageFromGalleryEvent extends MediaPickerEvent {
-  const PickImageFromGalleryEvent();
+  final MediaPickerType type;
+  const PickImageFromGalleryEvent({required this.type});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [type];
 }
 
 class PickImageFromCameraEvent extends MediaPickerEvent {
-  const PickImageFromCameraEvent();
+  final MediaPickerType type;
+  const PickImageFromCameraEvent({required this.type});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [type];
 }
 
 class PickVideoFromGalleryEvent extends MediaPickerEvent {
-  const PickVideoFromGalleryEvent();
+  final MediaPickerType type;
+  const PickVideoFromGalleryEvent({required this.type});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [type];
 }
 
 class PickVideoFromCameraEvent extends MediaPickerEvent {
-  const PickVideoFromCameraEvent();
+  final MediaPickerType type;
+  const PickVideoFromCameraEvent({required this.type});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [type];
+}
+
+class PickDocumentEvent extends MediaPickerEvent {
+  final MediaPickerType type;
+  const PickDocumentEvent({required this.type});
+
+  @override
+  List<Object> get props => [type];
 }
 
 class ClearMediaEvent extends MediaPickerEvent {
-  const ClearMediaEvent();
+  final MediaPickerType type;
+  const ClearMediaEvent({required this.type});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [type];
 }

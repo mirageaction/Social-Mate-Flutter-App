@@ -29,4 +29,9 @@ class MediaPickerRepoImpl implements MediaPickerRepo {
   Future<File?> pickVideoFromCamera() async {
     return await _mediaPickerLocalDataSource.pickVideoFromCamera();
   }
+
+  @override
+  Future<File?> pickDocument() async {
+    return await _mediaPickerLocalDataSource.pickDocument();
+  }
 }

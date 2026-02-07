@@ -6,7 +6,8 @@ import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/views/home_app_bar.dart';
 import 'package:social_mate_app/features/home/presentation/views/post_writing_card.dart';
-import 'package:social_mate_app/features/home/presentation/views/posts_section.dart';
+import 'package:social_mate_app/features/home/presentation/views/post_card.dart';
+import 'package:social_mate_app/features/home/presentation/views/shimmer_posts.dart';
 import 'package:social_mate_app/features/home/presentation/views/stories_section.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,17 +33,51 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: HomeAppBar(colorScheme: colorScheme),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            24.verticalSpace,
-            PostWritingCard(colorScheme: colorScheme, textTheme: textTheme, strings: strings),
-            30.verticalSpace,
-            const StoriesSection(),
-            30.verticalSpace,
-            const PostsSection(),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.read<StoryBloc>().add(GetStoriesEvent());
+          context.read<PostBloc>().add(GetPostsEvent());
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              sliver: SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    24.verticalSpace,
+                    PostWritingCard(
+                      colorScheme: colorScheme,
+                      textTheme: textTheme,
+                      strings: strings,
+                    ),
+                    30.verticalSpace,
+                    const StoriesSection(),
+                    30.verticalSpace,
+                  ],
+                ),
+              ),
+            ),
+
+            BlocBuilder<PostBloc, PostState>(
+              builder: (context, state) {
+                return SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  sliver: state is PostLoading
+                      ? const SliverToBoxAdapter(child: ShimmerPosts())
+                      : state is PostLoaded
+                      ? SliverList.builder(
+                          itemCount: state.posts.length,
+                          itemBuilder: (context, index) {
+                            final post = state.posts[index];
+                            return PostCard(post: post);
+                          },
+                        )
+                      : const SliverToBoxAdapter(child: SizedBox.shrink()),
+                );
+              },
+            ),
+            SliverToBoxAdapter(child: 50.verticalSpace),
           ],
         ),
       ),

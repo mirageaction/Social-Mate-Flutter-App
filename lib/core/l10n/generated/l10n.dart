@@ -453,6 +453,11 @@ class AppStrings {
       args: [],
     );
   }
+
+  /// `Document`
+  String get document {
+    return Intl.message('Document', name: 'document', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

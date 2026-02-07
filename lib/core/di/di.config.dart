@@ -34,10 +34,22 @@ import 'package:social_mate_app/features/create_post/data/local/media_picker_loc
     as _i498;
 import 'package:social_mate_app/features/create_post/data/local/media_picker_local_datasource_impl.dart'
     as _i67;
+import 'package:social_mate_app/features/create_post/data/remote/create_post_remote_datasource.dart'
+    as _i285;
+import 'package:social_mate_app/features/create_post/data/remote/create_post_remote_datasource_impl.dart'
+    as _i861;
+import 'package:social_mate_app/features/create_post/data/repos/create_post_repo_impl.dart'
+    as _i971;
 import 'package:social_mate_app/features/create_post/data/repos/media_picker_repo_impl.dart'
     as _i842;
+import 'package:social_mate_app/features/create_post/domain/repos/create_post_repo.dart'
+    as _i80;
 import 'package:social_mate_app/features/create_post/domain/repos/media_picker_repo.dart'
     as _i206;
+import 'package:social_mate_app/features/create_post/domain/usecases/create_post_usecase.dart'
+    as _i76;
+import 'package:social_mate_app/features/create_post/domain/usecases/pick_document_usecase.dart'
+    as _i297;
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_camera_usecase.dart'
     as _i838;
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_gallery_usecase.dart'
@@ -46,6 +58,8 @@ import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_
     as _i1013;
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_video_from_gallery_usecase.dart'
     as _i437;
+import 'package:social_mate_app/features/create_post/presentation/bloc/create_post_bloc.dart'
+    as _i312;
 import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart'
     as _i76;
 import 'package:social_mate_app/features/create_story/data/local/gallery_local_datasource.dart'
@@ -82,6 +96,10 @@ import 'package:social_mate_app/features/home/domain/usecases/get_posts_usecse.d
     as _i817;
 import 'package:social_mate_app/features/home/domain/usecases/get_stories_usecase.dart'
     as _i580;
+import 'package:social_mate_app/features/home/domain/usecases/toggle_dislike_usecase.dart'
+    as _i183;
+import 'package:social_mate_app/features/home/domain/usecases/toggle_like_usecase.dart'
+    as _i854;
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart'
     as _i853;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
@@ -139,6 +157,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i284.PostRemoteDatasource>(
       () => _i134.PostRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),
     );
+    gh.lazySingleton<_i285.CreatePostRemoteDataSource>(
+      () => _i861.CreatePostRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i540.GetPhotosUsecase>(
       () => _i540.GetPhotosUsecase(galleryRepo: gh<_i579.GalleryRepo>()),
     );
@@ -155,6 +176,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i358.PostRepo>(
       () => _i520.PostRepoImpl(gh<_i284.PostRemoteDatasource>()),
+    );
+    gh.lazySingleton<_i80.CreatePostRepo>(
+      () => _i971.CreatePostRepoImpl(gh<_i285.CreatePostRemoteDataSource>()),
     );
     gh.lazySingleton<_i498.MediaPickerLocalDataSource>(
       () => _i67.MediaPickerLocalDataSourceImpl(gh<_i183.ImagePicker>()),
@@ -186,11 +210,20 @@ extension GetItInjectableX on _i174.GetIt {
         getAuthorStoriesUseCase: gh<_i473.GetAuthorStoriesUseCase>(),
       ),
     );
+    gh.lazySingleton<_i76.CreatePostUsecase>(
+      () => _i76.CreatePostUsecase(gh<_i80.CreatePostRepo>()),
+    );
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
     gh.lazySingleton<_i206.MediaPickerRepo>(
       () => _i842.MediaPickerRepoImpl(gh<_i498.MediaPickerLocalDataSource>()),
+    );
+    gh.factory<_i183.ToggleDislikeUsecase>(
+      () => _i183.ToggleDislikeUsecase(gh<_i358.PostRepo>()),
+    );
+    gh.factory<_i854.ToggleLikeUsecase>(
+      () => _i854.ToggleLikeUsecase(gh<_i358.PostRepo>()),
     );
     gh.lazySingleton<_i817.GetPostsUsecse>(
       () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
@@ -202,8 +235,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i691.SignOutUsecase>(),
       ),
     );
+    gh.factory<_i312.CreatePostBloc>(
+      () => _i312.CreatePostBloc(gh<_i76.CreatePostUsecase>()),
+    );
     gh.lazySingleton<_i580.GetStoriesUseCase>(
       () => _i580.GetStoriesUseCase(gh<_i590.StoryRepo>()),
+    );
+    gh.lazySingleton<_i297.PickDocumentUsecase>(
+      () => _i297.PickDocumentUsecase(gh<_i206.MediaPickerRepo>()),
     );
     gh.lazySingleton<_i838.PickImageFromCameraUsecase>(
       () => _i838.PickImageFromCameraUsecase(gh<_i206.MediaPickerRepo>()),
@@ -217,19 +256,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i437.PickVideoFromGalleryUsecase>(
       () => _i437.PickVideoFromGalleryUsecase(gh<_i206.MediaPickerRepo>()),
     );
+    gh.factory<_i200.StoryBloc>(
+      () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
+    );
+    gh.factory<_i853.PostBloc>(
+      () => _i853.PostBloc(
+        gh<_i817.GetPostsUsecse>(),
+        gh<_i854.ToggleLikeUsecase>(),
+        gh<_i183.ToggleDislikeUsecase>(),
+      ),
+    );
     gh.factory<_i76.MediaPickerBloc>(
       () => _i76.MediaPickerBloc(
         gh<_i838.PickImageFromCameraUsecase>(),
         gh<_i365.PickImageFromGalleryUsecase>(),
         gh<_i1013.PickVideoFromCameraUsecase>(),
         gh<_i437.PickVideoFromGalleryUsecase>(),
+        gh<_i297.PickDocumentUsecase>(),
       ),
-    );
-    gh.factory<_i853.PostBloc>(
-      () => _i853.PostBloc(gh<_i817.GetPostsUsecse>()),
-    );
-    gh.factory<_i200.StoryBloc>(
-      () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
     );
     return this;
   }

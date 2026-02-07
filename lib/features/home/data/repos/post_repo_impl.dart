@@ -13,4 +13,14 @@ class PostRepoImpl implements PostRepo {
   Future<List<PostEntity>> getPosts() {
     return _postRemoteDatasource.getPosts();
   }
+
+  @override
+  Future<void> toggleLike(PostEntity post) {
+    return _postRemoteDatasource.toggleLike(post);
+  }
+
+  @override
+  Future<void> toggleDislike(PostEntity post) {
+    return _postRemoteDatasource.toggleDislike(post);
+  }
 }

@@ -5,4 +5,5 @@ abstract class MediaPickerLocalDataSource {
   Future<File?> pickImageFromCamera();
   Future<File?> pickVideoFromGallery();
   Future<File?> pickVideoFromCamera();
+  Future<File?> pickDocument();
 }

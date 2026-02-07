@@ -7,11 +7,8 @@ class ShimmerPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return const _ShimmerPostCard();
-      },
+    return Column(
+      children: List.generate(5, (index) => const _ShimmerPostCard()),
     );
   }
 }

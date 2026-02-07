@@ -11,36 +11,31 @@ class PostsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: BlocConsumer<PostBloc, PostState>(
-        listenWhen: (previous, current) => current is PostError,
-        listener: (context, state) {
-          if (state is PostError) {
-            getIt<ToastService>().showErrorToast(
-              context: context,
-              message: state.message,
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state is PostLoading) {
-            return const ShimmerPosts();
-          }
-          if (state is PostLoaded) {
-            return ListView.builder(
-              itemCount: state.posts.length,
-              itemBuilder: (context, index) {
-                final post = state.posts[index];
-                return PostCard(post: post);
-              },
-            );
-          }
-          if (state is PostError) {
-            return const SizedBox.shrink();
-          }
-          return const SizedBox.shrink();
-        },
-      ),
+    return BlocConsumer<PostBloc, PostState>(
+      listenWhen: (previous, current) => current is PostError,
+      listener: (context, state) {
+        if (state is PostError) {
+          getIt<ToastService>().showErrorToast(
+            context: context,
+            message: state.message,
+          );
+        }
+      },
+      builder: (context, state) {
+        if (state is PostLoading) {
+          return const SliverToBoxAdapter(child: ShimmerPosts());
+        }
+        if (state is PostLoaded) {
+          return SliverList.builder(
+            itemCount: state.posts.length,
+            itemBuilder: (context, index) {
+              final post = state.posts[index];
+              return PostCard(post: post);
+            },
+          );
+        }
+        return const SliverToBoxAdapter(child: SizedBox.shrink());
+      },
     );
   }
 }

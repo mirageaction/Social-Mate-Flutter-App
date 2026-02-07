@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_time_ago/get_time_ago.dart';
 import 'package:number_display/number_display.dart';
 import 'package:readmore/readmore.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/core/enums/post_media_type.dart';
 import 'package:social_mate_app/features/home/domain/entities/post_entity.dart';
+import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
+import 'package:social_mate_app/features/home/presentation/views/post_file_view.dart';
+import 'package:social_mate_app/features/home/presentation/views/post_video_player.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 import 'package:social_mate_app/global/widgets/shimmer_image.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
@@ -31,6 +36,7 @@ class PostCard extends StatelessWidget {
         border: Border.all(color: colorScheme.outline),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -64,35 +70,60 @@ class PostCard extends StatelessWidget {
             style: textTheme.bodyMedium,
           ),
           12.verticalSpace,
-          if (post.mediaUrl.isNotEmpty) ...[
-            ShimmerImage(
-              width: double.infinity,
-              height: 200.h,
-              imageUrl: post.mediaUrl,
-              borderRadius: 12.r,
-              alignment: Alignment.topCenter,
-              fit: BoxFit.cover,
-            ),
-          ],
+          if (post.mediaUrl.isNotEmpty) ...[_PostMediaDisplay(post: post)],
           12.verticalSpace,
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<PostBloc>().add(ToggleLikeEvent(post.id));
+                },
                 visualDensity: VisualDensity.compact,
-                icon: SvgIcon(
-                  path: icons.thumbsUp.path,
-                  size: 24.w,
-                  color: colorScheme.onSurfaceVariant,
+                icon: Icon(
+                  post.isLiked ? Icons.thumb_up : Icons.thumb_up_outlined,
+                  size: 22.w,
+                  color: post.isLiked
+                      ? colorScheme.primary
+                      : colorScheme.onSurfaceVariant,
                 ),
               ),
               2.horizontalSpace,
-              Text(
-                formatNumber(100000),
-                style: textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
+              if (post.likesCount > 0) ...[
+                Text(
+                  formatNumber(post.likesCount),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: post.isLiked
+                        ? colorScheme.primary
+                        : colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+              10.horizontalSpace,
+              IconButton(
+                onPressed: () {
+                  context.read<PostBloc>().add(ToggleDislikeEvent(post.id));
+                },
+                visualDensity: VisualDensity.compact,
+                icon: Icon(
+                  post.isDisliked
+                      ? Icons.thumb_down
+                      : Icons.thumb_down_outlined,
+                  size: 22.w,
+                  color: post.isDisliked
+                      ? colorScheme.error
+                      : colorScheme.onSurfaceVariant,
                 ),
               ),
+              if (post.dislikesCount > 0) ...[
+                Text(
+                  formatNumber(post.dislikesCount),
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: post.isDisliked
+                        ? colorScheme.error
+                        : colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
               12.horizontalSpace,
               IconButton(
                 onPressed: () {},
@@ -105,7 +136,7 @@ class PostCard extends StatelessWidget {
               ),
               2.horizontalSpace,
               Text(
-                formatNumber(1300),
+                formatNumber(post.commentsCount),
                 style: textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -135,5 +166,33 @@ class PostCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _PostMediaDisplay extends StatelessWidget {
+  final PostEntity post;
+  const _PostMediaDisplay({required this.post});
+
+  @override
+  Widget build(BuildContext context) {
+    if (post.mediaUrl.isEmpty) return const SizedBox.shrink();
+
+    switch (post.mediaType) {
+      case PostMediaType.video:
+        return PostVideoPlayer(videoUrl: post.mediaUrl);
+      case PostMediaType.file:
+        return PostFileView(fileUrl: post.mediaUrl);
+      case PostMediaType.image:
+        return ShimmerImage(
+          width: double.infinity,
+          height: 200.h,
+          imageUrl: post.mediaUrl,
+          borderRadius: 12.r,
+          alignment: Alignment.topCenter,
+          fit: BoxFit.cover,
+        );
+      default:
+        return const SizedBox.shrink();
+    }
   }
 }

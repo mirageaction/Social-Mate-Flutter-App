@@ -8,3 +8,19 @@ sealed class PostEvent extends Equatable {
 }
 
 class GetPostsEvent extends PostEvent {}
+
+class ToggleLikeEvent extends PostEvent {
+  final String postId;
+  const ToggleLikeEvent(this.postId);
+
+  @override
+  List<Object> get props => [postId];
+}
+
+class ToggleDislikeEvent extends PostEvent {
+  final String postId;
+  const ToggleDislikeEvent(this.postId);
+
+  @override
+  List<Object> get props => [postId];
+}

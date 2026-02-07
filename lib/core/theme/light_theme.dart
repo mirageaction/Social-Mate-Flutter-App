@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/theme/app_colors.dart';
 
 ThemeData createLightTheme(TextTheme textTheme) {
@@ -44,7 +45,7 @@ ThemeData createLightTheme(TextTheme textTheme) {
       indicatorSize: TabBarIndicatorSize.tab,
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
-      color: LightColorScheme.onPrimary,
+      color: LightColorScheme.primary,
       strokeWidth: 2,
     ),
     appBarTheme: AppBarTheme(
@@ -113,6 +114,13 @@ ThemeData createLightTheme(TextTheme textTheme) {
         fontWeight: FontWeight.w400,
       ),
       floatingLabelBehavior: FloatingLabelBehavior.always,
+    ),
+
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: LightColorScheme.surface,
+      dragHandleColor: LightColorScheme.outline,
+      dragHandleSize: Size(70.w, 8.w),
+      showDragHandle: true,
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

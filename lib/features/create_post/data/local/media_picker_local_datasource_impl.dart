@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:social_mate_app/features/create_post/data/local/media_picker_local_datasource.dart';
@@ -58,5 +59,17 @@ class MediaPickerLocalDataSourceImpl implements MediaPickerLocalDataSource {
     } catch (_) {
       rethrow;
     }
+  }
+
+  @override
+  Future<File?> pickDocument() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'doc', 'docx', 'zip', 'ppt', 'xls'],
+    );
+
+    if (result == null) return null;
+
+    return File(result.files.single.path!);
   }
 }

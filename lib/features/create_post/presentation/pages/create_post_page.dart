@@ -1,13 +1,20 @@
-import 'package:animated_hint_textfield/animated_hint_textfield.dart';
+import 'dart:io';
+import 'package:social_mate_app/core/enums/post_media_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/di/di.dart';
-import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
+import 'package:social_mate_app/features/create_post/presentation/bloc/create_post_bloc.dart';
 import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:social_mate_app/features/create_post/presentation/views/create_post_appbar.dart';
-import 'package:social_mate_app/features/create_post/presentation/views/draggable_post_sheet.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/documet_preview.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/post_picker_sheet.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/image_preview.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/post_text_field.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/privacy_selector.dart';
+import 'package:social_mate_app/features/create_post/presentation/views/video_preview.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
 class CreatePostPage extends StatefulWidget {
@@ -18,197 +25,132 @@ class CreatePostPage extends StatefulWidget {
 }
 
 class _CreatePostPageState extends State<CreatePostPage> {
+  late final TextEditingController _contentController;
+
+  @override
+  void initState() {
+    super.initState();
+    _contentController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _contentController.dispose();
+    super.dispose();
+  }
+
+  void _onPost() {
+    final mediaState = context.read<MediaPickerBloc>().state;
+    File? media;
+    PostMediaType mediaType = PostMediaType.image;
+
+    if (mediaState is MediaPickerSuccess) {
+      media = mediaState.file;
+      // Map MediaPickerType to PostMediaType
+      switch (mediaState.type) {
+        case MediaPickerType.image:
+          mediaType = PostMediaType.image;
+          break;
+        case MediaPickerType.video:
+          mediaType = PostMediaType.video;
+          break;
+        case MediaPickerType.file:
+          mediaType = PostMediaType.file;
+          break;
+        default:
+          mediaType = PostMediaType.image;
+      }
+    }
+
+    context.read<CreatePostBloc>().add(
+      SubmitPostEvent(
+        content: _contentController.text,
+        media: media,
+        mediaType: mediaType,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      appBar: CreatePostAppBar(textTheme: textTheme, colorScheme: colorScheme),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: SingleChildScrollView(
-          clipBehavior: Clip.none,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              16.verticalSpace,
-              Row(
-                children: [
-                  ShimmerAvatar(size: 40.w, imageUrl: ''),
-                  10.horizontalSpace,
-                  const PrivacySelector(),
-                ],
-              ),
-              16.verticalSpace,
-              const PostTextField(),
-              30.verticalSpace,
-              const ImagePreview(),
-              50.verticalSpace,
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showCreatePostSheet(context),
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class PrivacySelector extends StatelessWidget {
-  const PrivacySelector({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-    final strings = AppStrings.of(context);
-    return InkWell(
-      onTap: () {},
-      excludeFromSemantics: true,
-      borderRadius: BorderRadius.circular(12.r),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.w),
-        decoration: BoxDecoration(
-          color: colorScheme.surface,
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: colorScheme.outline, width: 1.w),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              strings.public,
-              style: textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-                color: colorScheme.onSurfaceVariant,
-              ),
-            ),
-            4.horizontalSpace,
-            Icon(Icons.arrow_drop_down, color: colorScheme.onSurfaceVariant),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PostTextField extends StatelessWidget {
-  const PostTextField({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final strings = AppStrings.of(context);
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return AnimatedTextField(
-      animationType: Animationtype.typer,
-      hintTexts: [
-        strings.whatsOnYourMind,
-        strings.shareThoughts,
-        strings.tellYourStory,
-        strings.thinkingAboutToday,
-        strings.writeSomething,
-      ],
-      hintTextStyle: textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.w400,
-        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
-      ),
-      maxLines: null,
-      autocorrect: false,
-      enableSuggestions: false,
-      keyboardType: TextInputType.multiline,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.zero,
-        border: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-      ),
-    );
-  }
-}
-
-class ImagePreview extends StatelessWidget {
-  const ImagePreview({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return BlocConsumer<MediaPickerBloc, MediaPickerState>(
+    return BlocListener<CreatePostBloc, CreatePostState>(
       listener: (context, state) {
-        if (state is MediaPickerError) {
+        if (state is CreatePostLoading) {
+          getIt<ToastService>().showInfoToast(
+            context: context,
+            message: 'Creating post...',
+          );
+        } else if (state is CreatePostSuccess) {
+          getIt<ToastService>().showSuccessToast(
+            context: context,
+            message: 'Post created successfully!',
+          );
+          context.pop();
+        } else if (state is CreatePostFailure) {
           getIt<ToastService>().showErrorToast(
             context: context,
             message: state.message,
           );
         }
       },
-      buildWhen: (previous, current) =>
-          current is MediaPickerSuccess && current.file != null ||
-          current is MediaPickerError ||
-          current is MediaPickerInitial,
-      builder: (context, state) {
-        if (state is MediaPickerSuccess && state.file != null) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: Image.file(
-              state.file!,
-              height: 200.h,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-              // DECLARATIVE approach: No setState needed
-              frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                // If it's ready (sync) or frame is 0, show the full UI
-                if (wasSynchronouslyLoaded || frame != null) {
-                  return Stack(
-                    children: [
-                      child, // The Image itself
-                      Positioned(
-                        top: 10.w,
-                        right: 10.w,
-                        child: IconButton.filled(
-                          style: IconButton.styleFrom(
-                            backgroundColor: colorScheme.surface.withValues(
-                              alpha: 0.9,
-                            ),
-                            foregroundColor: colorScheme.error,
-                            elevation: 4,
-                            shadowColor: Colors.black.withValues(alpha: 0.2),
-                          ),
-                          icon: Icon(Icons.delete_outline, size: 24.w),
-                          onPressed: () {
-                            context.read<MediaPickerBloc>().add(
-                              const ClearMediaEvent(),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  );
-                }
-
-                // Show loader while the frame is null
-                return SizedBox(
-                  height: 200.h,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: colorScheme.primary,
-                    ),
-                  ),
-                );
-              },
+      child: Scaffold(
+        appBar: CreatePostAppBar(
+          textTheme: textTheme,
+          colorScheme: colorScheme,
+          onPost: _onPost,
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child: SingleChildScrollView(
+            clipBehavior: Clip.none,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                16.verticalSpace,
+                Row(
+                  children: [
+                    ShimmerAvatar(size: 40.w, imageUrl: ''),
+                    10.horizontalSpace,
+                    const PrivacySelector(),
+                  ],
+                ),
+                16.verticalSpace,
+                PostTextField(controller: _contentController),
+                30.verticalSpace,
+                BlocSelector<
+                  MediaPickerBloc,
+                  MediaPickerState,
+                  MediaPickerType
+                >(
+                  selector: (state) {
+                    return state.type;
+                  },
+                  builder: (context, state) {
+                    switch (state) {
+                      case MediaPickerType.image:
+                        return const ImagePreview();
+                      case MediaPickerType.video:
+                        return const VideoPreview();
+                      case MediaPickerType.file:
+                        return const DocumentPreview();
+                      default:
+                        return const SizedBox.shrink();
+                    }
+                  },
+                ),
+                50.verticalSpace,
+              ],
             ),
-          );
-        }
-        return const SizedBox.shrink();
-      },
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => showCreatePostSheet(context),
+          child: const Icon(Icons.add),
+        ),
+      ),
     );
   }
 }

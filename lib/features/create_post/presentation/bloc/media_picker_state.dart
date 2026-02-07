@@ -1,20 +1,33 @@
 part of 'media_picker_bloc.dart';
 
-sealed class MediaPickerState extends Equatable {
-  const MediaPickerState();
-  
-  @override
-  List<Object?> get props => [];
+
+enum MediaPickerType {
+  initial,
+  image,
+  video,
+  file,
 }
 
-final class MediaPickerInitial extends MediaPickerState {}
+sealed class MediaPickerState extends Equatable {
+  final MediaPickerType type;
+  const MediaPickerState({required this.type});
+  
+  @override
+  List<Object?> get props => [type];
+}
 
-final class MediaPickerLoading extends MediaPickerState {}
+final class MediaPickerInitial extends MediaPickerState {
+  const MediaPickerInitial({required super.type});
+}
+
+final class MediaPickerLoading extends MediaPickerState {
+  const MediaPickerLoading({required super.type});
+}
 
 final class MediaPickerSuccess extends MediaPickerState {
   final File? file;
 
-  const MediaPickerSuccess({required this.file});
+  const MediaPickerSuccess({required this.file, required super.type});
 
   @override
   List<Object?> get props => [file];
@@ -23,7 +36,7 @@ final class MediaPickerSuccess extends MediaPickerState {
 final class MediaPickerError extends MediaPickerState {
   final String message;
 
-  const MediaPickerError({required this.message});
+  const MediaPickerError({required this.message, required super.type});
 
   @override
   List<Object> get props => [message];
