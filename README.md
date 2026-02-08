@@ -232,6 +232,13 @@ Below is a list of key packages used in this Flutter project:
 
 ---
 
+## ⭐ Star History
+
+If you like this project, please give it a star ⭐
+
+[![Star History Chart](https://api.star-history.com/svg?repos=AmrSalahDev/Social-Mate-Flutter-App&type=Date)](https://star-history.com/#AmrSalahDev/Social-Mate-Flutter-App&Date)
+
+
 ## 📜 License
 
 ⚖️ This project is licensed under the MIT License - see the LICENSE file for details.

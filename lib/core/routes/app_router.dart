@@ -123,8 +123,8 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: AppPaths.profile,
-                  builder: (context, state) => BlocProvider.value(
-                    value: getIt<AuthBloc>(),
+                  builder: (context, state) => BlocProvider(
+                    create: (context) => getIt<AuthBloc>(),
                     child: const ProfilePage(),
                   ),
                 ),
@@ -156,8 +156,8 @@ class AppRouter {
         ),
         GoRoute(
           path: AppPaths.auth,
-          builder: (context, state) => BlocProvider.value(
-            value: getIt<AuthBloc>(),
+          builder: (context, state) => BlocProvider(
+            create: (context) => getIt<AuthBloc>(),
             child: const AuthPage(),
           ),
         ),

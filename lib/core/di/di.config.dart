@@ -263,7 +263,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i183.ToggleDislikeUsecase>(),
       ),
     );
-    gh.lazySingleton<_i944.AuthBloc>(
+    gh.factory<_i944.AuthBloc>(
       () => _i944.AuthBloc(
         gh<_i525.SignInUsecase>(),
         gh<_i424.SignUpUsecase>(),
