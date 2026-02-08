@@ -9,5 +9,4 @@ abstract class RegisterModule {
 
   @lazySingleton
   ImagePicker get imagePicker => ImagePicker();
-  
 }

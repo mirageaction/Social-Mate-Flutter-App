@@ -61,4 +61,39 @@ class PostModel extends PostEntity {
       'media_type': mediaType?.name,
     };
   }
+
+  @override
+  PostModel copyWith({
+    String? id,
+    String? content,
+    String? mediaUrl,
+    String? authorId,
+    String? name,
+    String? avatar,
+    DateTime? createdAt,
+    int? likesCount,
+    int? dislikesCount,
+    int? commentsCount,
+    bool? isLiked,
+    bool? isDisliked,
+    dynamic user,
+    PostMediaType? mediaType,
+  }) {
+    return PostModel(
+      id: id ?? this.id,
+      content: content ?? this.content,
+      mediaUrl: mediaUrl ?? this.mediaUrl,
+      authorId: authorId ?? this.authorId,
+      name: name ?? this.name,
+      avatar: avatar ?? this.avatar,
+      createdAt: createdAt ?? this.createdAt,
+      likesCount: likesCount ?? this.likesCount,
+      dislikesCount: dislikesCount ?? this.dislikesCount,
+      commentsCount: commentsCount ?? this.commentsCount,
+      isLiked: isLiked ?? this.isLiked,
+      isDisliked: isDisliked ?? this.isDisliked,
+      user: user ?? this.user,
+      mediaType: mediaType ?? this.mediaType,
+    );
+  }
 }

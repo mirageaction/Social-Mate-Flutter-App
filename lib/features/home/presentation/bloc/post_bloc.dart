@@ -44,7 +44,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     if (currentState is PostLoaded) {
       final updatedPosts = currentState.posts.map((post) {
         if (post.id == event.postId) {
-          final isLiked = !post.isLiked;
+          final isLiked = !post.isLiked; 
           if (isLiked && post.isDisliked) {
             // If liking and it was disliked, remove dislike
             return post.copyWith(

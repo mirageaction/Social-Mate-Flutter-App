@@ -78,6 +78,8 @@ import 'package:social_mate_app/features/create_story/presentation/cubit/story_b
     as _i698;
 import 'package:social_mate_app/features/home/data/local/post_local_datasource.dart'
     as _i531;
+import 'package:social_mate_app/features/home/data/local/post_local_datasource_impl.dart'
+    as _i84;
 import 'package:social_mate_app/features/home/data/remote/post_remote_datasource.dart'
     as _i284;
 import 'package:social_mate_app/features/home/data/remote/post_remote_datasource_impl.dart'
@@ -153,11 +155,11 @@ extension GetItInjectableX on _i174.GetIt {
         supabaseClient: gh<_i454.SupabaseClient>(),
       ),
     );
-    gh.lazySingleton<_i531.PostLocalDatasource>(
-      () => _i531.PostLocalDatasourceImpl(),
-    );
     gh.lazySingleton<_i250.AuthRemoteDataSource>(
       () => _i633.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
+    gh.lazySingleton<_i531.PostLocalDatasource>(
+      () => _i84.PostLocalDatasourceImpl(),
     );
     gh.lazySingleton<_i284.PostRemoteDatasource>(
       () => _i134.PostRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),

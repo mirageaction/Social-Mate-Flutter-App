@@ -58,17 +58,20 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
       if (userId == null) return;
 
       if (!post.isLiked) {
+        // If it was disliked, remove the dislike row first
         if (post.isDisliked) {
           await _supabaseClient.from('post_dislikes').delete().match({
             'post_id': post.id,
             'author_id': userId,
           });
         }
+        // Insert the like row (the database trigger will increment the count)
         await _supabaseClient.from('post_likes').insert({
           'post_id': post.id,
           'author_id': userId,
         });
       } else {
+        // Remove the like row (the database trigger will decrement the count)
         await _supabaseClient.from('post_likes').delete().match({
           'post_id': post.id,
           'author_id': userId,
@@ -86,17 +89,20 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
       if (userId == null) return;
 
       if (!post.isDisliked) {
+        // If it was liked, remove the like row first
         if (post.isLiked) {
           await _supabaseClient.from('post_likes').delete().match({
             'post_id': post.id,
             'author_id': userId,
           });
         }
+        // Insert the dislike row (the database trigger will increment the count)
         await _supabaseClient.from('post_dislikes').insert({
           'post_id': post.id,
           'author_id': userId,
         });
       } else {
+        // Remove the dislike row (the database trigger will decrement the count)
         await _supabaseClient.from('post_dislikes').delete().match({
           'post_id': post.id,
           'author_id': userId,
