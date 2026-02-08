@@ -4,4 +4,5 @@ abstract class PostRepo {
   Future<List<PostEntity>> getPosts();
   Future<void> toggleLike(PostEntity post);
   Future<void> toggleDislike(PostEntity post);
+  Future<void> clearCache();
 }

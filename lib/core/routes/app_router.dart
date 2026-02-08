@@ -167,6 +167,9 @@ class AppRouter {
             providers: [
               BlocProvider(create: (context) => getIt<MediaPickerBloc>()),
               BlocProvider(create: (context) => getIt<CreatePostBloc>()),
+              BlocProvider.value(
+                value: getIt<ProfileBloc>(),
+              ),
             ],
             child: const CreatePostPage(),
           ),

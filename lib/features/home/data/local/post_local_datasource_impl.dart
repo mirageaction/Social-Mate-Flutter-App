@@ -29,4 +29,10 @@ class PostLocalDatasourceImpl implements PostLocalDatasource {
     }
     return [];
   }
+
+  @override
+  Future<void> clearCache() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_postsCacheKey);
+  }
 }

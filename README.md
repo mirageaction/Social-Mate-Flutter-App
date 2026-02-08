@@ -217,7 +217,7 @@ Below is a list of key packages used in this Flutter project:
 
 📌 Click the image to view the live Figma prototype.
 
----
+---    
 
 ## 🛠️ Contributions
 

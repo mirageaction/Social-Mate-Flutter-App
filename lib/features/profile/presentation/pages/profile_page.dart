@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage>
                             alignment: Alignment.topCenter,
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
-                          ),
+                          ), 
                         ),
                         Positioned(
                           bottom: -60.w,

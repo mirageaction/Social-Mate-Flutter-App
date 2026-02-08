@@ -233,9 +233,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i525.SignInUsecase>(
       () => _i525.SignInUsecase(gh<_i358.AuthRepo>()),
     );
-    gh.lazySingleton<_i691.SignOutUsecase>(
-      () => _i691.SignOutUsecase(gh<_i358.AuthRepo>()),
-    );
     gh.lazySingleton<_i424.SignUpUsecase>(
       () => _i424.SignUpUsecase(gh<_i358.AuthRepo>()),
     );
@@ -263,18 +260,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i183.ToggleDislikeUsecase>(),
       ),
     );
-    gh.factory<_i944.AuthBloc>(
-      () => _i944.AuthBloc(
-        gh<_i525.SignInUsecase>(),
-        gh<_i424.SignUpUsecase>(),
-        gh<_i691.SignOutUsecase>(),
-      ),
-    );
     gh.factory<_i694.GetProfileUsecase>(
       () => _i694.GetProfileUsecase(gh<_i792.ProfileRepo>()),
     );
     gh.factory<_i312.CreatePostBloc>(
       () => _i312.CreatePostBloc(gh<_i76.CreatePostUsecase>()),
+    );
+    gh.lazySingleton<_i691.SignOutUsecase>(
+      () => _i691.SignOutUsecase(gh<_i358.AuthRepo>(), gh<_i358.PostRepo>()),
     );
     gh.lazySingleton<_i580.GetStoriesUseCase>(
       () => _i580.GetStoriesUseCase(gh<_i590.StoryRepo>()),
@@ -299,6 +292,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i863.ProfileBloc>(
       () => _i863.ProfileBloc(gh<_i694.GetProfileUsecase>()),
+    );
+    gh.factory<_i944.AuthBloc>(
+      () => _i944.AuthBloc(
+        gh<_i525.SignInUsecase>(),
+        gh<_i424.SignUpUsecase>(),
+        gh<_i691.SignOutUsecase>(),
+      ),
     );
     gh.factory<_i76.MediaPickerBloc>(
       () => _i76.MediaPickerBloc(

@@ -1,11 +1,14 @@
 import 'package:animated_hint_textfield/animated_hint_textfield.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
+import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
@@ -52,10 +55,16 @@ class PostWritingCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ShimmerAvatar(
-                    size: 40.w,
-                    imageUrl:
-                        'https://avatars.githubusercontent.com/u/87110578?v=4',
+                  BlocSelector<ProfileBloc, ProfileState, ProfileEntity?>(
+                    selector: (state) {
+                      return state is ProfileLoaded ? state.profile : null;
+                    },
+                    builder: (context, profile) {
+                      return ShimmerAvatar(
+                        size: 40.w,
+                        imageUrl: profile?.avatarUrl ?? '',
+                      );
+                    },
                   ),
                   16.horizontalSpace,
                   Expanded(

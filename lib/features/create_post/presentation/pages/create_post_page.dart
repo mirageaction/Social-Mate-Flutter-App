@@ -15,6 +15,8 @@ import 'package:social_mate_app/features/create_post/presentation/views/image_pr
 import 'package:social_mate_app/features/create_post/presentation/views/post_text_field.dart';
 import 'package:social_mate_app/features/create_post/presentation/views/privacy_selector.dart';
 import 'package:social_mate_app/features/create_post/presentation/views/video_preview.dart';
+import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
 class CreatePostPage extends StatefulWidget {
@@ -30,6 +32,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
   @override
   void initState() {
     super.initState();
+    final profileBloc = context.read<ProfileBloc>();
+    if (profileBloc.state is! ProfileLoaded) {
+      profileBloc.add(GetProfileEvent());
+    }
     _contentController = TextEditingController();
   }
 
@@ -60,7 +66,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
         case PostType.text:
           postType = PostType.text;
           break;
-        }
+      }
     }
 
     context.read<CreatePostBloc>().add(
@@ -113,7 +119,17 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 16.verticalSpace,
                 Row(
                   children: [
-                    ShimmerAvatar(size: 40.w, imageUrl: ''),
+                    BlocSelector<ProfileBloc, ProfileState, ProfileEntity?>(
+                      selector: (state) {
+                        return state is ProfileLoaded ? state.profile : null;
+                      },
+                      builder: (context, profile) {
+                        return ShimmerAvatar(
+                          size: 40.w,
+                          imageUrl: profile?.avatarUrl ?? '',
+                        );
+                      },
+                    ),
                     10.horizontalSpace,
                     const PrivacySelector(),
                   ],
@@ -121,11 +137,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 16.verticalSpace,
                 PostTextField(controller: _contentController),
                 30.verticalSpace,
-                BlocSelector<
-                  MediaPickerBloc,
-                  MediaPickerState,
-                  PostType
-                >(
+                BlocSelector<MediaPickerBloc, MediaPickerState, PostType>(
                   selector: (state) {
                     return state.type;
                   },

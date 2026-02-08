@@ -8,14 +8,29 @@ import 'package:social_mate_app/features/profile/domain/entities/profile_entity.
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
   @override
+  State<BottomNavBar> createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  @override
+  void initState() {
+    super.initState();
+    final profileBloc = context.read<ProfileBloc>();
+    if (profileBloc.state is! ProfileLoaded) {
+      profileBloc.add(GetProfileEvent());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         useLegacyColorScheme: false,
@@ -29,7 +44,7 @@ class BottomNavBar extends StatelessWidget {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.home.path,
-              isSelected: navigationShell.currentIndex == 0,
+              isSelected: widget.navigationShell.currentIndex == 0,
             ),
             label: 'Home',
           ),
@@ -37,7 +52,7 @@ class BottomNavBar extends StatelessWidget {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.userPlus.path,
-              isSelected: navigationShell.currentIndex == 1,
+              isSelected: widget.navigationShell.currentIndex == 1,
             ),
             label: 'Add',
           ),
@@ -45,7 +60,7 @@ class BottomNavBar extends StatelessWidget {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.bag.path,
-              isSelected: navigationShell.currentIndex == 2,
+              isSelected: widget.navigationShell.currentIndex == 2,
             ),
             label: 'Bag',
           ),
@@ -53,7 +68,7 @@ class BottomNavBar extends StatelessWidget {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.group.path,
-              isSelected: navigationShell.currentIndex == 3,
+              isSelected: widget.navigationShell.currentIndex == 3,
             ),
             label: 'Group',
           ),
@@ -72,15 +87,15 @@ class BottomNavBar extends StatelessWidget {
             label: 'Profile',
           ),
         ],
-        currentIndex: navigationShell.currentIndex,
+        currentIndex: widget.navigationShell.currentIndex,
         onTap: (index) {
-          navigationShell.goBranch(
+          widget.navigationShell.goBranch(
             index,
-            initialLocation: index == navigationShell.currentIndex,
+            initialLocation: index == widget.navigationShell.currentIndex,
           );
         },
       ),
-      body: navigationShell,
+      body: widget.navigationShell,
     );
   }
 }

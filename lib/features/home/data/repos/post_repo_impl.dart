@@ -36,4 +36,9 @@ class PostRepoImpl implements PostRepo {
   Future<void> toggleDislike(PostEntity post) {
     return _postRemoteDatasource.toggleDislike(post);
   }
+
+  @override
+  Future<void> clearCache() {
+    return _postLocalDatasource.clearCache();
+  }
 }

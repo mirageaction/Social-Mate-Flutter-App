@@ -9,6 +9,7 @@ import 'package:social_mate_app/features/home/presentation/views/post_writing_ca
 import 'package:social_mate_app/features/home/presentation/views/post_card.dart';
 import 'package:social_mate_app/features/home/presentation/views/shimmer_posts.dart';
 import 'package:social_mate_app/features/home/presentation/views/stories_section.dart';
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,6 +26,10 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    final profileBloc = context.read<ProfileBloc>();
+    if (profileBloc.state is! ProfileLoaded) {
+      profileBloc.add(GetProfileEvent());
+    }
     final storyBloc = context.read<StoryBloc>();
     if (storyBloc.state is! StoryLoaded) {
       storyBloc.add(GetStoriesEvent());
@@ -33,6 +38,7 @@ class _HomePageState extends State<HomePage>
     if (postBloc.state is! PostLoaded) {
       postBloc.add(GetPostsEvent());
     }
+    
   }
 
   @override
@@ -46,6 +52,7 @@ class _HomePageState extends State<HomePage>
       appBar: HomeAppBar(colorScheme: colorScheme),
       body: RefreshIndicator(
         onRefresh: () async {
+          context.read<ProfileBloc>().add(GetProfileEvent());
           context.read<StoryBloc>().add(GetStoriesEvent());
           context.read<PostBloc>().add(GetPostsEvent());
         },

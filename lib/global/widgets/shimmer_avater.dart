@@ -6,23 +6,27 @@ import 'package:social_mate_app/core/services/media_cache_service.dart';
 class ShimmerAvatar extends StatelessWidget {
   final double size;
   final String imageUrl;
-  const ShimmerAvatar({super.key, required this.size, required this.imageUrl});
+  final VoidCallback? onTap;
+  const ShimmerAvatar({super.key, required this.size, required this.imageUrl, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(100),
-      child: CachedNetworkImage(
-        cacheManager: MediaCacheService.imageCache,
-        imageUrl: imageUrl,
-        width: size,
-        height: size,
-        fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
-        placeholder: (context, url) =>
-            ShimmerBox(height: size, width: size, borderRadius: 100),
-        errorWidget: (context, url, error) =>
-            ShimmerBox(height: size, width: size, borderRadius: 100),
+      child: InkWell(
+        onTap: onTap,
+        child: CachedNetworkImage(
+          cacheManager: MediaCacheService.imageCache,
+          imageUrl: imageUrl,
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          alignment: Alignment.topCenter,
+          placeholder: (context, url) =>
+              ShimmerBox(height: size, width: size, borderRadius: 100),
+          errorWidget: (context, url, error) =>
+              ShimmerBox(height: size, width: size, borderRadius: 100),
+        ),
       ),
     );
   }
