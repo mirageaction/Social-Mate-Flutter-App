@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,31 +42,32 @@ class _CreatePostPageState extends State<CreatePostPage> {
   void _onPost() {
     final mediaState = context.read<MediaPickerBloc>().state;
     File? media;
-    PostMediaType mediaType = PostMediaType.image;
+    PostType postType = PostType.image;
 
     if (mediaState is MediaPickerSuccess) {
       media = mediaState.file;
       // Map MediaPickerType to PostMediaType
       switch (mediaState.type) {
-        case MediaPickerType.image:
-          mediaType = PostMediaType.image;
+        case PostType.image:
+          postType = PostType.image;
           break;
-        case MediaPickerType.video:
-          mediaType = PostMediaType.video;
+        case PostType.video:
+          postType = PostType.video;
           break;
-        case MediaPickerType.file:
-          mediaType = PostMediaType.file;
+        case PostType.file:
+          postType = PostType.file;
           break;
-        default:
-          mediaType = PostMediaType.image;
-      }
+        case PostType.text:
+          postType = PostType.text;
+          break;
+        }
     }
 
     context.read<CreatePostBloc>().add(
       SubmitPostEvent(
         content: _contentController.text,
         media: media,
-        mediaType: mediaType,
+        postType: postType,
       ),
     );
   }
@@ -123,18 +124,18 @@ class _CreatePostPageState extends State<CreatePostPage> {
                 BlocSelector<
                   MediaPickerBloc,
                   MediaPickerState,
-                  MediaPickerType
+                  PostType
                 >(
                   selector: (state) {
                     return state.type;
                   },
                   builder: (context, state) {
                     switch (state) {
-                      case MediaPickerType.image:
+                      case PostType.image:
                         return const ImagePreview();
-                      case MediaPickerType.video:
+                      case PostType.video:
                         return const VideoPreview();
-                      case MediaPickerType.file:
+                      case PostType.file:
                         return const DocumentPreview();
                       default:
                         return const SizedBox.shrink();

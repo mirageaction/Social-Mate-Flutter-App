@@ -10,14 +10,14 @@ sealed class CreatePostEvent extends Equatable {
 class SubmitPostEvent extends CreatePostEvent {
   final String content;
   final File? media;
-  final PostMediaType mediaType;
+  final PostType postType;
 
   const SubmitPostEvent({
     required this.content,
     this.media,
-    required this.mediaType,
+    required this.postType,
   });
 
   @override
-  List<Object?> get props => [content, media, mediaType];
+  List<Object?> get props => [content, media, postType];
 }

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/features/create_post/data/remote/create_post_remote_datasource.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:path/path.dart' as p;
@@ -16,7 +16,7 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
   Future<void> createPost({
     required String content,
     File? media,
-    required PostMediaType mediaType,
+    required PostType postType,
   }) async {
     try {
       String? mediaUrl;
@@ -36,7 +36,7 @@ class CreatePostRemoteDataSourceImpl implements CreatePostRemoteDataSource {
       await _supabaseClient.from('posts').insert({
         'content': content,
         'media_url': mediaUrl,
-        'media_type': media != null ? mediaType.name : null,
+        'media_type': media != null ? postType.name : null,
         'author_id': userId,
       });
     } catch (e) {

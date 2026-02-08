@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
@@ -39,7 +40,7 @@ class _PostPickerSheetState extends State<_PostPickerSheet> {
           icon: icons.imageOutline.path,
           title: strings.addPhoto,
           onTap: () {
-            context.read<MediaPickerBloc>().add(PickImageFromGalleryEvent(type: MediaPickerType.image));
+            context.read<MediaPickerBloc>().add(PickImageFromGalleryEvent(type: PostType.image));
             context.pop();
           },
         ),
@@ -47,7 +48,7 @@ class _PostPickerSheetState extends State<_PostPickerSheet> {
           icon: icons.addVideo.path,
           title: strings.addVideo,
           onTap: () {
-            context.read<MediaPickerBloc>().add(PickVideoFromGalleryEvent(type: MediaPickerType.video));
+            context.read<MediaPickerBloc>().add(PickVideoFromGalleryEvent(type: PostType.video));
             context.pop();
           },
         ),
@@ -55,7 +56,7 @@ class _PostPickerSheetState extends State<_PostPickerSheet> {
           icon: icons.addDocument.path,
           title: strings.addDocument,
           onTap: () {
-            context.read<MediaPickerBloc>().add(PickDocumentEvent(type: MediaPickerType.file));
+            context.read<MediaPickerBloc>().add(PickDocumentEvent(type: PostType.file));
             context.pop();
           },
         ),
@@ -64,7 +65,7 @@ class _PostPickerSheetState extends State<_PostPickerSheet> {
           icon: icons.cameraOutline.path,
           title: strings.camera,
           onTap: () {
-            context.read<MediaPickerBloc>().add(PickImageFromCameraEvent(type: MediaPickerType.image));
+            context.read<MediaPickerBloc>().add(PickImageFromCameraEvent(type: PostType.image));
             context.pop();
           },
         ),

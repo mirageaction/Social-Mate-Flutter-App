@@ -5,7 +5,7 @@ import 'package:get_time_ago/get_time_ago.dart';
 import 'package:number_display/number_display.dart';
 import 'package:readmore/readmore.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/features/home/domain/entities/post_entity.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/views/post_file_view.dart';
@@ -177,12 +177,12 @@ class _PostMediaDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     if (post.mediaUrl.isEmpty) return const SizedBox.shrink();
 
-    switch (post.mediaType) {
-      case PostMediaType.video:
+    switch (post.postType) {
+      case PostType.video:
         return PostVideoPlayer(videoUrl: post.mediaUrl);
-      case PostMediaType.file:
+      case PostType.file:
         return PostFileView(fileUrl: post.mediaUrl);
-      case PostMediaType.image:
+      case PostType.image:
         return ShimmerImage(
           width: double.infinity,
           height: 200.h,

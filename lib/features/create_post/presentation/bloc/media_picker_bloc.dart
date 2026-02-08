@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_document_usecase.dart';
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_camera_usecase.dart';
 import 'package:social_mate_app/features/create_post/domain/usecases/pick_image_from_gallery_usecase.dart';
@@ -26,7 +27,7 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
     this._pickVideoFromCameraUsecase,
     this._pickVideoFromGalleryUsecase,
     this._pickDocumentUsecase,
-  ) : super(MediaPickerInitial(type: MediaPickerType.initial)) {
+  ) : super(MediaPickerInitial(type: PostType.text)) {
     on<PickImageFromGalleryEvent>(_onPickImageFromGalleryEvent);
     on<PickImageFromCameraEvent>(_onPickImageFromCameraEvent);
     on<PickVideoFromGalleryEvent>(_onPickVideoFromGalleryEvent);

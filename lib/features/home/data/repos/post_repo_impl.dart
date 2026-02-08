@@ -19,10 +19,10 @@ class PostRepoImpl implements PostRepo {
       return posts;
     } catch (e) {
       // Fallback to local cache if network fails
-      final cachedPosts = await _postLocalDatasource.getCachedPosts();
-      if (cachedPosts.isNotEmpty) {
-        return cachedPosts;
-      }
+      // final cachedPosts = await _postLocalDatasource.getCachedPosts();
+      // if (cachedPosts.isNotEmpty) {
+      //   return cachedPosts;
+      // }
       rethrow;
     }
   }

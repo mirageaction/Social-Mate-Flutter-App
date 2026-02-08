@@ -1,4 +1,4 @@
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/features/home/domain/entities/post_entity.dart';
 import 'package:social_mate_app/global/data/models/user_model.dart';
 
@@ -17,10 +17,17 @@ class PostModel extends PostEntity {
     super.isLiked = false,
     super.isDisliked = false,
     required super.user,
-    super.mediaType,
+    super.postType,
   });
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
+  factory PostModel.fromJson(
+    Map<String, dynamic> json, {
+    String? currentAuthorId,
+  }) {
+    // Logic to check if the current user is in the list of likes/dislikes
+    final List postLikes = json['is_liked'] ?? [];
+    final List postDislikes = json['is_disliked'] ?? [];
+
     return PostModel(
       id: json['id'] ?? '',
       content: json['content'] ?? '',
@@ -34,11 +41,13 @@ class PostModel extends PostEntity {
       likesCount: json['likes'] ?? 0,
       dislikesCount: json['dislikes'] ?? 0,
       commentsCount: json['comments_count'] ?? 0,
-      isLiked: json['is_liked'] ?? false,
-      isDisliked: json['is_disliked'] ?? false,
+      isLiked: postLikes.any((like) => like['author_id'] == currentAuthorId),
+      isDisliked: postDislikes.any(
+        (dislike) => dislike['author_id'] == currentAuthorId,
+      ),
       user: UserModel.fromJson(json['users'] ?? {}),
-      mediaType: json['media_type'] != null
-          ? PostMediaType.values.byName(json['media_type'])
+      postType: json['post_type'] != null
+          ? PostType.values.byName(json['post_type'])
           : null,
     );
   }
@@ -58,7 +67,7 @@ class PostModel extends PostEntity {
       'is_liked': isLiked,
       'is_disliked': isDisliked,
       'users': (user as UserModel).toJson(),
-      'media_type': mediaType?.name,
+      'post_type': postType?.name,
     };
   }
 
@@ -77,7 +86,7 @@ class PostModel extends PostEntity {
     bool? isLiked,
     bool? isDisliked,
     dynamic user,
-    PostMediaType? mediaType,
+    PostType? postType,
   }) {
     return PostModel(
       id: id ?? this.id,
@@ -93,7 +102,7 @@ class PostModel extends PostEntity {
       isLiked: isLiked ?? this.isLiked,
       isDisliked: isDisliked ?? this.isDisliked,
       user: user ?? this.user,
-      mediaType: mediaType ?? this.mediaType,
+      postType: postType ?? this.postType,
     );
   }
 }

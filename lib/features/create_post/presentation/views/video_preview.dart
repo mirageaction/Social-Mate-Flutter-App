@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/di/di.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:video_player/video_player.dart';
@@ -133,7 +134,7 @@ class _VideoPreviewState extends State<VideoPreview> {
                         icon: Icon(Icons.delete_outline, size: 24.w),
                         onPressed: () {
                           context.read<MediaPickerBloc>().add(
-                            const ClearMediaEvent(type: MediaPickerType.video),
+                            const ClearMediaEvent(type: PostType.video),
                           );
                         },
                       ),

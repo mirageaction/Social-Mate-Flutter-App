@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/features/create_post/domain/usecases/create_post_usecase.dart';
 
 part 'create_post_event.dart';
@@ -26,7 +26,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
       await _createPostUsecase(
         content: event.content,
         media: event.media,
-        mediaType: event.mediaType,
+        postType: event.postType,
       );
       emit(CreatePostSuccess());
     } catch (e) {

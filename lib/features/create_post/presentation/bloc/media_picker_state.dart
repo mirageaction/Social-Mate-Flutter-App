@@ -1,15 +1,8 @@
 part of 'media_picker_bloc.dart';
 
 
-enum MediaPickerType {
-  initial,
-  image,
-  video,
-  file,
-}
-
 sealed class MediaPickerState extends Equatable {
-  final MediaPickerType type;
+  final PostType type;
   const MediaPickerState({required this.type});
   
   @override

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:social_mate_app/core/enums/post_media_type.dart';
+import 'package:social_mate_app/core/enums/post_type.dart';
 import 'package:social_mate_app/global/domain/entities/user_entity.dart';
 
 class PostEntity extends Equatable {
@@ -16,7 +16,7 @@ class PostEntity extends Equatable {
   final bool isLiked;
   final bool isDisliked;
   final UserEntity user;
-  final PostMediaType? mediaType;
+  final PostType? postType;
 
   const PostEntity({
     required this.id,
@@ -32,7 +32,7 @@ class PostEntity extends Equatable {
     this.isLiked = false,
     this.isDisliked = false,
     required this.user,
-    this.mediaType,
+    this.postType,
   });
 
   @override
@@ -50,7 +50,7 @@ class PostEntity extends Equatable {
     isLiked,
     isDisliked,
     user,
-    mediaType,
+    postType,
   ];
 
   PostEntity copyWith({
@@ -67,7 +67,7 @@ class PostEntity extends Equatable {
     bool? isLiked,
     bool? isDisliked,
     UserEntity? user,
-    PostMediaType? mediaType,
+    PostType? postType,
   }) {
     return PostEntity(
       id: id ?? this.id,
@@ -83,7 +83,7 @@ class PostEntity extends Equatable {
       isLiked: isLiked ?? this.isLiked,
       isDisliked: isDisliked ?? this.isDisliked,
       user: user ?? this.user,
-      mediaType: mediaType ?? this.mediaType,
+      postType: postType ?? this.postType,
     );
   }
 }
