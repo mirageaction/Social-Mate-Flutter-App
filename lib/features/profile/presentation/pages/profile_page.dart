@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/di/di.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
+import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,15 +17,23 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
-    context.read<ProfileBloc>().add(GetProfileEvent());
+    final profileBloc = context.read<ProfileBloc>();
+    if (profileBloc.state is! ProfileLoaded) {
+      profileBloc.add(GetProfileEvent());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
@@ -82,19 +93,26 @@ class _ProfilePageState extends State<ProfilePage> {
                           bottom: -60.w,
                           left: 0,
                           right: 0,
-                          child: CircleAvatar(
-                            radius: 65.w,
-                            backgroundColor: colorScheme.secondary,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: CachedNetworkImage(
-                                imageUrl: state.profile.avatarUrl!,
-                                height: 120.w,
-                                width: 120.w,
-                                fit: BoxFit.cover,
-                                alignment: Alignment.topCenter,
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                          child: InkWell(
+                            onLongPress: () {
+                              context.read<AuthBloc>().add(SignOutEvent());
+                              context.go(AppPaths.auth);
+                            },
+                            borderRadius: BorderRadius.circular(100),
+                            child: CircleAvatar(
+                              radius: 65.w,
+                              backgroundColor: colorScheme.secondary,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: CachedNetworkImage(
+                                  imageUrl: state.profile.avatarUrl!,
+                                  height: 120.w,
+                                  width: 120.w,
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
                               ),
                             ),
                           ),

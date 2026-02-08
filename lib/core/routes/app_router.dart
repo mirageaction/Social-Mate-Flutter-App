@@ -36,7 +36,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.profile,
+      initialLocation: AppPaths.splash,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -69,26 +69,66 @@ class AppRouter {
         return null;
       },
       routes: [
-        ShellRoute(
-          builder: (context, state, child) => BlocProvider.value(
+        StatefulShellRoute.indexedStack(
+          builder: (context, state, navigationShell) => BlocProvider.value(
             value: getIt<ProfileBloc>(),
-            child: BottomNavBar(child: child),
+            child: BottomNavBar(navigationShell: navigationShell),
           ),
-          routes: [
-            GoRoute(
-              path: AppPaths.home,
-              builder: (context, state) => MultiBlocProvider(
-                providers: [
-                  BlocProvider(create: (context) => getIt<StoryBloc>()),
-                  BlocProvider(create: (context) => getIt<StoryViewerBloc>()),
-                  BlocProvider(create: (context) => getIt<PostBloc>()),
-                ],
-                child: const HomePage(),
-              ),
+          branches: [
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: AppPaths.home,
+                  builder: (context, state) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider(create: (context) => getIt<StoryBloc>()),
+                      BlocProvider(
+                        create: (context) => getIt<StoryViewerBloc>(),
+                      ),
+                      BlocProvider(create: (context) => getIt<PostBloc>()),
+                    ],
+                    child: const HomePage(),
+                  ),
+                ),
+              ],
             ),
-            GoRoute(
-              path: AppPaths.profile,
-              builder: (context, state) => const ProfilePage(),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/search',
+                  builder: (context, state) =>
+                      const Scaffold(body: Center(child: Text('Search'))),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/bag',
+                  builder: (context, state) =>
+                      const Scaffold(body: Center(child: Text('Bag'))),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/group',
+                  builder: (context, state) =>
+                      const Scaffold(body: Center(child: Text('Group'))),
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: AppPaths.profile,
+                  builder: (context, state) => BlocProvider.value(
+                    value: getIt<AuthBloc>(),
+                    child: const ProfilePage(),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -116,8 +156,8 @@ class AppRouter {
         ),
         GoRoute(
           path: AppPaths.auth,
-          builder: (context, state) => BlocProvider(
-            create: (context) => getIt<AuthBloc>(),
+          builder: (context, state) => BlocProvider.value(
+            value: getIt<AuthBloc>(),
             child: const AuthPage(),
           ),
         ),

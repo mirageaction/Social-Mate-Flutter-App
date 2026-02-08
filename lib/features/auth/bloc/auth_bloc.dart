@@ -11,7 +11,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-@Injectable()
+@lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignInUsecase signInUsecase;
   final SignUpUsecase signUpUsecase;

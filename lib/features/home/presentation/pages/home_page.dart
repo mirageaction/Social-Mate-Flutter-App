@@ -17,16 +17,27 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     super.initState();
-    context.read<StoryBloc>().add(GetStoriesEvent());
-    context.read<PostBloc>().add(GetPostsEvent());
+    final storyBloc = context.read<StoryBloc>();
+    if (storyBloc.state is! StoryLoaded) {
+      storyBloc.add(GetStoriesEvent());
+    }
+    final postBloc = context.read<PostBloc>();
+    if (postBloc.state is! PostLoaded) {
+      postBloc.add(GetPostsEvent());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final strings = AppStrings.of(context);

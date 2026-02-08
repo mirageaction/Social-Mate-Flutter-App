@@ -4,22 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
-import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
-class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key, required this.child});
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key, required this.navigationShell});
 
-  final Widget child;
-
-  @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
-}
-
-class _BottomNavBarState extends State<BottomNavBar> {
-  int _currentIndex = 0;
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +29,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.home.path,
-              isSelected: _currentIndex == 0,
+              isSelected: navigationShell.currentIndex == 0,
             ),
             label: 'Home',
           ),
@@ -45,7 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.userPlus.path,
-              isSelected: _currentIndex == 1,
+              isSelected: navigationShell.currentIndex == 1,
             ),
             label: 'Add',
           ),
@@ -53,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.bag.path,
-              isSelected: _currentIndex == 2,
+              isSelected: navigationShell.currentIndex == 2,
             ),
             label: 'Bag',
           ),
@@ -61,7 +53,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             icon: _BottomNavBarItem(
               colorScheme: colorScheme,
               icon: Assets.icons.group.path,
-              isSelected: _currentIndex == 3,
+              isSelected: navigationShell.currentIndex == 3,
             ),
             label: 'Group',
           ),
@@ -80,31 +72,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Profile',
           ),
         ],
-        currentIndex: _currentIndex,
+        currentIndex: navigationShell.currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-          switch (index) {
-            case 0:
-              context.pushReplacement(AppPaths.home);
-              break;
-            case 1:
-              //context.pushReplacement(AppPaths.createPost);
-              break;
-            case 2:
-              //context.pushReplacement(AppPaths.bag);
-              break;
-            case 3:
-              //context.pushReplacement(AppPaths.group);
-              break;
-            case 4:
-              context.pushReplacement(AppPaths.profile);
-              break;
-          }
+          navigationShell.goBranch(
+            index,
+            initialLocation: index == navigationShell.currentIndex,
+          );
         },
       ),
-      body: widget.child,
+      body: navigationShell,
     );
   }
 }
