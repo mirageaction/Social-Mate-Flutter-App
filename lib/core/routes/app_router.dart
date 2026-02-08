@@ -17,6 +17,8 @@ import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:social_mate_app/features/profile/presentation/pages/profile_page.dart';
 import 'package:social_mate_app/features/splash/presentation/page/splash_page.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart';
 import 'package:social_mate_app/global/widgets/bottom_nav_bar.dart';
@@ -34,7 +36,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.splash,
+      initialLocation: AppPaths.profile,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -68,7 +70,10 @@ class AppRouter {
       },
       routes: [
         ShellRoute(
-          builder: (context, state, child) => BottomNavBar(child: child),
+          builder: (context, state, child) => BlocProvider.value(
+            value: getIt<ProfileBloc>(),
+            child: BottomNavBar(child: child),
+          ),
           routes: [
             GoRoute(
               path: AppPaths.home,
@@ -80,6 +85,10 @@ class AppRouter {
                 ],
                 child: const HomePage(),
               ),
+            ),
+            GoRoute(
+              path: AppPaths.profile,
+              builder: (context, state) => const ProfilePage(),
             ),
           ],
         ),

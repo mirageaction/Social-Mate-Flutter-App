@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
+import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -61,7 +66,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Group',
           ),
           BottomNavigationBarItem(
-            icon: ShimmerAvatar(size: 30.w, imageUrl: ''),
+            icon: BlocSelector<ProfileBloc, ProfileState, ProfileEntity?>(
+              selector: (state) {
+                return state is ProfileLoaded ? state.profile : null;
+              },
+              builder: (context, state) {
+                return ShimmerAvatar(
+                  size: 30.w,
+                  imageUrl: state?.avatarUrl ?? '',
+                );
+              },
+            ),
             label: 'Profile',
           ),
         ],
@@ -70,6 +85,23 @@ class _BottomNavBarState extends State<BottomNavBar> {
           setState(() {
             _currentIndex = index;
           });
+          switch (index) {
+            case 0:
+              context.pushReplacement(AppPaths.home);
+              break;
+            case 1:
+              //context.pushReplacement(AppPaths.createPost);
+              break;
+            case 2:
+              //context.pushReplacement(AppPaths.bag);
+              break;
+            case 3:
+              //context.pushReplacement(AppPaths.group);
+              break;
+            case 4:
+              context.pushReplacement(AppPaths.profile);
+              break;
+          }
         },
       ),
       body: widget.child,

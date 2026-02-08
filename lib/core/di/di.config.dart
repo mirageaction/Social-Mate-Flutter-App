@@ -108,6 +108,18 @@ import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart'
     as _i853;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
     as _i200;
+import 'package:social_mate_app/features/profile/data/remote/profile_remote_datasource.dart'
+    as _i716;
+import 'package:social_mate_app/features/profile/data/remote/profile_remote_datasource_impl.dart'
+    as _i1016;
+import 'package:social_mate_app/features/profile/data/repos/profile_repo_impl.dart'
+    as _i589;
+import 'package:social_mate_app/features/profile/domain/repos/profile_repo.dart'
+    as _i792;
+import 'package:social_mate_app/features/profile/domain/usecases/get_profile_usecase.dart'
+    as _i694;
+import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart'
+    as _i863;
 import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource.dart'
     as _i954;
 import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource_impl.dart'
@@ -193,6 +205,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i817.GetPostsUsecse>(
       () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
     );
+    gh.lazySingleton<_i716.ProfileRemoteDatasource>(
+      () => _i1016.ProfileRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
     );
@@ -232,6 +247,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i76.CreatePostUsecase>(
       () => _i76.CreatePostUsecase(gh<_i80.CreatePostRepo>()),
     );
+    gh.lazySingleton<_i792.ProfileRepo>(
+      () => _i589.ProfileRepoImpl(gh<_i716.ProfileRemoteDatasource>()),
+    );
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
@@ -251,6 +269,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i424.SignUpUsecase>(),
         gh<_i691.SignOutUsecase>(),
       ),
+    );
+    gh.factory<_i694.GetProfileUsecase>(
+      () => _i694.GetProfileUsecase(gh<_i792.ProfileRepo>()),
     );
     gh.factory<_i312.CreatePostBloc>(
       () => _i312.CreatePostBloc(gh<_i76.CreatePostUsecase>()),
@@ -275,6 +296,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i200.StoryBloc>(
       () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
+    );
+    gh.lazySingleton<_i863.ProfileBloc>(
+      () => _i863.ProfileBloc(gh<_i694.GetProfileUsecase>()),
     );
     gh.factory<_i76.MediaPickerBloc>(
       () => _i76.MediaPickerBloc(

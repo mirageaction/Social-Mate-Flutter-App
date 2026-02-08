@@ -17,6 +17,8 @@ class ShimmerAvatar extends StatelessWidget {
         imageUrl: imageUrl,
         width: size,
         height: size,
+        fit: BoxFit.cover,
+        alignment: Alignment.topCenter,
         placeholder: (context, url) =>
             ShimmerBox(height: size, width: size, borderRadius: 100),
         errorWidget: (context, url, error) =>

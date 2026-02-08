@@ -7,4 +7,5 @@ class AppPaths {
   static const String createTextStory = '/createTextStory';
   static const String storyViewer = '/storyViewer';
   static const String createPost = '/createPost';
+  static const String profile = '/profile';
 }
