@@ -76,6 +76,18 @@ import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_
     as _i853;
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart'
     as _i698;
+import 'package:social_mate_app/features/discover_people/data/remote/discover_people_remote_datasource.dart'
+    as _i176;
+import 'package:social_mate_app/features/discover_people/data/remote/discover_people_remote_datasource_impl.dart'
+    as _i153;
+import 'package:social_mate_app/features/discover_people/data/repos/discover_people_repo_impl.dart'
+    as _i296;
+import 'package:social_mate_app/features/discover_people/domain/repos/discover_people_repo.dart'
+    as _i977;
+import 'package:social_mate_app/features/discover_people/domain/usecases/get_suggested_users_usecase.dart'
+    as _i69;
+import 'package:social_mate_app/features/discover_people/presentation/bloc/discover_people_bloc.dart'
+    as _i419;
 import 'package:social_mate_app/features/home/data/local/post_local_datasource.dart'
     as _i531;
 import 'package:social_mate_app/features/home/data/local/post_local_datasource_impl.dart'
@@ -213,6 +225,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
     );
+    gh.lazySingleton<_i176.DiscoverPeopleRemoteDataSource>(
+      () =>
+          _i153.DiscoverPeopleRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i80.CreatePostRepo>(
       () => _i971.CreatePostRepoImpl(gh<_i285.CreatePostRemoteDataSource>()),
     );
@@ -222,6 +238,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i473.GetAuthorStoriesUseCase>(
       () => _i473.GetAuthorStoriesUseCase(
         repository: gh<_i351.StoryViewerRepo>(),
+      ),
+    );
+    gh.lazySingleton<_i977.DiscoverPeopleRepo>(
+      () => _i296.DiscoverPeopleRepoImpl(
+        gh<_i176.DiscoverPeopleRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i590.StoryRepo>(
@@ -255,8 +276,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
+    gh.lazySingleton<_i69.GetSuggestedUsersUseCase>(
+      () => _i69.GetSuggestedUsersUseCase(gh<_i977.DiscoverPeopleRepo>()),
+    );
     gh.lazySingleton<_i206.MediaPickerRepo>(
       () => _i842.MediaPickerRepoImpl(gh<_i498.MediaPickerLocalDataSource>()),
+    );
+    gh.factory<_i419.DiscoverPeopleBloc>(
+      () => _i419.DiscoverPeopleBloc(gh<_i69.GetSuggestedUsersUseCase>()),
     );
     gh.factory<_i853.PostBloc>(
       () => _i853.PostBloc(

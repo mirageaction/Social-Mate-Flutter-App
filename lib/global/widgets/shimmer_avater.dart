@@ -34,7 +34,7 @@ class ShimmerAvatar extends StatelessWidget {
           placeholder: (context, url) =>
               ShimmerBox(height: size, width: size, borderRadius: 100),
           errorWidget: (context, url, error) => Container(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12),
             width: size,
             height: size,
             decoration: BoxDecoration(

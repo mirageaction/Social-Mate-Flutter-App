@@ -12,6 +12,7 @@ import 'package:social_mate_app/features/create_story/presentation/bloc/gallery_
 import 'package:social_mate_app/features/create_story/presentation/cubit/story_bg_controller_cubit.dart';
 import 'package:social_mate_app/features/create_story/presentation/pages/create_story_page.dart';
 import 'package:social_mate_app/features/create_story/presentation/pages/create_text_story_page.dart';
+import 'package:social_mate_app/features/discover_people/presentation/pages/discover_people_page.dart';
 import 'package:social_mate_app/features/home/domain/entities/story_entity.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
@@ -23,6 +24,7 @@ import 'package:social_mate_app/features/splash/presentation/page/splash_page.da
 import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart';
 import 'package:social_mate_app/global/widgets/bottom_nav_bar.dart';
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart';
+import 'package:social_mate_app/features/discover_people/presentation/bloc/discover_people_bloc.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/pages/story_viewer_page.dart';
 
 class GoRouterRefreshStream extends ChangeNotifier {
@@ -36,7 +38,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.profile,
+      initialLocation: AppPaths.discoverPeople,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -95,9 +97,11 @@ class AppRouter {
             StatefulShellBranch(
               routes: [
                 GoRoute(
-                  path: '/search',
-                  builder: (context, state) =>
-                      const Scaffold(body: Center(child: Text('Search'))),
+                  path: AppPaths.discoverPeople,
+                  builder: (context, state) => BlocProvider(
+                    create: (context) => getIt<DiscoverPeopleBloc>(),
+                    child: const DiscoverPeoplePage(),
+                  ),
                 ),
               ],
             ),

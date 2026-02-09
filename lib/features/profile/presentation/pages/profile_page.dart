@@ -34,6 +34,7 @@ class _ProfilePageState extends State<ProfilePage>
     if (profileBloc.state is! ProfileLoaded) {
       profileBloc.add(GetProfileEvent());
     }
+    
     final postBloc = context.read<PostBloc>();
     if (postBloc.state is! PostLoaded) {
       postBloc.add(GetAuthorPostsEvent());

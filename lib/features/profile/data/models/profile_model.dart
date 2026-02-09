@@ -9,6 +9,7 @@ class ProfileModel extends ProfileEntity {
     super.phone,
     super.username,
     super.avatarUrl,
+    super.isFollowing,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class ProfileModel extends ProfileEntity {
       phone: json['phone'] ?? '',
       username: json['username'] ?? '',
       avatarUrl: json['avatar_url'] ?? '',
+      isFollowing: json['is_following'] ?? false,
     );
   }
 

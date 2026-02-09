@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "createPost": MessageLookupByLibrary.simpleMessage("Create a Post"),
     "createStory": MessageLookupByLibrary.simpleMessage("Create a Story"),
+    "discoverPeople": MessageLookupByLibrary.simpleMessage("Discover People"),
     "document": MessageLookupByLibrary.simpleMessage("Document"),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
@@ -50,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "follow": MessageLookupByLibrary.simpleMessage("Follow"),
     "followers": MessageLookupByLibrary.simpleMessage("Followers"),
     "following": MessageLookupByLibrary.simpleMessage("Following"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
@@ -78,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordsDoNotMatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
+    "peopleYouMayKnow": MessageLookupByLibrary.simpleMessage(
+      "People you may know",
+    ),
     "phoneNumberRequired": MessageLookupByLibrary.simpleMessage(
       "Phone number is required",
     ),
@@ -90,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Share your thoughts and experiences with the world.",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "suggestedForYou": MessageLookupByLibrary.simpleMessage(
+      "Suggested for you",
+    ),
     "tellYourStory": MessageLookupByLibrary.simpleMessage("Tell your story."),
     "termsAgreement": MessageLookupByLibrary.simpleMessage(
       "By Using this app you agree with the Terms of Service",
@@ -99,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thinkingAboutToday": MessageLookupByLibrary.simpleMessage(
       "What are you thinking about today?",
     ),
+    "unfollow": MessageLookupByLibrary.simpleMessage("Unfollow"),
     "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
       "What\'s on your mind?",
     ),

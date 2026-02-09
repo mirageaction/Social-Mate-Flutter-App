@@ -12,6 +12,7 @@ class ProfileEntity extends Equatable {
   final int followingCount;
   final int postsCount;
   final int photosCount;
+  final bool isFollowing;
 
   const ProfileEntity({
     required this.id,
@@ -25,6 +26,7 @@ class ProfileEntity extends Equatable {
     this.followingCount = 0,
     this.postsCount = 0,
     this.photosCount = 0,
+    this.isFollowing = false,
   });
 
   @override
@@ -40,5 +42,6 @@ class ProfileEntity extends Equatable {
     followingCount,
     postsCount,
     photosCount,
+    isFollowing,
   ];
 }

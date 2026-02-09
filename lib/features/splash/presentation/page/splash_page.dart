@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Assets.images.appLogo.image()],
+            children: [Assets.images.appLogoWithoutSearch.image()],
           ),
         ),
       ),

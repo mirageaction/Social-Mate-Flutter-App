@@ -478,6 +478,46 @@ class AppStrings {
   String get following {
     return Intl.message('Following', name: 'following', desc: '', args: []);
   }
+
+  /// `Discover People`
+  String get discoverPeople {
+    return Intl.message(
+      'Discover People',
+      name: 'discoverPeople',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggested for you`
+  String get suggestedForYou {
+    return Intl.message(
+      'Suggested for you',
+      name: 'suggestedForYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `People you may know`
+  String get peopleYouMayKnow {
+    return Intl.message(
+      'People you may know',
+      name: 'peopleYouMayKnow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Follow`
+  String get follow {
+    return Intl.message('Follow', name: 'follow', desc: '', args: []);
+  }
+
+  /// `Unfollow`
+  String get unfollow {
+    return Intl.message('Unfollow', name: 'unfollow', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

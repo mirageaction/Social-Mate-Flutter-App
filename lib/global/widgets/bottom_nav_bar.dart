@@ -78,9 +78,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 return state is ProfileLoaded ? state.profile : null;
               },
               builder: (context, state) {
-                return ShimmerAvatar(
-                  size: 30.w,
-                  imageUrl: state?.avatarUrl ?? '',
+                return Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: widget.navigationShell.currentIndex == 4
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: colorScheme.primary.withValues(alpha: 0.1),
+                        )
+                      : null,
+                  child: ShimmerAvatar(
+                    size: 30.w,
+                    imageUrl: state?.avatarUrl ?? '',
+                  ),
                 );
               },
             ),

@@ -51,5 +51,10 @@
   "posts": "Posts",
   "photos": "Photos",
   "followers": "Followers",
-  "following": "Following"
+  "following": "Following",
+  "discoverPeople": "Discover People",
+  "suggestedForYou": "Suggested for you",
+  "peopleYouMayKnow": "People you may know",
+  "follow": "Follow",
+  "unfollow": "Unfollow"
 }
