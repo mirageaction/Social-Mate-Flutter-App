@@ -96,6 +96,8 @@ import 'package:social_mate_app/features/home/domain/repos/post_repo.dart'
     as _i358;
 import 'package:social_mate_app/features/home/domain/repos/story_repo.dart'
     as _i590;
+import 'package:social_mate_app/features/home/domain/usecases/get_author_posts_usecase.dart'
+    as _i892;
 import 'package:social_mate_app/features/home/domain/usecases/get_posts_usecse.dart'
     as _i817;
 import 'package:social_mate_app/features/home/domain/usecases/get_stories_usecase.dart'
@@ -244,6 +246,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i76.CreatePostUsecase>(
       () => _i76.CreatePostUsecase(gh<_i80.CreatePostRepo>()),
     );
+    gh.lazySingleton<_i892.GetAuthorPostsUseCase>(
+      () => _i892.GetAuthorPostsUseCase(gh<_i358.PostRepo>()),
+    );
     gh.lazySingleton<_i792.ProfileRepo>(
       () => _i589.ProfileRepoImpl(gh<_i716.ProfileRemoteDatasource>()),
     );
@@ -258,6 +263,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i817.GetPostsUsecse>(),
         gh<_i854.ToggleLikeUsecase>(),
         gh<_i183.ToggleDislikeUsecase>(),
+        gh<_i892.GetAuthorPostsUseCase>(),
       ),
     );
     gh.factory<_i694.GetProfileUsecase>(

@@ -24,3 +24,11 @@ class ToggleDislikeEvent extends PostEvent {
   @override
   List<Object> get props => [postId];
 }
+
+
+final class GetAuthorPostsEvent extends PostEvent {
+  const GetAuthorPostsEvent();
+
+  @override
+  List<Object> get props => [];
+}

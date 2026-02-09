@@ -47,5 +47,9 @@
   "tellYourStory": "Tell your story.",
   "thinkingAboutToday": "What are you thinking about today?",
   "writeSomething": "Write something here...",
-  "document": "Document"
+  "document": "Document",
+  "posts": "Posts",
+  "photos": "Photos",
+  "followers": "Followers",
+  "following": "Following"
 }

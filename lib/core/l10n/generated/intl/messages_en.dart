@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "followers": MessageLookupByLibrary.simpleMessage("Followers"),
+    "following": MessageLookupByLibrary.simpleMessage("Following"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
@@ -79,7 +81,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "phoneNumberRequired": MessageLookupByLibrary.simpleMessage(
       "Phone number is required",
     ),
+    "photos": MessageLookupByLibrary.simpleMessage("Photos"),
     "post": MessageLookupByLibrary.simpleMessage("Post"),
+    "posts": MessageLookupByLibrary.simpleMessage("Posts"),
     "public": MessageLookupByLibrary.simpleMessage("Public"),
     "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
     "shareThoughts": MessageLookupByLibrary.simpleMessage(

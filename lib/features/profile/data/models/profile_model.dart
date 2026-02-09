@@ -31,7 +31,7 @@ class ProfileModel extends ProfileEntity {
       'bio': bio,
       'phone': phone,
       'username': username,
-      'avatar_url': avatarUrl,
+      'avatarUrl': avatarUrl,
     };
   }
 }

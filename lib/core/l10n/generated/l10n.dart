@@ -458,6 +458,26 @@ class AppStrings {
   String get document {
     return Intl.message('Document', name: 'document', desc: '', args: []);
   }
+
+  /// `Posts`
+  String get posts {
+    return Intl.message('Posts', name: 'posts', desc: '', args: []);
+  }
+
+  /// `Photos`
+  String get photos {
+    return Intl.message('Photos', name: 'photos', desc: '', args: []);
+  }
+
+  /// `Followers`
+  String get followers {
+    return Intl.message('Followers', name: 'followers', desc: '', args: []);
+  }
+
+  /// `Following`
+  String get following {
+    return Intl.message('Following', name: 'following', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

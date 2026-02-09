@@ -41,4 +41,9 @@ class PostRepoImpl implements PostRepo {
   Future<void> clearCache() {
     return _postLocalDatasource.clearCache();
   }
+  
+  @override
+  Future<List<PostEntity>> getAuthorPosts() async {
+    return _postRemoteDatasource.getAuthorPosts();
+  }
 }

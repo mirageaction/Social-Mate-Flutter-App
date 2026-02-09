@@ -88,6 +88,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/music.svg
   SvgGenImage get music => const SvgGenImage('assets/icons/music.svg');
 
+  /// File path: assets/icons/person.svg
+  SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
@@ -129,6 +132,7 @@ class $AssetsIconsGen {
     liveVideo,
     microsoft,
     music,
+    person,
     search,
     send,
     share,

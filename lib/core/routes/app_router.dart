@@ -36,7 +36,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.splash,
+      initialLocation: AppPaths.profile,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -123,8 +123,11 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: AppPaths.profile,
-                  builder: (context, state) => BlocProvider(
-                    create: (context) => getIt<AuthBloc>(),
+                  builder: (context, state) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider(create: (context) => getIt<AuthBloc>()),
+                      BlocProvider(create: (context) => getIt<PostBloc>()),
+                    ],
                     child: const ProfilePage(),
                   ),
                 ),
@@ -167,9 +170,7 @@ class AppRouter {
             providers: [
               BlocProvider(create: (context) => getIt<MediaPickerBloc>()),
               BlocProvider(create: (context) => getIt<CreatePostBloc>()),
-              BlocProvider.value(
-                value: getIt<ProfileBloc>(),
-              ),
+              BlocProvider.value(value: getIt<ProfileBloc>()),
             ],
             child: const CreatePostPage(),
           ),

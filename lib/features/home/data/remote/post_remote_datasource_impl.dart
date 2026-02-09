@@ -21,8 +21,6 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
         )
         .order('created_at', ascending: false);
 
-    print(response);
-
     // Pass authorId to the model to let it handle the logic
     return response
         .map((json) => PostModel.fromJson(json, currentAuthorId: authorId))
@@ -128,6 +126,27 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
           'author_id': userId,
         });
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<PostEntity>> getAuthorPosts() async {
+    final authorId = _supabaseClient.auth.currentUser?.id;
+    if (authorId == null) return [];
+
+    try {
+      final response = await _supabaseClient
+          .from('posts')
+          .select(
+            '*, users:author_id(*), is_liked:post_likes(author_id), is_disliked:post_dislikes(author_id)',
+          )
+          .eq('author_id', authorId)
+          .order('created_at', ascending: false);
+      return response
+          .map((json) => PostModel.fromJson(json, currentAuthorId: authorId))
+          .toList();
     } catch (e) {
       rethrow;
     }

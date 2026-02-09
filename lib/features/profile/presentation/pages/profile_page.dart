@@ -1,14 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/di/di.dart';
-import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
-import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
+import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:social_mate_app/features/profile/presentation/tabs/details_tab.dart';
+import 'package:social_mate_app/features/profile/presentation/tabs/posts_tab.dart';
+import 'package:social_mate_app/features/profile/presentation/views/profile_actions.dart';
+import 'package:social_mate_app/features/profile/presentation/views/profile_header.dart';
+import 'package:social_mate_app/features/profile/presentation/views/profile_info.dart';
+import 'package:social_mate_app/features/profile/presentation/views/profile_stats.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,7 +21,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
   @override
   bool get wantKeepAlive => true;
 
@@ -29,6 +34,17 @@ class _ProfilePageState extends State<ProfilePage>
     if (profileBloc.state is! ProfileLoaded) {
       profileBloc.add(GetProfileEvent());
     }
+    final postBloc = context.read<PostBloc>();
+    if (postBloc.state is! PostLoaded) {
+      postBloc.add(GetAuthorPostsEvent());
+    }
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,246 +75,70 @@ class _ProfilePageState extends State<ProfilePage>
               return const Center(child: CircularProgressIndicator());
             }
             if (state is ProfileError) {
-              return Center(
-                child: Text(
-                  state.message,
-                  style: TextStyle(color: colorScheme.error),
-                ),
-              );
+              return const SizedBox.shrink();
             }
             if (state is ProfileLoaded) {
-              return SingleChildScrollView(
-                clipBehavior: Clip.none,
-                child: Column(
-                  children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(30.r),
-                            bottomRight: Radius.circular(30.r),
-                          ),
-                          child: CachedNetworkImage(
-                            imageUrl: state.profile.avatarUrl!,
-                            height: 0.38.sh,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ), 
-                        ),
-                        Positioned(
-                          bottom: -60.w,
-                          left: 0,
-                          right: 0,
-                          child: InkWell(
-                            onLongPress: () {
-                              context.read<AuthBloc>().add(SignOutEvent());
-                              context.go(AppPaths.auth);
-                            },
-                            borderRadius: BorderRadius.circular(100),
-                            child: CircleAvatar(
-                              radius: 65.w,
-                              backgroundColor: colorScheme.secondary,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: CachedNetworkImage(
-                                  imageUrl: state.profile.avatarUrl!,
-                                  height: 120.w,
-                                  width: 120.w,
-                                  fit: BoxFit.cover,
-                                  alignment: Alignment.topCenter,
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    70.verticalSpace,
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+              return NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) {
+                  return [
+                    SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          Text(
-                            state.profile.name,
-                            style: textTheme.headlineMedium,
-                          ),
-                          6.verticalSpace,
-                          if (state.profile.username != null)
-                            Text(
-                              state.profile.username!,
-                              style: textTheme.bodyLarge,
-                            ),
-                          4.verticalSpace,
-                          if (state.profile.bio != null)
-                            Text(
-                              state.profile.bio!,
-                              style: textTheme.bodyLarge,
-                            ),
-                          16.verticalSpace,
+                          ProfileHeader(profile: state.profile),
+                          70.verticalSpace,
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.w),
-                            child: Row(
+                            padding: EdgeInsets.symmetric(horizontal: 16.w),
+                            child: Column(
                               children: [
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {},
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 60.h,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: colorScheme.outline,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          10.r,
-                                        ),
-                                      ),
-                                      child: Text(
-                                        'Edit Profile'.toUpperCase(),
-                                        style: textTheme.titleMedium?.copyWith(
-                                          color: colorScheme.onSurfaceVariant,
-                                        ),
-                                      ),
+                                ProfileInfo(profile: state.profile),
+                                16.verticalSpace,
+                                const ProfileActions(),
+                                24.verticalSpace,
+                                ProfileStats(profile: state.profile),
+                                24.verticalSpace,
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 35.w,
+                                  ),
+                                  child: TabBar(
+                                    controller: _tabController,
+                                    indicatorColor: colorScheme.onSurface,
+                                    labelColor: colorScheme.onSurface,
+                                    unselectedLabelColor: Colors.grey.shade400,
+                                    labelStyle: textTheme.titleLarge?.copyWith(
+                                      color: colorScheme.onSurface,
+                                      fontWeight: FontWeight.w500,
                                     ),
+                                    unselectedLabelStyle: textTheme.titleLarge
+                                        ?.copyWith(
+                                          color: Colors.grey.shade400,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                    indicatorSize: TabBarIndicatorSize.tab,
+                                    tabs: const [
+                                      Tab(text: 'Posts'),
+                                      Tab(text: 'Details'),
+                                    ],
                                   ),
                                 ),
-                                16.horizontalSpace,
-                                InkWell(
-                                  onTap: () {},
-                                  borderRadius: BorderRadius.circular(10.r),
-                                  child: Container(
-                                    width: 60.w,
-                                    height: 60.h,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: colorScheme.outline,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.r),
-                                    ),
-                                    child: Icon(
-                                      Icons.settings_outlined,
-                                      color: colorScheme.onSurfaceVariant,
-                                      size: 30.w,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          24.verticalSpace,
-                          Container(
-                            width: double.infinity,
-                            height: 80.h,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: colorScheme.outline),
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Posts',
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.profile.postsCount.toString(),
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                VerticalDivider(
-                                  color: colorScheme.outline,
-                                  thickness: 1,
-                                  indent: 12.h,
-                                  endIndent: 12.h,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Photos',
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.profile.followersCount.toString(),
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                VerticalDivider(
-                                  color: colorScheme.outline,
-                                  thickness: 1,
-                                  indent: 12.h,
-                                  endIndent: 12.h,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Following',
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.profile.followersCount.toString(),
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                VerticalDivider(
-                                  color: colorScheme.outline,
-                                  thickness: 1,
-                                  indent: 12.h,
-                                  endIndent: 12.h,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Following',
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.profile.followingCount.toString(),
-                                      style: textTheme.titleMedium?.copyWith(
-                                        color: colorScheme.onSurfaceVariant,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                24.verticalSpace,
                               ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
+                  ];
+                },
+                body: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      PostsTab(profile: state.profile),
+                      DetailsTab(profile: state.profile),
+                    ],
+                  ),
                 ),
               );
             }

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:injectable/injectable.dart';
 import 'package:social_mate_app/core/services/auth_listener.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -38,6 +39,7 @@ class AppFlowBloc extends Cubit<AppFlowState> {
         }
       }
     });
+    FlutterNativeSplash.remove();
   }
 
   @override
