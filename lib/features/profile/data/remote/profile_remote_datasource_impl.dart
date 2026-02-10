@@ -18,7 +18,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
       final response = await _supabaseClient
           .from('users')
-          .select()
+          .select('*, follows!following_id(follower_id), posts!author_id(*)')
           .eq('id', userId)
           .single();
 
@@ -38,7 +38,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
 
       final response = await _supabaseClient
           .from('users')
-          .select('*, follows!following_id(follower_id)')
+          .select('*, follows!following_id(follower_id), posts!author_id(*)')
           .eq('id', userId)
           .single();
 
@@ -48,14 +48,13 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
     }
   }
 
-   @override
+  @override
   Future<void> followUser(String userId) async {
     try {
       final currentUserId = _supabaseClient.auth.currentUser?.id;
       if (currentUserId == null) {
         throw Exception('User is not authenticated');
       }
-
 
       //await _supabaseClient.from('follows').insert({
       //  'follower_id': currentUserId,

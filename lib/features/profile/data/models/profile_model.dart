@@ -12,12 +12,16 @@ class ProfileModel extends ProfileEntity {
     super.isFollowing,
     super.followersCount,
     super.followingCount,
+    super.postsCount,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json, String userId) {
     final follows = json['follows'] as List?;
     final isFollowing =
         follows?.any((f) => f['follower_id'] == userId) ?? false;
+
+    final posts = json['posts'] as List?;
+    final postsCount = posts?.length ?? 0;
 
     return ProfileModel(
       id: json['id'] ?? '',
@@ -30,6 +34,8 @@ class ProfileModel extends ProfileEntity {
       isFollowing: isFollowing,
       followersCount: json['followers_count'] ?? 0,
       followingCount: json['following_count'] ?? 0,
+      postsCount: postsCount,
+
     );
   }
 

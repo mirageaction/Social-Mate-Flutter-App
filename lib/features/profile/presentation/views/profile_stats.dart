@@ -66,44 +66,40 @@ class _StatItem extends StatelessWidget {
     required this.count,
     required this.textTheme,
     required this.colorScheme,
-    this.onTap,
+    
   });
 
   final String label;
   final int count;
   final TextTheme textTheme;
   final ColorScheme colorScheme;
-  final VoidCallback? onTap;
+ 
 
   @override
   Widget build(BuildContext context) {
     final formatNumber = createDisplay(length: 5, decimal: 1, separator: ',');
 
     return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(10.r),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              formatNumber(count),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: textTheme.titleLarge?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            formatNumber(count),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: textTheme.titleLarge?.copyWith(
+              color: colorScheme.onSurfaceVariant,
             ),
-            Text(
-              label,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-              ),
+          ),
+          Text(
+            label,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurfaceVariant,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
