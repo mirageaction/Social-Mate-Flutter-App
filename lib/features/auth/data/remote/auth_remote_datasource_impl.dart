@@ -25,18 +25,33 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> signUp(SignUpEntity params) async {
-    try {
-      await supabase.auth.signUp(
-        email: params.emailOrPhone.isEmail ? params.emailOrPhone : null,
-        phone: !params.emailOrPhone.isEmail ? params.emailOrPhone : null,
-        password: params.password,
-        data: {'full_name': params.name},
+Future<void> signUp(SignUpEntity params) async {
+  try {
+    final response = await supabase.auth.signUp(
+      email: params.emailOrPhone.isEmail ? params.emailOrPhone : null,
+      phone: !params.emailOrPhone.isEmail ? params.emailOrPhone : null,
+      password: params.password,
+      data: {'full_name': params.name},
+    );
+
+    if (response.user != null) {
+      final String uniqueUsername = await supabase.rpc(
+        'generate_unique_username',
+        params: {'base_name': params.name},
       );
-    } catch (e) {
-      rethrow;
+
+      await supabase.from('users').insert({
+        'id': response.user!.id,
+        'username': '@$uniqueUsername',
+        'name': params.name,
+        'email': params.emailOrPhone.isEmail ? params.emailOrPhone : null,
+        'phone': !params.emailOrPhone.isEmail ? params.emailOrPhone : null,
+      });
     }
+  } catch (e) {
+    rethrow;
   }
+}
 
   @override
   Future<void> signOut() async {

@@ -10,12 +10,14 @@ class ShimmerAvatar extends StatelessWidget {
   final String imageUrl;
   final Color? errorColor;
   final VoidCallback? onTap;
+  final double? padding;
   const ShimmerAvatar({
     super.key,
     required this.size,
     required this.imageUrl,
     this.errorColor,
     this.onTap,
+    this.padding,
   });
 
   @override
@@ -34,7 +36,7 @@ class ShimmerAvatar extends StatelessWidget {
           placeholder: (context, url) =>
               ShimmerBox(height: size, width: size, borderRadius: 100),
           errorWidget: (context, url, error) => Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(padding ?? 12),
             width: size,
             height: size,
             decoration: BoxDecoration(

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class ProfileEntity extends Equatable {
+class ProfileEntity extends Equatable { 
   final String id;
   final String name;
   final String? email;

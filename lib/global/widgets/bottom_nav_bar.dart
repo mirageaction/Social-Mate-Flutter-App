@@ -70,7 +70,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               icon: Assets.icons.group.path,
               isSelected: widget.navigationShell.currentIndex == 3,
             ),
-            label: 'Group',
+            label: 'Group', 
           ),
           BottomNavigationBarItem(
             icon: BlocSelector<ProfileBloc, ProfileState, ProfileEntity?>(
@@ -89,6 +89,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   child: ShimmerAvatar(
                     size: 30.w,
                     imageUrl: state?.avatarUrl ?? '',
+                    padding: 8,
                   ),
                 );
               },
