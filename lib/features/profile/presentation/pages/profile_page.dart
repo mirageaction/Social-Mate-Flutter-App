@@ -21,11 +21,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
-  @override
-  bool get wantKeepAlive => true;
+ 
 
   @override
   void initState() {
@@ -34,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage>
     if (profileBloc.state is! ProfileLoaded) {
       profileBloc.add(GetProfileEvent());
     }
-    
+
     final postBloc = context.read<PostBloc>();
     if (postBloc.state is! PostLoaded) {
       postBloc.add(GetAuthorPostsEvent());
@@ -50,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+   
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 

@@ -22,7 +22,7 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
           .eq('id', userId)
           .single();
 
-      return ProfileModel.fromJson(response); 
+      return ProfileModel.fromJson(response, userId); 
     } catch (e) {
       rethrow;
     }

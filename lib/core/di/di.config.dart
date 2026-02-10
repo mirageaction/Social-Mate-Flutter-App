@@ -84,8 +84,12 @@ import 'package:social_mate_app/features/discover_people/data/repos/discover_peo
     as _i296;
 import 'package:social_mate_app/features/discover_people/domain/repos/discover_people_repo.dart'
     as _i977;
+import 'package:social_mate_app/features/discover_people/domain/usecases/follow_user_usecase.dart'
+    as _i575;
 import 'package:social_mate_app/features/discover_people/domain/usecases/get_suggested_users_usecase.dart'
     as _i69;
+import 'package:social_mate_app/features/discover_people/domain/usecases/unfollow_user_usecase.dart'
+    as _i995;
 import 'package:social_mate_app/features/discover_people/presentation/bloc/discover_people_bloc.dart'
     as _i419;
 import 'package:social_mate_app/features/home/data/local/post_local_datasource.dart'
@@ -276,14 +280,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
     );
+    gh.lazySingleton<_i575.FollowUserUseCase>(
+      () => _i575.FollowUserUseCase(gh<_i977.DiscoverPeopleRepo>()),
+    );
     gh.lazySingleton<_i69.GetSuggestedUsersUseCase>(
       () => _i69.GetSuggestedUsersUseCase(gh<_i977.DiscoverPeopleRepo>()),
     );
+    gh.lazySingleton<_i995.UnfollowUserUseCase>(
+      () => _i995.UnfollowUserUseCase(gh<_i977.DiscoverPeopleRepo>()),
+    );
     gh.lazySingleton<_i206.MediaPickerRepo>(
       () => _i842.MediaPickerRepoImpl(gh<_i498.MediaPickerLocalDataSource>()),
-    );
-    gh.factory<_i419.DiscoverPeopleBloc>(
-      () => _i419.DiscoverPeopleBloc(gh<_i69.GetSuggestedUsersUseCase>()),
     );
     gh.factory<_i853.PostBloc>(
       () => _i853.PostBloc(
@@ -319,6 +326,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i437.PickVideoFromGalleryUsecase>(
       () => _i437.PickVideoFromGalleryUsecase(gh<_i206.MediaPickerRepo>()),
+    );
+    gh.factory<_i419.DiscoverPeopleBloc>(
+      () => _i419.DiscoverPeopleBloc(
+        gh<_i69.GetSuggestedUsersUseCase>(),
+        gh<_i575.FollowUserUseCase>(),
+        gh<_i995.UnfollowUserUseCase>(),
+      ),
     );
     gh.factory<_i200.StoryBloc>(
       () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),

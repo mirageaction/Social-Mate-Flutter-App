@@ -24,13 +24,9 @@ class DiscoverPeopleRemoteDataSourceImpl
           .neq('id', currentUserId)
           .order('name', ascending: true);
 
-      return response.map((e) {
-        final data = Map<String, dynamic>.from(e);
-        final follows = data['follows'] as List?;
-        data['is_following'] =
-            follows?.any((f) => f['follower_id'] == currentUserId) ?? false;
-        return ProfileModel.fromJson(data);
-      }).toList();
+      return response
+          .map((e) => ProfileModel.fromJson(e, currentUserId))
+          .toList();
     } catch (e) {
       rethrow;
     }
@@ -44,10 +40,18 @@ class DiscoverPeopleRemoteDataSourceImpl
         throw Exception('User is not authenticated');
       }
 
-      await _supabaseClient.from('follows').insert({
-        'follower_id': currentUserId,
-        'following_id': userId,
-      });
+
+      //await _supabaseClient.from('follows').insert({
+      //  'follower_id': currentUserId,
+      //  'following_id': userId,
+      //});
+      await _supabaseClient
+          .from('follows')
+          .upsert(
+            {'follower_id': currentUserId, 'following_id': userId},
+            onConflict: 'follower_id, following_id',
+            ignoreDuplicates: true,
+          );
     } catch (e) {
       rethrow;
     }

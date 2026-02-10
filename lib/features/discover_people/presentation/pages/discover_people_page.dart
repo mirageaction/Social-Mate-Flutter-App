@@ -51,6 +51,9 @@ class _DiscoverPeoplePageState extends State<DiscoverPeoplePage>
         ],
       ),
       body: BlocConsumer<DiscoverPeopleBloc, DiscoverPeopleState>(
+        listenWhen: (previous, current) {
+          return current is DiscoverPeopleError;
+        },
         listener: (context, state) {
           if (state is DiscoverPeopleError) {
             getIt<ToastService>().showErrorToast(
@@ -58,6 +61,11 @@ class _DiscoverPeoplePageState extends State<DiscoverPeoplePage>
               message: state.message,
             );
           }
+        },
+        buildWhen: (previous, current) {
+          return current is DiscoverPeopleLoading ||
+              current is DiscoverPeopleLoaded ||
+              current is DiscoverPeopleError;
         },
         builder: (context, state) {
           if (state is DiscoverPeopleLoading) {

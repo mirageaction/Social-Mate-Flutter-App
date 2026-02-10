@@ -44,10 +44,8 @@ class DiscoverPeopleBloc
     Emitter<DiscoverPeopleState> emit,
   ) async {
     try {
+      emit(DiscoverPeopleFollowed(userId: event.userId));
       await _followUserUseCase(event.userId);
-      // Ideally update local state or re-fetch
-      // For simplicity, re-fetch for now to get updated "isFollowing" status if backend supported it
-      // But since we don't have isFollowing field yet, this just ensures action is taken.
     } catch (e) {
       emit(DiscoverPeopleError(message: e.toString()));
     }
@@ -58,6 +56,7 @@ class DiscoverPeopleBloc
     Emitter<DiscoverPeopleState> emit,
   ) async {
     try {
+      emit(DiscoverPeopleUnfollowed(userId: event.userId));
       await _unfollowUserUseCase(event.userId);
     } catch (e) {
       emit(DiscoverPeopleError(message: e.toString()));
