@@ -45,21 +45,25 @@ class DiscoverPeopleBloc
   ) async {
     final currentState = state;
     if (currentState is DiscoverPeopleLoaded) {
-      try {
-        final updatedUsers = currentState.users.map((user) {
-          if (user.id == event.userId) {
-            return user.copyWith(
-              isFollowing: true,
-              followersCount: user.followersCount + 1,
-            );
-          }
-          return user;
-        }).toList();
+      final oldUsers = currentState.users;
 
-        emit(DiscoverPeopleLoaded(users: updatedUsers));
+      final updatedUsers = oldUsers.map((user) {
+        if (user.id == event.userId) {
+          return user.copyWith(
+            isFollowing: true,
+            followersCount: user.followersCount + 1,
+          );
+        }
+        return user;
+      }).toList();
+
+      emit(DiscoverPeopleLoaded(users: updatedUsers));
+      try {
         await _followUserUseCase(event.userId);
       } catch (e) {
+        emit(DiscoverPeopleLoaded(users: oldUsers));
         emit(DiscoverPeopleError(message: e.toString()));
+        emit(DiscoverPeopleLoaded(users: oldUsers));
       }
     }
   }
@@ -70,23 +74,26 @@ class DiscoverPeopleBloc
   ) async {
     final currentState = state;
     if (currentState is DiscoverPeopleLoaded) {
-      try {
-        final updatedUsers = currentState.users.map((user) {
-          if (user.id == event.userId) {
-            return user.copyWith(
-              isFollowing: false,
-              followersCount: user.followersCount > 0
-                  ? user.followersCount - 1
-                  : 0,
-            );
-          }
-          return user;
-        }).toList();
+      final oldUsers = currentState.users;
 
-        emit(DiscoverPeopleLoaded(users: updatedUsers));
+      final updatedUsers = oldUsers.map((user) {
+        if (user.id == event.userId) {
+          return user.copyWith(
+            isFollowing: false,
+            followersCount: user.followersCount > 0
+                ? user.followersCount - 1
+                : 0,
+          );
+        }
+        return user;
+      }).toList();
+      emit(DiscoverPeopleLoaded(users: updatedUsers));
+      try {
         await _unfollowUserUseCase(event.userId);
       } catch (e) {
+        emit(DiscoverPeopleLoaded(users: oldUsers));
         emit(DiscoverPeopleError(message: e.toString()));
+        emit(DiscoverPeopleLoaded(users: oldUsers));
       }
     }
   }

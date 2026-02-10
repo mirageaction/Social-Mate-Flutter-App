@@ -18,7 +18,7 @@ class DiscoverPeopleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme; 
+    final colorScheme = Theme.of(context).colorScheme;
     final strings = AppStrings.of(context);
     final numberFormatter = createDisplay(
       decimal: 1,
@@ -37,8 +37,15 @@ class DiscoverPeopleItem extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
+            onTap: () async {
               context.push('${AppPaths.profile}/${user.id}');
+              //await context.push('${AppPaths.profile}/${user.id}');
+
+              // if (context.mounted) {
+              //   context.read<DiscoverPeopleBloc>().add(
+              //     GetDiscoverPeopleEvent(),
+              //   );
+              // }
             },
             child: ShimmerAvatar(size: 50.w, imageUrl: user.avatarUrl ?? ''),
           ),
@@ -66,9 +73,7 @@ class DiscoverPeopleItem extends StatelessWidget {
             isFollowing: user.isFollowing,
             width: 100.w,
             onFollow: () {
-              context.read<DiscoverPeopleBloc>().add(
-                FollowUserEvent(user.id),
-              );
+              context.read<DiscoverPeopleBloc>().add(FollowUserEvent(user.id));
             },
             onUnfollow: () {
               context.read<DiscoverPeopleBloc>().add(

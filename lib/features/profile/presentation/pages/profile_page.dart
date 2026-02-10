@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/di/di.dart';
-import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
-import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/features/profile/presentation/tabs/details_tab.dart';
 import 'package:social_mate_app/features/profile/presentation/tabs/posts_tab.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_actions.dart';
+import 'package:social_mate_app/features/profile/presentation/views/profile_follow_button.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_header.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_info.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_stats.dart';
-import 'package:social_mate_app/global/widgets/follow_button.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfilePage extends StatefulWidget {
   final String? userId;
@@ -54,7 +52,6 @@ class _ProfilePageState extends State<ProfilePage>
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final strings = AppStrings.of(context);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -102,31 +99,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   24.verticalSpace,
                                 ],
                                 if (widget.userId != null) ...[
-                                  BlocSelector<ProfileBloc, ProfileState, bool>(
-                                    selector: (state) {
-                                      if (state is ProfileLoaded) {
-                                        return state.profile.isFollowing;
-                                      }
-                                      return false;
-                                    },
-                                    builder: (context, isFollowing) {
-                                      return FollowButton(
-                                        userId: widget.userId!,
-                                        isFollowing: isFollowing,
-                                        width: 100.w,
-                                        onFollow: () {
-                                          context.read<ProfileBloc>().add(
-                                            FollowUserEvent(widget.userId!),
-                                          );
-                                        },
-                                        onUnfollow: () {
-                                          context.read<ProfileBloc>().add(
-                                            UnfollowUserEvent(widget.userId!),
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
+                                  ProfileFollowButton(widget: widget),
                                   24.verticalSpace,
                                 ],
                                 ProfileStats(profile: state.profile),
@@ -139,11 +112,13 @@ class _ProfilePageState extends State<ProfilePage>
                                     controller: _tabController,
                                     indicatorColor: colorScheme.onSurface,
                                     labelColor: colorScheme.onSurface,
-                                    unselectedLabelColor: Colors.grey.shade400,
-                                    labelStyle: textTheme.titleLarge?.copyWith(
-                                      color: colorScheme.onSurface,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                    unselectedLabelColor:
+                                        Colors.grey.shade400,
+                                    labelStyle: textTheme.titleLarge
+                                        ?.copyWith(
+                                          color: colorScheme.onSurface,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                     unselectedLabelStyle: textTheme.titleLarge
                                         ?.copyWith(
                                           color: Colors.grey.shade400,
