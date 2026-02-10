@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_time_ago/get_time_ago.dart';
+import 'package:go_router/go_router.dart';
 import 'package:number_display/number_display.dart';
 import 'package:readmore/readmore.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/enums/post_type.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/home/domain/entities/post_entity.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/views/post_file_view.dart';
@@ -38,24 +40,29 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              ShimmerAvatar(size: 40.w, imageUrl: post.user.avatarUrl),
-              10.horizontalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(post.user.name, style: textTheme.titleMedium),
-                  2.verticalSpace,
-                  Text(
-                    formatTime,
-                    style: textTheme.bodySmall?.copyWith(
-                      color: Colors.grey.shade600,
+          GestureDetector(
+            onTap: () {
+              context.push('${AppPaths.profile}/${post.user.id}');
+            },
+            child: Row(
+              children: [
+                ShimmerAvatar(size: 40.w, imageUrl: post.user.avatarUrl),
+                10.horizontalSpace,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(post.user.name, style: textTheme.titleMedium),
+                    2.verticalSpace,
+                    Text(
+                      formatTime,
+                      style: textTheme.bodySmall?.copyWith(
+                        color: Colors.grey.shade600,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           12.verticalSpace,
           ReadMoreText(

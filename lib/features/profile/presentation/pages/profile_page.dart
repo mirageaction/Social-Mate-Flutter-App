@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
