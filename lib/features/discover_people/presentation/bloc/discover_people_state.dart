@@ -28,23 +28,3 @@ class DiscoverPeopleError extends DiscoverPeopleState {
   @override
   List<Object> get props => [message];
 }
-
-class DiscoverPeopleFollowed extends DiscoverPeopleState {
-  final String userId;
-
-  const DiscoverPeopleFollowed({required this.userId});
-
-  @override
-  List<Object> get props => [userId];
-}
-
-class DiscoverPeopleUnfollowed extends DiscoverPeopleState {
-  final String userId;
-
-  const DiscoverPeopleUnfollowed({required this.userId});
-
-  @override
-  List<Object> get props => [userId];
-}
-
-

@@ -86,7 +86,10 @@ class _DiscoverPeoplePageState extends State<DiscoverPeoplePage>
                 itemCount: state.users.length,
                 itemExtent: 100.h,
                 itemBuilder: (context, index) {
-                  return DiscoverPeopleItem(user: state.users[index]);
+                  return DiscoverPeopleItem(
+                    key: ValueKey(state.users[index].id),
+                    user: state.users[index],
+                  );
                 },
               ),
             );

@@ -9,16 +9,11 @@ import 'package:social_mate_app/features/discover_people/presentation/bloc/disco
 import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/global/widgets/shimmer_avater.dart';
 
-class DiscoverPeopleItem extends StatefulWidget {
+class DiscoverPeopleItem extends StatelessWidget {
   const DiscoverPeopleItem({super.key, required this.user});
 
   final ProfileEntity user;
 
-  @override
-  State<DiscoverPeopleItem> createState() => _DiscoverPeopleItemState();
-}
-
-class _DiscoverPeopleItemState extends State<DiscoverPeopleItem> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -40,47 +35,27 @@ class _DiscoverPeopleItemState extends State<DiscoverPeopleItem> {
       ),
       child: Row(
         children: [
-          ShimmerAvatar(size: 50.w, imageUrl: widget.user.avatarUrl ?? ''),
+          ShimmerAvatar(size: 50.w, imageUrl: user.avatarUrl ?? ''),
           12.horizontalSpace,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.user.name,
+                  user.name,
                   style: textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 4.verticalSpace,
-                BlocBuilder<DiscoverPeopleBloc, DiscoverPeopleState>(
-                  buildWhen: (previous, current) {
-                    return current is DiscoverPeopleFollowed ||
-                        current is DiscoverPeopleUnfollowed;
-                  },
-                  builder: (context, state) {
-                    int followersCount = widget.user.followersCount;
-                    if (state is DiscoverPeopleFollowed &&
-                        state.userId == widget.user.id) {
-                      followersCount++;
-                    } else if (state is DiscoverPeopleUnfollowed &&
-                        state.userId == widget.user.id) {
-                      followersCount > 0 ? followersCount-- : 0;
-                    }
-                    return Text(
-                      '${numberFormatter(followersCount)} ${strings.followers.toLowerCase()}',
-                      style: textTheme.bodyMedium?.copyWith(color: Colors.grey),
-                    );
-                  },
+                Text(
+                  '${numberFormatter(user.followersCount)} ${strings.followers.toLowerCase()}',
+                  style: textTheme.bodyMedium?.copyWith(color: Colors.grey),
                 ),
               ],
             ),
           ),
-          _FollowButton(
-            widget: widget,
-            colorScheme: colorScheme,
-            strings: strings,
-          ),
+          _FollowButton(colorScheme: colorScheme, strings: strings, user: user),
         ],
       ),
     );
@@ -89,12 +64,12 @@ class _DiscoverPeopleItemState extends State<DiscoverPeopleItem> {
 
 class _FollowButton extends StatelessWidget {
   const _FollowButton({
-    required this.widget,
     required this.colorScheme,
     required this.strings,
+    required this.user,
   });
 
-  final DiscoverPeopleItem widget;
+  final ProfileEntity user;
   final ColorScheme colorScheme;
   final AppStrings strings;
 
@@ -113,44 +88,41 @@ class _FollowButton extends StatelessWidget {
         }
       },
       buildWhen: (previous, current) {
-        return current is DiscoverPeopleFollowed ||
-            current is DiscoverPeopleUnfollowed;
+        // Only rebuild if it's the same user being updated in the list
+        // Since we are rebuilding the whole list on Loaded state, we might not need complex checks here
+        // BUT if we want to optimize, we can check if THIS user changed.
+        // However, since we get a new List<User>, checking equality might be tricky if reference changed.
+        // For safest approach with immutable lists: just rebuild.
+        return current is DiscoverPeopleLoaded;
       },
       builder: (context, state) {
-        bool isFollowing = widget.user.isFollowing;
-        if (state is DiscoverPeopleFollowed && state.userId == widget.user.id) {
-          isFollowing = true;
-        } else if (state is DiscoverPeopleUnfollowed &&
-            state.userId == widget.user.id) {
-          isFollowing = false;
-        }
         return ElevatedButton(
           onPressed: () {
-            if (isFollowing) {
+            if (user.isFollowing) {
               context.read<DiscoverPeopleBloc>().add(
-                UnfollowUserEvent(widget.user.id),
+                UnfollowUserEvent(user.id),
               );
             } else {
-              context.read<DiscoverPeopleBloc>().add(
-                FollowUserEvent(widget.user.id),
-              );
+              context.read<DiscoverPeopleBloc>().add(FollowUserEvent(user.id));
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: isFollowing
+            backgroundColor: user.isFollowing
                 ? Colors.transparent
                 : colorScheme.primary,
-            foregroundColor: isFollowing ? Colors.grey : colorScheme.onPrimary,
+            foregroundColor: user.isFollowing
+                ? Colors.grey
+                : colorScheme.onPrimary,
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.r),
-              side: isFollowing
+              side: user.isFollowing
                   ? BorderSide(color: colorScheme.outline)
                   : BorderSide.none,
             ),
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
           ),
-          child: Text(isFollowing ? strings.unfollow : strings.follow),
+          child: Text(user.isFollowing ? strings.unfollow : strings.follow),
         );
       },
     );
