@@ -8,7 +8,7 @@ class GetAuthorPostsUseCase {
 
   GetAuthorPostsUseCase(this.postRepo);
 
-  Future<List<PostEntity>> call() async {
-    return postRepo.getAuthorPosts();
+  Future<List<PostEntity>> call(String? userId) async {
+    return postRepo.getAuthorPosts(userId);
   }
 }

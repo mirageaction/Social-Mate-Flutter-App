@@ -38,7 +38,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.discoverPeople,
+      initialLocation: AppPaths.splash,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -72,8 +72,8 @@ class AppRouter {
       },
       routes: [
         StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) => BlocProvider.value(
-            value: getIt<ProfileBloc>(),
+          builder: (context, state, navigationShell) => BlocProvider(
+            create: (context) => getIt<ProfileBloc>(),
             child: BottomNavBar(navigationShell: navigationShell),
           ),
           branches: [
@@ -134,6 +134,25 @@ class AppRouter {
                     ],
                     child: const ProfilePage(),
                   ),
+                  routes: [
+                    GoRoute(
+                      path: ':userId',
+                      builder: (context, state) {
+                        final userId = state.pathParameters['userId'];
+                        return MultiBlocProvider(
+                          providers: [
+                            BlocProvider(
+                              create: (context) => getIt<ProfileBloc>(),
+                            ),
+                            BlocProvider(
+                              create: (context) => getIt<PostBloc>(),
+                            ),
+                          ],
+                          child: ProfilePage(userId: userId),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

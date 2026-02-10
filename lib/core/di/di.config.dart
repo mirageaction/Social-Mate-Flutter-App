@@ -337,8 +337,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i200.StoryBloc>(
       () => _i200.StoryBloc(getStoriesUseCase: gh<_i580.GetStoriesUseCase>()),
     );
-    gh.lazySingleton<_i863.ProfileBloc>(
-      () => _i863.ProfileBloc(gh<_i694.GetProfileUsecase>()),
+    gh.factory<_i863.ProfileBloc>(
+      () => _i863.ProfileBloc(
+        gh<_i694.GetProfileUsecase>(),
+        gh<_i575.FollowUserUseCase>(),
+        gh<_i995.UnfollowUserUseCase>(),
+      ),
     );
     gh.factory<_i944.AuthBloc>(
       () => _i944.AuthBloc(

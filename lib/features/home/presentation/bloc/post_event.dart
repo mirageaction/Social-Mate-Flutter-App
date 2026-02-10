@@ -4,7 +4,7 @@ sealed class PostEvent extends Equatable {
   const PostEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class GetPostsEvent extends PostEvent {}
@@ -27,8 +27,9 @@ class ToggleDislikeEvent extends PostEvent {
 
 
 final class GetAuthorPostsEvent extends PostEvent {
-  const GetAuthorPostsEvent();
+  final String? userId;
+  const GetAuthorPostsEvent(this.userId);
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [userId];
 }

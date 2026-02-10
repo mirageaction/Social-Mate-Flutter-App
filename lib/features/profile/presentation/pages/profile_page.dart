@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/di/di.dart';
+import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
+import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/features/profile/presentation/tabs/details_tab.dart';
 import 'package:social_mate_app/features/profile/presentation/tabs/posts_tab.dart';
@@ -12,9 +14,12 @@ import 'package:social_mate_app/features/profile/presentation/views/profile_acti
 import 'package:social_mate_app/features/profile/presentation/views/profile_header.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_info.dart';
 import 'package:social_mate_app/features/profile/presentation/views/profile_stats.dart';
+import 'package:social_mate_app/global/widgets/follow_button.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  final String? userId;
+  const ProfilePage({super.key, this.userId});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -24,19 +29,17 @@ class _ProfilePageState extends State<ProfilePage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
- 
-
   @override
   void initState() {
     super.initState();
     final profileBloc = context.read<ProfileBloc>();
-    if (profileBloc.state is! ProfileLoaded) {
-      profileBloc.add(GetProfileEvent());
+    if (profileBloc.state is! ProfileLoaded || widget.userId != null) {
+      profileBloc.add(GetProfileEvent(userId: widget.userId));
     }
 
     final postBloc = context.read<PostBloc>();
     if (postBloc.state is! PostLoaded) {
-      postBloc.add(GetAuthorPostsEvent());
+      postBloc.add(GetAuthorPostsEvent(widget.userId));
     }
     _tabController = TabController(length: 2, vsync: this);
   }
@@ -49,9 +52,9 @@ class _ProfilePageState extends State<ProfilePage>
 
   @override
   Widget build(BuildContext context) {
-   
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final strings = AppStrings.of(context);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -70,6 +73,8 @@ class _ProfilePageState extends State<ProfilePage>
               );
             }
           },
+          buildWhen: (previous, current) =>
+              current is ProfileLoaded || current is ProfileLoading,
           builder: (context, state) {
             if (state is ProfileLoading) {
               return const Center(child: CircularProgressIndicator());
@@ -92,8 +97,38 @@ class _ProfilePageState extends State<ProfilePage>
                               children: [
                                 ProfileInfo(profile: state.profile),
                                 16.verticalSpace,
-                                const ProfileActions(),
-                                24.verticalSpace,
+                                if (widget.userId == null) ...[
+                                  const ProfileActions(),
+                                  24.verticalSpace,
+                                ],
+                                if (widget.userId != null) ...[
+                                  BlocSelector<ProfileBloc, ProfileState, bool>(
+                                    selector: (state) {
+                                      if (state is ProfileLoaded) {
+                                        return state.profile.isFollowing;
+                                      }
+                                      return false;
+                                    },
+                                    builder: (context, isFollowing) {
+                                      return FollowButton(
+                                        userId: widget.userId!,
+                                        isFollowing: isFollowing,
+                                        width: 100.w,
+                                        onFollow: () {
+                                          context.read<ProfileBloc>().add(
+                                            FollowUserEvent(widget.userId!),
+                                          );
+                                        },
+                                        onUnfollow: () {
+                                          context.read<ProfileBloc>().add(
+                                            UnfollowUserEvent(widget.userId!),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  24.verticalSpace,
+                                ],
                                 ProfileStats(profile: state.profile),
                                 24.verticalSpace,
                                 Padding(

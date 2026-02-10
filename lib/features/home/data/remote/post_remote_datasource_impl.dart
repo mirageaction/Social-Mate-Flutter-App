@@ -132,9 +132,11 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
   }
 
   @override
-  Future<List<PostEntity>> getAuthorPosts() async {
-    final authorId = _supabaseClient.auth.currentUser?.id;
-    if (authorId == null) return [];
+  Future<List<PostEntity>> getAuthorPosts(String? userId) async {
+    // final authorId = _supabaseClient.auth.currentUser?.id;
+    // if (authorId == null) return [];
+    userId ??= _supabaseClient.auth.currentUser?.id;
+    if (userId == null) return [];
 
     try {
       final response = await _supabaseClient
@@ -142,10 +144,10 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
           .select(
             '*, users:author_id(*), is_liked:post_likes(author_id), is_disliked:post_dislikes(author_id)',
           )
-          .eq('author_id', authorId)
+          .eq('author_id', userId)
           .order('created_at', ascending: false);
       return response
-          .map((json) => PostModel.fromJson(json, currentAuthorId: authorId))
+          .map((json) => PostModel.fromJson(json, currentAuthorId: userId))
           .toList();
     } catch (e) {
       rethrow;

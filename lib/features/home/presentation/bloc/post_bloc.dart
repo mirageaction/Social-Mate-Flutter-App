@@ -33,7 +33,7 @@ class PostBloc extends Bloc<PostEvent, PostState> {
   Future<void> _onGetAuthorPosts(GetAuthorPostsEvent event, Emitter<PostState> emit) async {
     emit(PostLoading());
     try {
-      final posts = await _getAuthorPostsUseCase();
+      final posts = await _getAuthorPostsUseCase(event.userId);
       emit(PostLoaded(posts: posts));
     } catch (e) {
       emit(PostError(message: e.toString()));

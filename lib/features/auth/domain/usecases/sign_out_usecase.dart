@@ -19,8 +19,8 @@ class SignOutUsecase {
     await postRepo.clearCache();
 
     // 3. Reset session-based singletons
-    if (getIt.isRegistered<ProfileBloc>()) {
-      getIt.resetLazySingleton<ProfileBloc>();
-    }
+    // if (getIt.isRegistered<ProfileBloc>()) {
+    //   getIt.resetLazySingleton<ProfileBloc>();
+    // }
   }
 }

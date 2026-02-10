@@ -43,7 +43,7 @@ class PostRepoImpl implements PostRepo {
   }
   
   @override
-  Future<List<PostEntity>> getAuthorPosts() async {
-    return _postRemoteDatasource.getAuthorPosts();
+  Future<List<PostEntity>> getAuthorPosts(String? userId) async {
+    return _postRemoteDatasource.getAuthorPosts(userId);
   }
 }

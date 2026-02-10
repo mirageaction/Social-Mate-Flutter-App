@@ -8,7 +8,10 @@ class GetProfileUsecase {
 
   GetProfileUsecase(this.profileRepo);
 
-  Future<ProfileEntity> call() async {
+  Future<ProfileEntity> call({String? userId}) async {
+    if (userId != null) {
+      return profileRepo.getProfileById(userId);
+    }
     return profileRepo.getProfile();
   }
 }

@@ -8,5 +8,26 @@ sealed class ProfileEvent extends Equatable {
 }
 
 final class GetProfileEvent extends ProfileEvent {
-  const GetProfileEvent();
+  final String? userId;
+  const GetProfileEvent({this.userId});
+
+  @override
+  List<Object> get props => [userId ?? ''];
 }
+
+final class FollowUserEvent extends ProfileEvent {
+  final String userId;
+  const FollowUserEvent(this.userId);
+
+  @override
+  List<Object> get props => [userId];
+}
+
+final class UnfollowUserEvent extends ProfileEvent {
+  final String userId;
+  const UnfollowUserEvent(this.userId);
+
+  @override
+  List<Object> get props => [userId];
+}
+
