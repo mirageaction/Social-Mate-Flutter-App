@@ -5,13 +5,13 @@ import 'package:social_mate_app/global/widgets/shimmer_box.dart';
 import 'package:social_mate_app/core/services/media_cache_service.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
-class ShimmerAvatar extends StatelessWidget {
+class ShimmerAvater extends StatelessWidget {
   final double size;
   final String imageUrl;
   final Color? errorColor;
   final VoidCallback? onTap;
   final double? padding;
-  const ShimmerAvatar({
+  const ShimmerAvater({
     super.key,
     required this.size,
     required this.imageUrl,
@@ -36,7 +36,7 @@ class ShimmerAvatar extends StatelessWidget {
           placeholder: (context, url) =>
               ShimmerBox(height: size, width: size, borderRadius: 100),
           errorWidget: (context, url, error) => Container(
-            padding: EdgeInsets.all(padding ?? 12),
+            padding:  EdgeInsets.all(padding ?? size * 0.2),
             width: size,
             height: size,
             decoration: BoxDecoration(

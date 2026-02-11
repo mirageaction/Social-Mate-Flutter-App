@@ -46,7 +46,7 @@ class PostCard extends StatelessWidget {
             },
             child: Row(
               children: [
-                ShimmerAvatar(size: 40.w, imageUrl: post.user.avatarUrl),
+                ShimmerAvater(size: 40.w, imageUrl: post.user.avatarUrl),
                 10.horizontalSpace,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -124,7 +124,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
                         return state is ProfileLoaded ? state.profile : null;
                       },
                       builder: (context, profile) {
-                        return ShimmerAvatar(
+                        return ShimmerAvater(
                           size: 40.w,
                           imageUrl: profile?.avatarUrl ?? '',
                         );

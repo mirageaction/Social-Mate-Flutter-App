@@ -5,6 +5,7 @@ import 'package:social_mate_app/core/di/di.dart';
 import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/auth/presentation/pages/auth_page.dart';
+import 'package:social_mate_app/features/base/presentation/page/base_page.dart';
 import 'package:social_mate_app/features/create_post/presentation/bloc/create_post_bloc.dart';
 import 'package:social_mate_app/features/create_post/presentation/bloc/media_picker_bloc.dart';
 import 'package:social_mate_app/features/create_post/presentation/pages/create_post_page.dart';
@@ -22,7 +23,6 @@ import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.
 import 'package:social_mate_app/features/profile/presentation/pages/profile_page.dart';
 import 'package:social_mate_app/features/splash/presentation/page/splash_page.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/bloc/story_viewer_bloc.dart';
-import 'package:social_mate_app/global/widgets/bottom_nav_bar.dart';
 import 'package:social_mate_app/global/bloc/app_flow_bloc.dart';
 import 'package:social_mate_app/features/discover_people/presentation/bloc/discover_people_bloc.dart';
 import 'package:social_mate_app/features/story_viewer/presentation/pages/story_viewer_page.dart';
@@ -74,7 +74,7 @@ class AppRouter {
         StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => BlocProvider(
             create: (context) => getIt<ProfileBloc>(),
-            child: BottomNavBar(navigationShell: navigationShell),
+            child: BasePage(navigationShell: navigationShell),
           ),
           branches: [
             StatefulShellBranch(

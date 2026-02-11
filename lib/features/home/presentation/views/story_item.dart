@@ -73,7 +73,7 @@ class StoryItem extends StatelessWidget {
     if (type == 'image' && imageUrl != null) {
       return Stack(
         children: [
-          ShimmerAvatar(size: 56.w, imageUrl: imageUrl!),
+          ShimmerAvater(size: 56.w, imageUrl: imageUrl!),
           if (isLoading) ...[
             Positioned.fill(
               child: Container(

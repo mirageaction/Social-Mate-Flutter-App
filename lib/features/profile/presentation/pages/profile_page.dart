@@ -99,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage>
                                 ],
                                 if (widget.userId != null) ...[
                                   ProfileFollowButton(widget: widget),
-                                  24.verticalSpace,
+                                  16.verticalSpace,
                                 ],
                                 ProfileStats(profile: state.profile),
                                 24.verticalSpace,
@@ -111,13 +111,11 @@ class _ProfilePageState extends State<ProfilePage>
                                     controller: _tabController,
                                     indicatorColor: colorScheme.onSurface,
                                     labelColor: colorScheme.onSurface,
-                                    unselectedLabelColor:
-                                        Colors.grey.shade400,
-                                    labelStyle: textTheme.titleLarge
-                                        ?.copyWith(
-                                          color: colorScheme.onSurface,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                    unselectedLabelColor: Colors.grey.shade400,
+                                    labelStyle: textTheme.titleLarge?.copyWith(
+                                      color: colorScheme.onSurface,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                     unselectedLabelStyle: textTheme.titleLarge
                                         ?.copyWith(
                                           color: Colors.grey.shade400,

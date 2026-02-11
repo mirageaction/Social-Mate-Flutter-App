@@ -47,7 +47,7 @@ class DiscoverPeopleItem extends StatelessWidget {
               //   );
               // }
             },
-            child: ShimmerAvatar(size: 50.w, imageUrl: user.avatarUrl ?? ''),
+            child: ShimmerAvater(size: 50.w, imageUrl: user.avatarUrl ?? ''),
           ),
           12.horizontalSpace,
           Expanded(
