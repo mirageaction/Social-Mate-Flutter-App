@@ -3,6 +3,8 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:social_mate_app/core/di/di.dart';
+import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/base/presentation/views/bottom_nav_bar.dart';
 import 'package:social_mate_app/features/base/presentation/views/drawer_body.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
@@ -58,7 +60,10 @@ class _BasePageState extends State<BasePage> {
         ],
         borderRadius: BorderRadius.all(Radius.circular(16.r)),
       ),
-      drawer: DrawerBody(textTheme: textTheme, colorScheme: colorScheme),
+      drawer: BlocProvider(
+        create: (context) => getIt<AuthBloc>(),
+        child: DrawerBody(textTheme: textTheme, colorScheme: colorScheme),
+      ),
       child: Scaffold(
         bottomNavigationBar: BottomNavBar(navigationShell: widget.navigationShell),
         body: widget.navigationShell,

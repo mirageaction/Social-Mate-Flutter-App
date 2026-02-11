@@ -42,7 +42,23 @@ class NotificationItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildNotificationText(context, strings, textTheme),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildNotificationText(context, strings, textTheme),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(20.r),
+                        onTap: () {
+                          // Show more options
+                        },
+                        child: Icon(
+                          Icons.more_horiz,
+                          color: Colors.grey,
+                          size: 22.w,
+                        ),
+                      ),
+                    ],
+                  ),
                   4.verticalSpace,
                   Text(
                     TimeAgoHelper.format(notification.createdAt),
@@ -60,14 +76,6 @@ class NotificationItem extends StatelessWidget {
                   ],
                 ],
               ),
-            ),
-            IconButton(
-              icon: Icon(Icons.more_horiz, color: Colors.grey, size: 20.w),
-              onPressed: () {
-                // Show more options
-              },
-              padding: EdgeInsets.zero,
-              constraints: BoxConstraints(),
             ),
           ],
         ),

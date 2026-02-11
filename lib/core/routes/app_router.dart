@@ -40,7 +40,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.notification,
+      initialLocation: AppPaths.splash,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -131,7 +131,6 @@ class AppRouter {
                   path: AppPaths.profile,
                   builder: (context, state) => MultiBlocProvider(
                     providers: [
-                      BlocProvider(create: (context) => getIt<AuthBloc>()),
                       BlocProvider(create: (context) => getIt<PostBloc>()),
                     ],
                     child: const ProfilePage(),

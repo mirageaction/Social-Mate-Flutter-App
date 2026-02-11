@@ -35,11 +35,11 @@ class NotificationList extends StatelessWidget {
         final now = DateTime.now();
         final today = DateTime(now.year, now.month, now.day);
         final yesterday = today.subtract(const Duration(days: 1));
-        final date = DateTime(
-          notification.createdAt.year,
-          notification.createdAt.month,
-          notification.createdAt.day,
-        );
+
+        final localDate = notification.createdAt.toLocal();
+
+        final date = DateTime(localDate.year, localDate.month, localDate.day);
+
         if (date.isAtSameMomentAs(today)) return strings.today;
         if (date.isAtSameMomentAs(yesterday)) return strings.yesterday;
         return strings.earlier;

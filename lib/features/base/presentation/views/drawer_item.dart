@@ -19,7 +19,7 @@ class DrawerItem extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return ListTile(
-      onTap: () {},
+      onTap: onTap,
       leading: SvgIcon(path: icon, size: 24.w, color: colorScheme.primary),
       title: Text(title, style: textTheme.bodyLarge),
       trailing: Icon(

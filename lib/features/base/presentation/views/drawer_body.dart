@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
 import 'package:social_mate_app/core/l10n/generated/l10n.dart';
+import 'package:social_mate_app/features/auth/bloc/auth_bloc.dart';
 import 'package:social_mate_app/features/base/presentation/views/drawer_item.dart';
 import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
@@ -61,7 +62,14 @@ class DrawerBody extends StatelessWidget {
         onTap: () {},
       ),
       MenuItem(title: strings.aboutUs, icon: icons.info.path, onTap: () {}),
-      MenuItem(title: strings.logout, icon: icons.logout.path, onTap: () {}),
+      MenuItem(
+        title: strings.logout,
+        icon: icons.logout.path,
+        onTap: () {
+          
+          context.read<AuthBloc>().add(SignOutEvent());
+        },
+      ),
     ];
 
     return SafeArea(
@@ -85,6 +93,7 @@ class DrawerBody extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = menuItems[index];
                 return DrawerItem(
+                  key: ValueKey(item.title),
                   title: item.title,
                   icon: item.icon,
                   onTap: item.onTap,
