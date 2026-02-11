@@ -588,6 +588,131 @@ class AppStrings {
   String get aboutUs {
     return Intl.message('About Us', name: 'aboutUs', desc: '', args: []);
   }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message('Today', name: 'today', desc: '', args: []);
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message('Yesterday', name: 'yesterday', desc: '', args: []);
+  }
+
+  /// `Earlier`
+  String get earlier {
+    return Intl.message('Earlier', name: 'earlier', desc: '', args: []);
+  }
+
+  /// `See all view`
+  String get seeAllView {
+    return Intl.message('See all view', name: 'seeAllView', desc: '', args: []);
+  }
+
+  /// `Follow Back`
+  String get followBack {
+    return Intl.message('Follow Back', name: 'followBack', desc: '', args: []);
+  }
+
+  /// `Viewed your profile`
+  String get viewedYourProfile {
+    return Intl.message(
+      'Viewed your profile',
+      name: 'viewedYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `follow you`
+  String get followYou {
+    return Intl.message('follow you', name: 'followYou', desc: '', args: []);
+  }
+
+  /// `Congratualte your friend`
+  String get congratulateYourFriend {
+    return Intl.message(
+      'Congratualte your friend',
+      name: 'congratulateYourFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `for his new position as a`
+  String get forHisNewPositionAs {
+    return Intl.message(
+      'for his new position as a',
+      name: 'forHisNewPositionAs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `is attending in`
+  String get isAttendingIn {
+    return Intl.message(
+      'is attending in',
+      name: 'isAttendingIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `event that will hold on`
+  String get eventThatWillHoldOn {
+    return Intl.message(
+      'event that will hold on',
+      name: 'eventThatWillHoldOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `tomorrow`
+  String get tomorrow {
+    return Intl.message('tomorrow', name: 'tomorrow', desc: '', args: []);
+  }
+
+  /// `on`
+  String get on {
+    return Intl.message('on', name: 'on', desc: '', args: []);
+  }
+
+  /// `town hall`
+  String get townHall {
+    return Intl.message('town hall', name: 'townHall', desc: '', args: []);
+  }
+
+  /// `No notifications yet`
+  String get noNotifications {
+    return Intl.message(
+      'No notifications yet',
+      name: 'noNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to refresh`
+  String get pullToRefresh {
+    return Intl.message(
+      'Pull to refresh',
+      name: 'pullToRefresh',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

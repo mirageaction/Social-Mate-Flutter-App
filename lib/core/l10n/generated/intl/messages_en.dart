@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmPasswordLabel": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
+    "congratulateYourFriend": MessageLookupByLibrary.simpleMessage(
+      "Congratualte your friend",
+    ),
     "createPost": MessageLookupByLibrary.simpleMessage("Create a Post"),
     "createStory": MessageLookupByLibrary.simpleMessage("Create a Story"),
     "discoverPeople": MessageLookupByLibrary.simpleMessage("Discover People"),
@@ -42,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "earlier": MessageLookupByLibrary.simpleMessage("Earlier"),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "egyptianPhoneError": MessageLookupByLibrary.simpleMessage(
       "Only Egyptian phone numbers are allowed",
@@ -53,9 +57,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "eventThatWillHoldOn": MessageLookupByLibrary.simpleMessage(
+      "event that will hold on",
+    ),
     "follow": MessageLookupByLibrary.simpleMessage("Follow"),
+    "followBack": MessageLookupByLibrary.simpleMessage("Follow Back"),
+    "followYou": MessageLookupByLibrary.simpleMessage("follow you"),
     "followers": MessageLookupByLibrary.simpleMessage("Followers"),
     "following": MessageLookupByLibrary.simpleMessage("Following"),
+    "forHisNewPositionAs": MessageLookupByLibrary.simpleMessage(
+      "for his new position as a",
+    ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
     "groups": MessageLookupByLibrary.simpleMessage("Groups"),
@@ -63,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Invalid phone number",
     ),
+    "isAttendingIn": MessageLookupByLibrary.simpleMessage("is attending in"),
     "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "liveVideo": MessageLookupByLibrary.simpleMessage("Live Video"),
@@ -74,6 +87,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
     "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
     "network": MessageLookupByLibrary.simpleMessage("Network"),
+    "noNotifications": MessageLookupByLibrary.simpleMessage(
+      "No notifications yet",
+    ),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "on": MessageLookupByLibrary.simpleMessage("on"),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
@@ -97,7 +115,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "post": MessageLookupByLibrary.simpleMessage("Post"),
     "posts": MessageLookupByLibrary.simpleMessage("Posts"),
     "public": MessageLookupByLibrary.simpleMessage("Public"),
+    "pullToRefresh": MessageLookupByLibrary.simpleMessage("Pull to refresh"),
     "searchProfile": MessageLookupByLibrary.simpleMessage("Search Profile"),
+    "seeAllView": MessageLookupByLibrary.simpleMessage("See all view"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
     "shareThoughts": MessageLookupByLibrary.simpleMessage(
@@ -116,13 +136,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "thinkingAboutToday": MessageLookupByLibrary.simpleMessage(
       "What are you thinking about today?",
     ),
+    "today": MessageLookupByLibrary.simpleMessage("Today"),
+    "tomorrow": MessageLookupByLibrary.simpleMessage("tomorrow"),
+    "townHall": MessageLookupByLibrary.simpleMessage("town hall"),
     "unfollow": MessageLookupByLibrary.simpleMessage("Unfollow"),
+    "viewedYourProfile": MessageLookupByLibrary.simpleMessage(
+      "Viewed your profile",
+    ),
     "whatsOnYourMind": MessageLookupByLibrary.simpleMessage(
       "What\'s on your mind?",
     ),
     "writeSomething": MessageLookupByLibrary.simpleMessage(
       "Write something here...",
     ),
+    "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
     "yourPrivacy": MessageLookupByLibrary.simpleMessage("Your Privacy"),
   };
 }

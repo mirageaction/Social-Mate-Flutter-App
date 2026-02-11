@@ -11,6 +11,7 @@ class ShimmerAvater extends StatelessWidget {
   final Color? errorColor;
   final VoidCallback? onTap;
   final double? padding;
+  final bool showBorder;
   const ShimmerAvater({
     super.key,
     required this.size,
@@ -18,6 +19,7 @@ class ShimmerAvater extends StatelessWidget {
     this.errorColor,
     this.onTap,
     this.padding,
+    this.showBorder = false,
   });
 
   @override
@@ -36,7 +38,7 @@ class ShimmerAvater extends StatelessWidget {
           placeholder: (context, url) =>
               ShimmerBox(height: size, width: size, borderRadius: 100),
           errorWidget: (context, url, error) => Container(
-            padding:  EdgeInsets.all(padding ?? size * 0.2),
+            padding: EdgeInsets.all(padding ?? size * 0.2),
             width: size,
             height: size,
             decoration: BoxDecoration(

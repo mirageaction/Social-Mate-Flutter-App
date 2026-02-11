@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_mate_app/core/assets_gen/assets.gen.dart';
+import 'package:social_mate_app/core/routes/app_paths.dart';
 import 'package:social_mate_app/global/widgets/svg_icon.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,7 +23,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push(AppPaths.notification);
+          },
           icon: SvgIcon(
             path: Assets.icons.bellRinging.path,
             size: 24.w,

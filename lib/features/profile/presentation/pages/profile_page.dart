@@ -34,6 +34,10 @@ class _ProfilePageState extends State<ProfilePage>
       profileBloc.add(GetProfileEvent(userId: widget.userId));
     }
 
+    if (widget.userId != null) {
+      profileBloc.add(TrackProfileViewEvent(widget.userId!));
+    }
+
     final postBloc = context.read<PostBloc>();
     if (postBloc.state is! PostLoaded) {
       postBloc.add(GetAuthorPostsEvent(widget.userId));

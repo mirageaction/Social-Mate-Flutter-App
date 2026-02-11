@@ -9,4 +9,5 @@ class AppPaths {
   static const String createPost = '/createPost';
   static const String profile = '/profile';
   static const String discoverPeople = '/discoverPeople';
+  static const String notification = '/notification';
 }

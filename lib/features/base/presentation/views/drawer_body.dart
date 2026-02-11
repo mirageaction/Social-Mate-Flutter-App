@@ -40,10 +40,26 @@ class DrawerBody extends StatelessWidget {
         onTap: () {},
       ),
       MenuItem(title: strings.groups, icon: icons.group.path, onTap: () {}),
-      MenuItem(title: strings.searchProfile, icon: icons.search.path, onTap: () {}),
-      MenuItem(title: strings.language, icon: icons.translate.path, onTap: () {}),
-      MenuItem(title: strings.settings, icon: icons.settings.path, onTap: () {}),
-      MenuItem(title: strings.yourPrivacy, icon: icons.privacy.path, onTap: () {}),
+      MenuItem(
+        title: strings.searchProfile,
+        icon: icons.search.path,
+        onTap: () {},
+      ),
+      MenuItem(
+        title: strings.language,
+        icon: icons.translate.path,
+        onTap: () {},
+      ),
+      MenuItem(
+        title: strings.settings,
+        icon: icons.settings.path,
+        onTap: () {},
+      ),
+      MenuItem(
+        title: strings.yourPrivacy,
+        icon: icons.privacy.path,
+        onTap: () {},
+      ),
       MenuItem(title: strings.aboutUs, icon: icons.info.path, onTap: () {}),
       MenuItem(title: strings.logout, icon: icons.logout.path, onTap: () {}),
     ];
@@ -64,6 +80,7 @@ class DrawerBody extends StatelessWidget {
           Divider(color: colorScheme.outline),
           Expanded(
             child: ListView.builder(
+              padding: EdgeInsets.only(bottom: 50.h),
               itemCount: menuItems.length,
               itemBuilder: (context, index) {
                 final item = menuItems[index];

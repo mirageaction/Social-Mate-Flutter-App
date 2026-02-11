@@ -126,6 +126,18 @@ import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart'
     as _i853;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
     as _i200;
+import 'package:social_mate_app/features/notification/data/remote/notification_remote_datasource.dart'
+    as _i564;
+import 'package:social_mate_app/features/notification/data/remote/notification_remote_datasource_impl.dart'
+    as _i93;
+import 'package:social_mate_app/features/notification/data/repos/notification_repo_impl.dart'
+    as _i482;
+import 'package:social_mate_app/features/notification/domain/repos/notification_repo.dart'
+    as _i737;
+import 'package:social_mate_app/features/notification/domain/usecases/get_notifications_usecase.dart'
+    as _i516;
+import 'package:social_mate_app/features/notification/presentation/bloc/notification_bloc.dart'
+    as _i834;
 import 'package:social_mate_app/features/profile/data/remote/profile_remote_datasource.dart'
     as _i716;
 import 'package:social_mate_app/features/profile/data/remote/profile_remote_datasource_impl.dart'
@@ -136,6 +148,8 @@ import 'package:social_mate_app/features/profile/domain/repos/profile_repo.dart'
     as _i792;
 import 'package:social_mate_app/features/profile/domain/usecases/get_profile_usecase.dart'
     as _i694;
+import 'package:social_mate_app/features/profile/domain/usecases/track_profile_view_usecase.dart'
+    as _i241;
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart'
     as _i863;
 import 'package:social_mate_app/features/story_viewer/data/remote/story_viewer_remote_datasource.dart'
@@ -229,6 +243,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
     );
+    gh.lazySingleton<_i564.NotificationRemoteDataSource>(
+      () => _i93.NotificationRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i176.DiscoverPeopleRemoteDataSource>(
       () =>
           _i153.DiscoverPeopleRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
@@ -238,6 +255,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i498.MediaPickerLocalDataSource>(
       () => _i67.MediaPickerLocalDataSourceImpl(gh<_i183.ImagePicker>()),
+    );
+    gh.lazySingleton<_i737.NotificationRepo>(
+      () =>
+          _i482.NotificationRepoImpl(gh<_i564.NotificationRemoteDataSource>()),
     );
     gh.lazySingleton<_i473.GetAuthorStoriesUseCase>(
       () => _i473.GetAuthorStoriesUseCase(
@@ -262,6 +283,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i424.SignUpUsecase>(
       () => _i424.SignUpUsecase(gh<_i358.AuthRepo>()),
+    );
+    gh.lazySingleton<_i516.GetNotificationsUseCase>(
+      () => _i516.GetNotificationsUseCase(gh<_i737.NotificationRepo>()),
     );
     gh.factory<_i206.StoryViewerBloc>(
       () => _i206.StoryViewerBloc(
@@ -327,6 +351,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i437.PickVideoFromGalleryUsecase>(
       () => _i437.PickVideoFromGalleryUsecase(gh<_i206.MediaPickerRepo>()),
     );
+    gh.factory<_i834.NotificationBloc>(
+      () => _i834.NotificationBloc(gh<_i516.GetNotificationsUseCase>()),
+    );
+    gh.lazySingleton<_i241.TrackProfileViewUseCase>(
+      () => _i241.TrackProfileViewUseCase(gh<_i792.ProfileRepo>()),
+    );
     gh.factory<_i419.DiscoverPeopleBloc>(
       () => _i419.DiscoverPeopleBloc(
         gh<_i69.GetSuggestedUsersUseCase>(),
@@ -342,6 +372,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i694.GetProfileUsecase>(),
         gh<_i575.FollowUserUseCase>(),
         gh<_i995.UnfollowUserUseCase>(),
+        gh<_i241.TrackProfileViewUseCase>(),
       ),
     );
     gh.factory<_i944.AuthBloc>(

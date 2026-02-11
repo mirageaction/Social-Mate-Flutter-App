@@ -88,4 +88,21 @@ class ProfileRemoteDatasourceImpl implements ProfileRemoteDatasource {
       rethrow;
     }
   }
+  
+  @override
+  Future<void> trackProfileView(String viewedUserId) async {
+    try {
+      final currentUserId = _supabaseClient.auth.currentUser?.id;
+      if (currentUserId == null) {
+        throw Exception('User is not authenticated');
+      }
+
+      await _supabaseClient.from('profile_views').insert({
+        'viewer_id': currentUserId,
+        'viewed_id': viewedUserId,
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

@@ -16,7 +16,7 @@ class PostRemoteDatasourceImpl implements PostRemoteDatasource {
 
     final response = await _supabaseClient
         .from('posts')
-        .select(
+        .select( 
           '*, users:author_id(*), is_liked:post_likes(author_id), is_disliked:post_dislikes(author_id)',
         )
         .order('created_at', ascending: false);

@@ -5,6 +5,7 @@ import 'package:social_mate_app/features/discover_people/domain/usecases/follow_
 import 'package:social_mate_app/features/discover_people/domain/usecases/unfollow_user_usecase.dart';
 import 'package:social_mate_app/features/profile/domain/entities/profile_entity.dart';
 import 'package:social_mate_app/features/profile/domain/usecases/get_profile_usecase.dart';
+import 'package:social_mate_app/features/profile/domain/usecases/track_profile_view_usecase.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';
@@ -14,14 +15,28 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileUsecase getProfileUsecase;
   final FollowUserUseCase followUserUsecase;
   final UnfollowUserUseCase unfollowUserUsecase;
+  final TrackProfileViewUseCase trackProfileViewUseCase;
   ProfileBloc(
     this.getProfileUsecase,
     this.followUserUsecase,
     this.unfollowUserUsecase,
+    this.trackProfileViewUseCase,
   ) : super(ProfileInitial()) {
     on<GetProfileEvent>(_getProfile);
     on<FollowUserEvent>(_followUser);
     on<UnfollowUserEvent>(_unfollowUser);
+    on<TrackProfileViewEvent>(_trackProfileView);
+  }
+
+  Future<void> _trackProfileView(
+    TrackProfileViewEvent event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      await trackProfileViewUseCase.call(event.viewedUserId);
+    } catch (e) {
+      emit(ProfileError(message: e.toString()));
+    }
   }
 
   Future<void> _getProfile(

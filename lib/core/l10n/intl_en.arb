@@ -66,5 +66,22 @@
   "language": "Language",
   "settings": "Settings",
   "yourPrivacy": "Your Privacy",
-  "aboutUs": "About Us"
+  "aboutUs": "About Us",
+  "notifications": "Notifications",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "earlier": "Earlier",
+  "seeAllView": "See all view",
+  "followBack": "Follow Back",
+  "viewedYourProfile": "Viewed your profile",
+  "followYou": "follow you",
+  "congratulateYourFriend": "Congratualte your friend",
+  "forHisNewPositionAs": "for his new position as a",
+  "isAttendingIn": "is attending in",
+  "eventThatWillHoldOn": "event that will hold on",
+  "tomorrow": "tomorrow",
+  "on": "on",
+  "townHall": "town hall",
+  "noNotifications": "No notifications yet",
+  "pullToRefresh": "Pull to refresh"
 }

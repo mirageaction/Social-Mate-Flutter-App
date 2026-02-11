@@ -5,4 +5,5 @@ abstract class ProfileRemoteDatasource {
   Future<ProfileEntity> getProfileById(String userId);
   Future<void> followUser(String userId);
   Future<void> unfollowUser(String userId);
+  Future<void> trackProfileView(String viewedUserId);
 }

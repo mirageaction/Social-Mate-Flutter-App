@@ -28,4 +28,9 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<void> unfollowUser(String userId) {
     return profileRemoteDatasource.unfollowUser(userId);
   }
+
+  @override
+  Future<void> trackProfileView(String viewedUserId) {
+    return profileRemoteDatasource.trackProfileView(viewedUserId);
+  }
 }

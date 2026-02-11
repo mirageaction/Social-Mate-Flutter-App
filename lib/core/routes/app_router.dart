@@ -18,6 +18,8 @@ import 'package:social_mate_app/features/home/domain/entities/story_entity.dart'
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
+import 'package:social_mate_app/features/notification/presentation/bloc/notification_bloc.dart';
+import 'package:social_mate_app/features/notification/presentation/page/notification_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
 import 'package:social_mate_app/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:social_mate_app/features/profile/presentation/pages/profile_page.dart';
@@ -38,7 +40,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.splash,
+      initialLocation: AppPaths.notification,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -157,6 +159,13 @@ class AppRouter {
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: AppPaths.notification,
+          builder: (context, state) => BlocProvider(
+            create: (context) => getIt<NotificationBloc>(),
+            child: const NotificationPage(),
+          ),
         ),
         GoRoute(
           path: AppPaths.onboarding,

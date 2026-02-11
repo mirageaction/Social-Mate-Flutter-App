@@ -31,3 +31,11 @@ final class UnfollowUserEvent extends ProfileEvent {
   List<Object> get props => [userId];
 }
 
+final class TrackProfileViewEvent extends ProfileEvent {
+  final String viewedUserId;
+  const TrackProfileViewEvent(this.viewedUserId);
+
+  @override
+  List<Object> get props => [viewedUserId];
+}
+
