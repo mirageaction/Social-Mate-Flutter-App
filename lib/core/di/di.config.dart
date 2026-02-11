@@ -245,11 +245,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i689.RetryOptions>(),
       ),
     );
-    gh.lazySingleton<_i716.ProfileRemoteDatasource>(
-      () => _i1016.ProfileRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),
-    );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
+    );
+    gh.lazySingleton<_i716.ProfileRemoteDatasource>(
+      () => _i1016.ProfileRemoteDatasourceImpl(
+        gh<_i454.SupabaseClient>(),
+        gh<_i689.RetryOptions>(),
+      ),
     );
     gh.lazySingleton<_i176.DiscoverPeopleRemoteDataSource>(
       () =>
