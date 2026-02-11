@@ -713,6 +713,21 @@ class AppStrings {
       args: [],
     );
   }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
+  }
+
+  /// `Something went wrong.`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong.',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

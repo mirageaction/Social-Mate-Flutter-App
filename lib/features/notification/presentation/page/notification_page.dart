@@ -6,6 +6,8 @@ import 'package:social_mate_app/core/l10n/generated/l10n.dart';
 import 'package:social_mate_app/core/services/toast_service.dart';
 import 'package:social_mate_app/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:social_mate_app/features/notification/presentation/views/notification_list.dart';
+import 'package:social_mate_app/features/notification/presentation/views/shimmer_notifications.dart';
+import 'package:social_mate_app/global/widgets/retry.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -42,7 +44,7 @@ class _NotificationPageState extends State<NotificationPage> {
         ],
       ),
       body: BlocConsumer<NotificationBloc, NotificationState>(
-        buildWhen: (previous, current) => current is! NotificationError,
+        listenWhen: (previous, current) => current is NotificationError,
         listener: (context, state) {
           if (state is NotificationError) {
             getIt<ToastService>().showErrorToast(
@@ -53,11 +55,15 @@ class _NotificationPageState extends State<NotificationPage> {
         },
         builder: (context, state) {
           if (state is NotificationLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const ShimmerNotificaions();
           }
 
           if (state is NotificationError) {
-            return const SizedBox.shrink();
+            return Retry(
+              onTap: () {
+                context.read<NotificationBloc>().add(LoadNotificationsEvent());
+              },
+            );
           }
 
           if (state is NotificationLoaded) {

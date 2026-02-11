@@ -83,5 +83,7 @@
   "on": "on",
   "townHall": "town hall",
   "noNotifications": "No notifications yet",
-  "pullToRefresh": "Pull to refresh"
+  "pullToRefresh": "Pull to refresh",
+  "retry": "Retry",
+  "somethingWentWrong": "Something went wrong."
 }

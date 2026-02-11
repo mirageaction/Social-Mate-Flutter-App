@@ -47,7 +47,7 @@ class NotificationList extends StatelessWidget {
       groupSeparatorBuilder: (String groupValue) => Align(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          padding: EdgeInsets.symmetric(vertical: 8.h),
           child: Text(
             groupValue,
             style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
@@ -68,8 +68,8 @@ class NotificationList extends StatelessWidget {
           },
         ),
       ),
-      useStickyGroupSeparators: true,
-      floatingHeader: true,
+      useStickyGroupSeparators: false,
+      floatingHeader: false,
       order: GroupedListOrder.ASC,
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
     );

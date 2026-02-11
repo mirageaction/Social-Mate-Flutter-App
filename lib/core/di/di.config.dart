@@ -12,6 +12,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:image_picker/image_picker.dart' as _i183;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:retry/retry.dart' as _i689;
 import 'package:social_mate_app/core/di/register_module.dart' as _i124;
 import 'package:social_mate_app/core/services/auth_listener.dart' as _i859;
 import 'package:social_mate_app/core/services/toast_service.dart' as _i169;
@@ -180,6 +181,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i454.SupabaseClient>(() => registerModule.supabaseClient);
     gh.lazySingleton<_i183.ImagePicker>(() => registerModule.imagePicker);
+    gh.lazySingleton<_i689.RetryOptions>(() => registerModule.retryOptions);
     gh.lazySingleton<_i169.ToastService>(() => _i169.ToastService());
     gh.lazySingleton<_i954.StoryViewerRemoteDatasource>(
       () => _i852.StoryViewerRemoteDatasourceImpl(
@@ -237,14 +239,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i817.GetPostsUsecse>(
       () => _i817.GetPostsUsecse(gh<_i358.PostRepo>()),
     );
+    gh.lazySingleton<_i564.NotificationRemoteDataSource>(
+      () => _i93.NotificationRemoteDataSourceImpl(
+        gh<_i454.SupabaseClient>(),
+        gh<_i689.RetryOptions>(),
+      ),
+    );
     gh.lazySingleton<_i716.ProfileRemoteDatasource>(
       () => _i1016.ProfileRemoteDatasourceImpl(gh<_i454.SupabaseClient>()),
     );
     gh.lazySingleton<_i845.AppFlowBloc>(
       () => _i845.AppFlowBloc(gh<_i859.AuthListener>()),
-    );
-    gh.lazySingleton<_i564.NotificationRemoteDataSource>(
-      () => _i93.NotificationRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );
     gh.lazySingleton<_i176.DiscoverPeopleRemoteDataSource>(
       () =>

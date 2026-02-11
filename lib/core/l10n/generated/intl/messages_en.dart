@@ -116,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "posts": MessageLookupByLibrary.simpleMessage("Posts"),
     "public": MessageLookupByLibrary.simpleMessage("Public"),
     "pullToRefresh": MessageLookupByLibrary.simpleMessage("Pull to refresh"),
+    "retry": MessageLookupByLibrary.simpleMessage("Retry"),
     "searchProfile": MessageLookupByLibrary.simpleMessage("Search Profile"),
     "seeAllView": MessageLookupByLibrary.simpleMessage("See all view"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -124,6 +125,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Share your thoughts and experiences with the world.",
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong.",
+    ),
     "suggestedForYou": MessageLookupByLibrary.simpleMessage(
       "Suggested for you",
     ),
