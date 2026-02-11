@@ -518,6 +518,76 @@ class AppStrings {
   String get unfollow {
     return Intl.message('Unfollow', name: 'unfollow', desc: '', args: []);
   }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Network`
+  String get network {
+    return Intl.message('Network', name: 'network', desc: '', args: []);
+  }
+
+  /// `Photos/Videos`
+  String get photosVideos {
+    return Intl.message(
+      'Photos/Videos',
+      name: 'photosVideos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groups`
+  String get groups {
+    return Intl.message('Groups', name: 'groups', desc: '', args: []);
+  }
+
+  /// `Search Profile`
+  String get searchProfile {
+    return Intl.message(
+      'Search Profile',
+      name: 'searchProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
+  }
+
+  /// `Your Privacy`
+  String get yourPrivacy {
+    return Intl.message(
+      'Your Privacy',
+      name: 'yourPrivacy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About Us`
+  String get aboutUs {
+    return Intl.message('About Us', name: 'aboutUs', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppStrings> {

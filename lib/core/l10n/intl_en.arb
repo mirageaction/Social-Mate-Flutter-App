@@ -56,5 +56,15 @@
   "suggestedForYou": "Suggested for you",
   "peopleYouMayKnow": "People you may know",
   "follow": "Follow",
-  "unfollow": "Unfollow"
+  "unfollow": "Unfollow",
+  "logout": "Logout",
+  "editProfile": "Edit Profile",
+  "network": "Network",
+  "photosVideos": "Photos/Videos",
+  "groups": "Groups",
+  "searchProfile": "Search Profile",
+  "language": "Language",
+  "settings": "Settings",
+  "yourPrivacy": "Your Privacy",
+  "aboutUs": "About Us"
 }

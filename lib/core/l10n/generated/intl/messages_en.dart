@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutUs": MessageLookupByLibrary.simpleMessage("About Us"),
     "addDocument": MessageLookupByLibrary.simpleMessage("Add A Document"),
     "addGif": MessageLookupByLibrary.simpleMessage("Add Gif"),
     "addPhoto": MessageLookupByLibrary.simpleMessage("Add A Photo"),
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "egyptianPhoneError": MessageLookupByLibrary.simpleMessage(
       "Only Egyptian phone numbers are allowed",
     ),
@@ -56,18 +58,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "following": MessageLookupByLibrary.simpleMessage("Following"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "google": MessageLookupByLibrary.simpleMessage("Google"),
+    "groups": MessageLookupByLibrary.simpleMessage("Groups"),
     "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "invalidPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Invalid phone number",
     ),
     "joinNow": MessageLookupByLibrary.simpleMessage("Join Now"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "liveVideo": MessageLookupByLibrary.simpleMessage("Live Video"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "microsoft": MessageLookupByLibrary.simpleMessage("Microsoft"),
     "music": MessageLookupByLibrary.simpleMessage("Music"),
     "nameHint": MessageLookupByLibrary.simpleMessage("Enter your name"),
     "nameLabel": MessageLookupByLibrary.simpleMessage("Your Full Name"),
     "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
+    "network": MessageLookupByLibrary.simpleMessage("Network"),
     "orSignInWith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
     "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
@@ -87,9 +93,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Phone number is required",
     ),
     "photos": MessageLookupByLibrary.simpleMessage("Photos"),
+    "photosVideos": MessageLookupByLibrary.simpleMessage("Photos/Videos"),
     "post": MessageLookupByLibrary.simpleMessage("Post"),
     "posts": MessageLookupByLibrary.simpleMessage("Posts"),
     "public": MessageLookupByLibrary.simpleMessage("Public"),
+    "searchProfile": MessageLookupByLibrary.simpleMessage("Search Profile"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "shareStory": MessageLookupByLibrary.simpleMessage("Share Story"),
     "shareThoughts": MessageLookupByLibrary.simpleMessage(
       "Share your thoughts and experiences with the world.",
@@ -114,5 +123,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeSomething": MessageLookupByLibrary.simpleMessage(
       "Write something here...",
     ),
+    "yourPrivacy": MessageLookupByLibrary.simpleMessage("Your Privacy"),
   };
 }

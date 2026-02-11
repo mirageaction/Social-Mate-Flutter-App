@@ -17,6 +17,9 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Info.svg
+  SvgGenImage get info => const SvgGenImage('assets/icons/Info.svg');
+
   /// File path: assets/icons/add_circle_outline.svg
   SvgGenImage get addCircleOutline =>
       const SvgGenImage('assets/icons/add_circle_outline.svg');
@@ -57,6 +60,9 @@ class $AssetsIconsGen {
   SvgGenImage get chatCircleDots =>
       const SvgGenImage('assets/icons/chat_circle_dots.svg');
 
+  /// File path: assets/icons/edit.svg
+  SvgGenImage get edit => const SvgGenImage('assets/icons/edit.svg');
+
   /// File path: assets/icons/font.svg
   SvgGenImage get font => const SvgGenImage('assets/icons/font.svg');
 
@@ -79,8 +85,15 @@ class $AssetsIconsGen {
   SvgGenImage get imageOutline =>
       const SvgGenImage('assets/icons/image_outline.svg');
 
+  /// File path: assets/icons/images_videos.svg
+  SvgGenImage get imagesVideos =>
+      const SvgGenImage('assets/icons/images_videos.svg');
+
   /// File path: assets/icons/live_video.svg
   SvgGenImage get liveVideo => const SvgGenImage('assets/icons/live_video.svg');
+
+  /// File path: assets/icons/logout.svg
+  SvgGenImage get logout => const SvgGenImage('assets/icons/logout.svg');
 
   /// File path: assets/icons/microsoft.svg
   SvgGenImage get microsoft => const SvgGenImage('assets/icons/microsoft.svg');
@@ -88,8 +101,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/music.svg
   SvgGenImage get music => const SvgGenImage('assets/icons/music.svg');
 
+  /// File path: assets/icons/network.svg
+  SvgGenImage get network => const SvgGenImage('assets/icons/network.svg');
+
   /// File path: assets/icons/person.svg
   SvgGenImage get person => const SvgGenImage('assets/icons/person.svg');
+
+  /// File path: assets/icons/privacy.svg
+  SvgGenImage get privacy => const SvgGenImage('assets/icons/privacy.svg');
 
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
@@ -97,11 +116,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/send.svg
   SvgGenImage get send => const SvgGenImage('assets/icons/send.svg');
 
+  /// File path: assets/icons/settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
+
   /// File path: assets/icons/share.svg
   SvgGenImage get share => const SvgGenImage('assets/icons/share.svg');
 
   /// File path: assets/icons/thumbs_up.svg
   SvgGenImage get thumbsUp => const SvgGenImage('assets/icons/thumbs_up.svg');
+
+  /// File path: assets/icons/translate.svg
+  SvgGenImage get translate => const SvgGenImage('assets/icons/translate.svg');
 
   /// File path: assets/icons/user_plus.svg
   SvgGenImage get userPlus => const SvgGenImage('assets/icons/user_plus.svg');
@@ -111,6 +136,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+    info,
     addCircleOutline,
     addDocument,
     addVideo,
@@ -122,6 +148,7 @@ class $AssetsIconsGen {
     cameraFocus,
     cameraOutline,
     chatCircleDots,
+    edit,
     font,
     gif,
     google,
@@ -129,14 +156,20 @@ class $AssetsIconsGen {
     home,
     image,
     imageOutline,
+    imagesVideos,
     liveVideo,
+    logout,
     microsoft,
     music,
+    network,
     person,
+    privacy,
     search,
     send,
+    settings,
     share,
     thumbsUp,
+    translate,
     userPlus,
     videos,
   ];
