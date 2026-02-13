@@ -33,7 +33,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push(AppPaths.inbox);
+          },
           icon: SvgIcon(
             path: Assets.icons.send.path,
             size: 24.w,

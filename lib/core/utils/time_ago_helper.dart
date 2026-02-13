@@ -46,4 +46,31 @@ class TimeAgoHelper {
       return 'now';
     }
   }
+
+  static String formatInbox(DateTime dateTime) {
+    final now = DateTime.now();
+    final difference = now.difference(dateTime);
+
+    if (difference.inMinutes < 1) {
+      return 'Just Now';
+    } else if (difference.inHours < 24 && dateTime.day == now.day) {
+      return '${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}';
+    } else if (difference.inDays == 1 ||
+        (difference.inDays == 0 && dateTime.day != now.day)) {
+      return 'Yesterday';
+    } else if (difference.inDays < 7) {
+      final days = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ];
+      return days[dateTime.weekday - 1];
+    } else {
+      return '${dateTime.day}/${dateTime.month}/${dateTime.year}';
+    }
+  }
 }

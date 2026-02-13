@@ -10,4 +10,5 @@ class AppPaths {
   static const String profile = '/profile';
   static const String discoverPeople = '/discoverPeople';
   static const String notification = '/notification';
+  static const String inbox = '/inbox';
 }

@@ -18,6 +18,8 @@ import 'package:social_mate_app/features/home/domain/entities/story_entity.dart'
 import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart';
 import 'package:social_mate_app/features/home/presentation/pages/home_page.dart';
+import 'package:social_mate_app/features/inbox/presentation/bloc/inbox_bloc.dart';
+import 'package:social_mate_app/features/inbox/presentation/page/inbox_page.dart';
 import 'package:social_mate_app/features/notification/presentation/bloc/notification_bloc.dart';
 import 'package:social_mate_app/features/notification/presentation/page/notification_page.dart';
 import 'package:social_mate_app/features/onboarding/presentation/page/onboarding_page.dart';
@@ -40,7 +42,7 @@ class AppRouter {
   static GoRouter router({required AppFlowBloc appFlowBloc}) {
     return GoRouter(
       refreshListenable: GoRouterRefreshStream(appFlowBloc.stream),
-      initialLocation: AppPaths.splash,
+      initialLocation: AppPaths.inbox,
       redirect: (context, state) {
         final status = appFlowBloc.state.status;
         final location = state.matchedLocation;
@@ -175,6 +177,13 @@ class AppRouter {
           builder: (context, state) => BlocProvider(
             create: (context) => getIt<GalleryBloc>(),
             child: const CreateStoryPage(),
+          ),
+        ),
+        GoRoute(
+          path: AppPaths.inbox,
+          builder: (context, state) => BlocProvider(
+            create: (context) => getIt<InboxBloc>(),
+            child: const InboxPage(),
           ),
         ),
         GoRoute(

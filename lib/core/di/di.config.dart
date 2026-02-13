@@ -127,6 +127,20 @@ import 'package:social_mate_app/features/home/presentation/bloc/post_bloc.dart'
     as _i853;
 import 'package:social_mate_app/features/home/presentation/bloc/story_bloc.dart'
     as _i200;
+import 'package:social_mate_app/features/inbox/data/datasources/inbox_remote_data_source.dart'
+    as _i762;
+import 'package:social_mate_app/features/inbox/data/datasources/inbox_remote_data_source_impl.dart'
+    as _i222;
+import 'package:social_mate_app/features/inbox/data/repos/inbox_repo_impl.dart'
+    as _i1040;
+import 'package:social_mate_app/features/inbox/domain/repos/inbox_repository.dart'
+    as _i182;
+import 'package:social_mate_app/features/inbox/domain/usecases/delete_chat_room_usecase.dart'
+    as _i44;
+import 'package:social_mate_app/features/inbox/domain/usecases/stream_chat_rooms_usecase.dart'
+    as _i46;
+import 'package:social_mate_app/features/inbox/presentation/bloc/inbox_bloc.dart'
+    as _i1024;
 import 'package:social_mate_app/features/notification/data/remote/notification_remote_datasource.dart'
     as _i564;
 import 'package:social_mate_app/features/notification/data/remote/notification_remote_datasource_impl.dart'
@@ -219,6 +233,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i859.AuthListener>(
       () => _i859.AuthListener(gh<_i454.SupabaseClient>()),
     );
+    gh.lazySingleton<_i762.InboxRemoteDataSource>(
+      () => _i222.InboxRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
+    );
     gh.lazySingleton<_i351.StoryViewerRepo>(
       () => _i249.StoryViewerRepoImpl(
         remoteDatasource: gh<_i954.StoryViewerRemoteDatasource>(),
@@ -306,11 +323,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i892.GetAuthorPostsUseCase>(
       () => _i892.GetAuthorPostsUseCase(gh<_i358.PostRepo>()),
     );
+    gh.lazySingleton<_i182.InboxRepository>(
+      () => _i1040.InboxRepositoryImpl(gh<_i762.InboxRemoteDataSource>()),
+    );
     gh.lazySingleton<_i792.ProfileRepo>(
       () => _i589.ProfileRepoImpl(gh<_i716.ProfileRemoteDatasource>()),
     );
     gh.factory<_i853.GalleryBloc>(
       () => _i853.GalleryBloc(getPhotosUsecase: gh<_i540.GetPhotosUsecase>()),
+    );
+    gh.lazySingleton<_i44.DeleteChatRoomUsecase>(
+      () => _i44.DeleteChatRoomUsecase(gh<_i182.InboxRepository>()),
+    );
+    gh.lazySingleton<_i46.StreamChatRoomsUsecase>(
+      () => _i46.StreamChatRoomsUsecase(gh<_i182.InboxRepository>()),
+    );
+    gh.factory<_i1024.InboxBloc>(
+      () => _i1024.InboxBloc(
+        gh<_i46.StreamChatRoomsUsecase>(),
+        gh<_i44.DeleteChatRoomUsecase>(),
+      ),
     );
     gh.lazySingleton<_i575.FollowUserUseCase>(
       () => _i575.FollowUserUseCase(gh<_i977.DiscoverPeopleRepo>()),
